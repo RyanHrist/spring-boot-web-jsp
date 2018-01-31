@@ -23,12 +23,21 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Spring Boot</a>
+            <a class="navbar-brand" href="/">Eat'n Greet</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="/login">Login</a></li>
+                <%
+                    // Example of how to write java in JSP
+                    boolean isLoggedIn = true;
+                    if (isLoggedIn) {
+                %>
+                <li><a href="/profile">Profile</a></li>
+                <%
+                    }
+                %>>
+                <li><a href="/register">Register</a></li>
             </ul>
         </div>
     </div>

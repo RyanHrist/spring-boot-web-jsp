@@ -1,17 +1,27 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Nancy
-  Date: 2/13/2018
-  Time: 5:01 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <jsp:include page="header.jsp"/>
-    <title>Error.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%@ include file ="register.jsp" %>
+    <c:url value="../../resources/static/css/popup.css" var="popup" />
+    <link href="${popup}" rel="stylesheet" />
 </head>
 <body>
-    <h1>Incorrect password or email</h1>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header-fail">
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>Something went wrong, please try again!</p>
+        </div>
+    </div>
+
+</div>
+<script src="../../resources/static/js/temporaryPopup.js"></script>
 </body>
 </html>

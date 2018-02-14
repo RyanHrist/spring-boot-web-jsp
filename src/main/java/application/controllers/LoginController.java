@@ -12,10 +12,13 @@ public class LoginController {
     @Value("${login.info}")
     private String info = "Login";
 
-
     @RequestMapping("/login")
     public String welcome(Map<String, Object> model) {
-        model.put("message", this.info);
+        //model.put("message", this.info);
         return "login";
+    }
+
+    public static boolean checkPasswordAndUser(String email, String password) {
+        return true;
     }
 }

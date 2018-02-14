@@ -2,6 +2,8 @@ package application.models;
 
 import org.apache.log4j.Category;
 
+import java.awt.*;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -21,8 +23,7 @@ public class Meals {
 
 
     private boolean processPayment(){
-
-
+        return false;
     }
     public boolean cancel(boolean Cancel){
         return Cancel;
@@ -43,7 +44,7 @@ public class Meals {
         return cancellation;
     }
     public Date getDate (){
-
+        return date;
     }
 
     public Image getImage() {

@@ -6,6 +6,9 @@ import application.models.enumerations.Gender;
 import application.models.enumerations.Language;
 import org.springframework.boot.ImageBanner;
 
+import java.awt.*;
+import java.util.Date;
+
 public class User {
     private String name;
     private String email;
@@ -44,7 +47,7 @@ public class User {
     }
 
     public Image getImageBanner() {
-        return imageBanner;
+        return profilePicture;
     }
 
     public Date getDateOfBirth() {

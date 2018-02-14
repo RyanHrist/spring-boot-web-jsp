@@ -3,6 +3,8 @@ package application.models;
 import application.models.enumerations.Country;
 import application.models.enumerations.Province;
 
+import java.util.Date;
+
 public class Host {
     private HostRating hostRating;
     private Meals meal;
@@ -16,7 +18,7 @@ public class Host {
     }
 
     public Meals getMeals() {
-        return meals;
+        return meal;
     }
 
 public Location getLocation(){

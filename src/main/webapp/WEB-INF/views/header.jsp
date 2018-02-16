@@ -10,27 +10,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
     <c:url value="../../resources/static/css/main.css" var="jstlCss" />
     <link href="${jstlCss}" rel="stylesheet" />
-
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">Eat'n Greet</a>
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">RYAN</button>
+            <div class="dropdown-content">
+                <a href="#">Profile</a>
+                <a href="#">Account</a>
+                <a href="#">Logout</a>
+            </div>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/login">Login</a></li>
-
-                <li><a href="/profile">Profile</a></li>
-
-                <li><a href="/registration">Register</a></li>
-            </ul>
-        </div>
+        <a href="#host">HOST A MEAL</a>
+        <a href="#upcoming">UPCOMING MEALS</a>
     </div>
-</nav>
 </body>
 </html>

@@ -13,32 +13,24 @@
 
 </head>
 <body>
-<div id="container_demo" >
-    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
-    <a class="hiddenanchor" id="toregister"></a>
-        <div id="register" class="animate form">
-            <form  action="<%=request.getContextPath()%>/" autocomplete="on" method="POST">
-                <h1> Sign up </h1>
-                <p>
-                    <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
-                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/>
-                </p>
-                <p>
-                    <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
-                    <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                </p>
-                <p class="signin button">
-                    <input type="submit"/>
-                </p>
-                <p class="change_link">
-                    Already a member ?
-                    <a href="/login" class="to_register"> Go and log in </a>
-                </p>
-            </form>
-        </div>
 
+<div class="centered">
+    <h1>eat'n greet</h1>
+
+    <div class= "inner">
+        <form action="/action_page.php">
+            First name: <input type="text" name="FirstName" value=""><br>
+            Last name: <input type="text" name="LastName" value=""><br>
+            Email: <input type="text" name="email" value="example@test.com"><br>
+            Password: <input type="text" name="password" value=""><br>
+            Confirm Password: <input type="text" name="passwordconfirm" value=""><br>
+            Country: <input type="text" name="country" value=""><br>
+            Date of Birth
+            <input type="date" name="bday">
+            <br/> <br/>
+            <input type="submit" value="Register">
+        </form>
     </div>
 </div>
-
 </body>
 </html>

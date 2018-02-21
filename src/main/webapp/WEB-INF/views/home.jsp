@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<html>
 <head>
-
-	<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-
+	<link rel="stylesheet" type="text/css" href="main.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <%@ include file = "header.jsp" %>
-	<div class="container">
 
-		<div class="starter-template">
-			<h1>Spring Boot Web JSP Example</h1>
-			<h2>Message: ${message}</h2>
-			<p>Hello</p>
-		</div>
 
+<div class="centered">
+	<h1>eat'n greet</h1>
+	<div class="search">
+		<form action="/action_page.php">
+			<input type="text" placeholder="Search.." name="search">
+			<button type="submit"><i class="fa fa-search"></i></button>
+		</form>
 	</div>
-	<script type="text/javascript" src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<img src="images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;">
+	<img src="images/i1.jpg" alt="Meal 2" style="width:256px;height:200px;">
+	<img src="images/i1.jpg" alt="Meal 3" style="width:256px;height:200px;">
+
+</div>
+
 </body>
 </html>

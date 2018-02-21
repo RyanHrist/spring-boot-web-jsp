@@ -12,19 +12,22 @@
 <head>
     <c:url value="../../resources/static/css/main.css" var="jstlCss" />
     <link href="${jstlCss}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="navbar">
-        <div class="dropdown">
-            <button class="dropbtn">RYAN</button>
-            <div class="dropdown-content">
-                <a href="#">Profile</a>
-                <a href="#">Account</a>
-                <a href="#">Logout</a>
-            </div>
+<!-- INCLUDE HEADER -->
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn">RYAN</button>
+        <div class="dropdown-content">
+            <a href="#">Profile</a>
+            <a href="#">Account</a>
+            <a href="#">Logout</a>
         </div>
-        <a href="#host">HOST A MEAL</a>
-        <a href="#upcoming">UPCOMING MEALS</a>
     </div>
+    <a href="#host">HOST A MEAL</a>
+    <a href="#upcoming">UPCOMING MEALS</a>
+</div>
+<!-- END INCLUDE HEADER -->
 </body>
 </html>

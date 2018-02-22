@@ -21,8 +21,8 @@
         <form action="/action_page.php">
             First name: <input type="text" name="FirstName" value=""><br>
             Last name: <input type="text" name="LastName" value=""><br>
-            Email: <input type="text" name="email" value="example@test.com"><br>
-            Password: <input type="text" name="password" value=""><br>
+            Email: <input type="text" name="emailsignup" value="example@test.com"><br>
+            Password: <input type="text" name="passwordsignup" value=""><br>
             Confirm Password: <input type="text" name="passwordconfirm" value=""><br>
             Country: <input type="text" name="country" value=""><br>
             Date of Birth

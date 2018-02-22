@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="spring-boot-web-jsp:war exploded">
-    <output-path>$PROJECT_DIR$/target/spring-boot-web-jsp-1.0</output-path>
+    <output-path>$PROJECT_DIR$/target/spring-boot-web-jsp-0.0.1-SNAPSHOT</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -39,7 +39,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/spring-boot-web-jsp-1.0/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/spring-boot-web-jsp-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="spring-boot-web-jsp/web/Web" />
     </root>

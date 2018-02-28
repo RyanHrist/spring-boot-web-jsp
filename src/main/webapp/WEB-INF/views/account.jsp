@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>eat'n greet</title>
 </head>
 <body>
+<%@ include file = "header.jsp" %>
 
+    <h1>Account information</h1>
 </body>
 </html>

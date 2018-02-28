@@ -18,13 +18,43 @@
     <h1>eat'n greet</h1>
 
     <div class= "inner">
-        <form action="/action_page.php">
-            First name: <input type="text" name="FirstName" value=""><br>
-            Last name: <input type="text" name="LastName" value=""><br>
-            Email: <input type="text" name="emailsignup" value="example@test.com"><br>
-            Password: <input type="text" name="passwordsignup" value=""><br>
-            Confirm Password: <input type="text" name="passwordconfirm" value=""><br>
-            Country: <input type="text" name="country" value=""><br>
+        <form  action="<%=request.getContextPath()%>/" autocomplete="on" method="POST">
+            First name: <input type="text" name="firstname" value=""
+                               style="background-color:white;
+                               border: solid 1px #2e2925;
+                               height: 30px;
+                               font-size:18px;
+                               vertical-align:9px;color:#2e2925" ><br>
+            Last name: <input type="text" name="lastname" value=""
+                              style="background-color:white;
+                               border: solid 1px #2e2925;
+                               height: 30px;
+                               font-size:18px;
+                               vertical-align:9px;color:#2e2925" ><br>
+            Email: <input type="text" name="emailsignup" value="example@test.com"
+                          style="background-color:white;
+                               border: solid 1px #2e2925;
+                               height: 30px;
+                               font-size:18px;
+                               vertical-align:9px;color:#2e2925" ><br>
+            Password: <input type="text" name="passwordsignup" value=""
+                             style="background-color:white;
+                               border: solid 1px #2e2925;
+                               height: 30px;
+                               font-size:18px;
+                               vertical-align:9px;color:#2e2925" ><br>
+            Confirm Password: <input type="text" name="passwordconfirm" value=""
+                                     style="background-color:white;
+                               border: solid 1px #2e2925;
+                               height: 30px;
+                               font-size:18px;
+                               vertical-align:9px;color:#2e2925" ><br>
+            Country: <input type="text" name="country" value=""
+                            style="background-color:white;
+                               border: solid 1px #2e2925;
+                               height: 30px;
+                               font-size:18px;
+                               vertical-align:9px;color:#2e2925" ><br>
             Date of Birth
             <input type="date" name="bday">
             <br/> <br/>

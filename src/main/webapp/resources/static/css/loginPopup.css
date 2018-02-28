@@ -1,0 +1,22 @@
+.modal-header, h4, .close {
+    background-color: #2e2925;
+    color:#c8bebe !important;
+    text-align: center;
+    font-size: 30px;
+}
+.modal-footer {
+    background-color: #f9f9f9;
+}
+.btn-success {
+    color: #2e2925 !important;
+    background-color: #c8bebe !important;
+    border-color: #c8bebe !important;
+}
+.container {
+    background-color: #2e2925 !important;
+}
+.signUpLink{
+    all:unset !important;
+    color:dodgerblue !important;
+    cursor: pointer !important;
+}

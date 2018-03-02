@@ -12,6 +12,13 @@
 </head>
 <body>
 <%@ include file = "header.jsp" %>
+
+
     <h1>Profile information</h1>
+    <h1> ${UserController.userFirstName} ${UserController.userLastName}</h1>
+    <h1> ${UserController.userEmail}</h1>
+
+
+
 </body>
 </html>

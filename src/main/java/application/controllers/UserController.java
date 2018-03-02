@@ -1,31 +1,41 @@
 package application.controllers;
 
 import application.Database;
+import application.models.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.*;
-import java.util.Map;
 
 @Controller
-public class RegisterController {
+@RequestMapping("/registration")
+public class UserController {
 
-    @RequestMapping("/registration")
-    public String register() {
-        return "register";
+    public static boolean loggedIn;
+    public static String userFirstName;
+    public static String userLastName;
+    public static String userEmail;
+    // TODO: Add all
+
+
+    @RequestMapping(value="", method = RequestMethod.GET)
+    public ModelAndView showRegistrationPage(ModelAndView modelAndView){
+        modelAndView.setViewName("register");
+        return modelAndView;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String registerUser(Model model, @RequestParam("emailsignup") String email,
-                               @RequestParam("firstname") String firstName,
-                               @RequestParam("lastname") String lastName,
-                               @RequestParam("passwordsignup") String password)
-            throws SQLException, ClassNotFoundException {
 
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public ModelAndView registerUser(@RequestParam("emailsignup") String email,
+                                     @RequestParam("firstname") String firstName,
+                                     @RequestParam("lastname") String lastName,
+                                     @RequestParam("passwordsignup") String password) throws SQLException, ClassNotFoundException {
+
+        ModelAndView modelAndView = new ModelAndView();
 
         Connection newConnection = Database.connectDatabase();
         Statement statement = newConnection.createStatement();
@@ -36,9 +46,6 @@ public class RegisterController {
                 "	username='" + name + "', description=null, country=null, currency=null, ppicture=null,\n" +
                 "    dob='2012-01-01', gender=null, userlang=null, ccnum=null, cccvv=null, cccountry=null,\n" +
                 "    ccprovince=null, cccity=null, ccaddress=null, ccpostal=null, ccexp='2020-5-2'\n";
-        statement.executeUpdate(update);
-        System.out.print(update);
-
 
         ResultSet rs=statement.executeQuery("select * from Users");
         String email1, pass, username, country;
@@ -58,15 +65,29 @@ public class RegisterController {
             System.out.println("Dare of Birth: " + dob);
             System.out.println();
         }
+        User user = new User();
+        user.setEmail(email);
+        user.setName(name);
+        try{
+            // SQL update
+            statement.executeUpdate(update);
+            // Adds an object to the view ---- this is broken since update, hardcoding static variables now
+            modelAndView.addObject("user", user);
+            // Attempt at starting session, TODO
+            modelAndView.setViewName("redirect:/profile");
 
-        System.out.println("coming in controller    " + email +" : "+ password);
-        model.addAttribute("message", "Hello Spring MVC Framework!");
-        if(email.equals("rh12wb@brocku.ca")) // TODO: if email is not used in database, success
-            return "successRegisterPopup";
-        else
-            return "unsuccessRegisterPopup";
+            loggedIn = true;
+            userFirstName = firstName;
+            userLastName = lastName;
+            userEmail = email;
 
-
+            return modelAndView;
+        } catch(SQLException e) {
+            // TODO: Front end team: create a popup that says that email is already used.
+            modelAndView.setViewName("/register");
+            modelAndView.addObject("unsuccessMessage", "This email already exists.");
+            return modelAndView;
+        }
     }
 
     @ExceptionHandler
@@ -89,5 +110,15 @@ public class RegisterController {
         return false;
     }
 
+    public static void logUserOut() {
+        loggedIn = false;
+    }
+
+    public static void logUserIn(String email, String firstName, String lastName) {
+        userEmail = email;
+        userFirstName = firstName;
+        userLastName = lastName;
+        loggedIn = true;
+    }
 
 }

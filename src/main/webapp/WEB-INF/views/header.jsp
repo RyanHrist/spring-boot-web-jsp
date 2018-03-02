@@ -1,3 +1,4 @@
+<%@ page import="application.controllers.UserController" %>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -30,14 +31,14 @@
         <a href="/">HOME</a>
     </div>
 
-    <%boolean loggedIn = false;
+    <%boolean loggedIn = UserController.loggedIn;
         if (loggedIn) {%>
     <div class="dropdownEAT">
-        <button class="dropbtnEAT">RYAN</button> <!-- $username}--->
+        <button class="dropbtnEAT">${UserController.userFirstName}</button> <!-- $username}--->
         <div class="dropdown-contentEAT">
             <a href="/profile">Profile</a>
             <a href="/account">Account</a>
-            <a href="/">Logout</a>
+            <a href="/logout">Logout</a>
         </div>
     </div>
 
@@ -64,12 +65,12 @@
                     <div class="modal-body" style="padding:40px 50px;">
                         <form  action="<%=request.getContextPath()%>/" autocomplete="on" method="POST">
                             <div class="form-group">
-                                <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-                                <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+                                <label for="loginUsername"><span class="glyphicon glyphicon-user"></span> Username</label>
+                                <input type="text" class="form-control" id="loginUsername" name="loginUsername" placeholder="Enter email">
                             </div>
                             <div class="form-group">
-                                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                                <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                                <label for="loginPassword"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                                <input type="text" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password">
                             </div>
                             <div class="checkbox">
                                 <label><input type="checkbox" value="" checked>Remember me</label>

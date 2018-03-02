@@ -10,6 +10,9 @@ import java.awt.*;
 import java.util.Date;
 
 public class User {
+
+    public User() {
+    }
     private String name;
     private String email;
     private String password;

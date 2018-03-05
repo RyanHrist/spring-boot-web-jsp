@@ -13,13 +13,13 @@
 <div class="centered">
 	<h1>eat'n greet</h1>
 	<div class="search">
-		<form action="/action_page.php">
+		<form  action="<%=request.getContextPath()%>/search" autocomplete="on" method="POST">
 			<input type="text" placeholder="Search.." name="search">
 			<button type="submit"><i class="fa fa-search"></i></button>
 		</form>
 	</div>
 
-
+	<h1>${nothingFound}</h1>
 	<img src="images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;">
 	<img src="images/i1.jpg" alt="Meal 2" style="width:256px;height:200px;">
 	<img src="images/i1.jpg" alt="Meal 3" style="width:256px;height:200px;">

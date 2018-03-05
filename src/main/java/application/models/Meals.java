@@ -32,6 +32,7 @@ public class Meals {
     public ArrayList<User> getGuestList() {
         return guestList;
     }
+
      public boolean getHappened(){
         return happened;
      }
@@ -67,5 +68,49 @@ public class Meals {
 
     public Time getTime() {
         return time;
+    }
+
+    public void setCancellation(CancellationPolicy cancellation) {
+        this.cancellation = cancellation;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setGuestList(ArrayList<User> guestList) {
+        this.guestList = guestList;
+    }
+
+    public void setHappened(boolean happened) {
+        this.happened = happened;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public void setWithHost(Host withHost) {
+        this.withHost = withHost;
     }
 }

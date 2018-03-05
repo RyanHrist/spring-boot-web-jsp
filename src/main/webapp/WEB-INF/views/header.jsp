@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <a href="/host_meal">HOST A MEAL</a>
+    <a href="/hostmeal/">HOST A MEAL</a>
     <a href="/upcoming_meals">UPCOMING MEALS</a>
     <%} else {%>
     <a href="/registration">REGISTER</a>

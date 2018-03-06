@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -60,27 +61,29 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ModelAndView loginUser(@RequestParam(value = "loginUsername", required = false) String userLogin,
-                                  @RequestParam(value = "loginPassword", required = false) String userPassword) throws SQLException, ClassNotFoundException {
+                                  @RequestParam(value = "loginPassword", required = false) String userPassword,
+                                  HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
 
         if (userLogin != null && userPassword != null) {
             Connection newConnection = Database.connectDatabase();
             Statement statement = newConnection.createStatement();
             String sql = "SELECT * FROM Users where email='"+userLogin+"' and pass='"+userPassword+"'";
-            System.out.println(sql);
             ResultSet rs = statement.executeQuery(sql);
-            System.out.println(rs);
-            String id = null;
+
+
+            User user = null;
             while(rs.next())
             {
                 // TODO: Set the UserController variables to everything in database like following:
                 // TODO: Also create all the static variables in the UserController (everything in DB).
-                id=rs.getString("dob");
-                UserController.userFirstName = rs.getString("username");
+                user = new User();
+                user.setName(rs.getString("username"));
             }
-            if (id != null) {
+            if (user != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
                 System.out.println("Login Success");
-                UserController.loggedIn = true;
             } else {
                 System.out.println("Login failed");
             }
@@ -91,10 +94,14 @@ public class HomeController {
     }
 
     @RequestMapping("logout")
-    public ModelAndView logoutUser() {
+    public ModelAndView logoutUser(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/home");
-        UserController.logUserOut();
+
+        // CLOSE SESSION
+        HttpSession session = request.getSession();
+        session.invalidate();
+
         return modelAndView;
     }
 

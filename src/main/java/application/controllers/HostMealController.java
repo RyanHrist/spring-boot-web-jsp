@@ -1,12 +1,15 @@
 package application.controllers;
 
 import application.Database;
+import application.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,15 +28,19 @@ public class HostMealController {
     public ModelAndView hostMeal(@RequestParam(value = "mealName", required = false) String mealName,
                                  @RequestParam(value = "mealDescription", required = false) String mealDescription,
                                  @RequestParam(value = "cancellation", required = false) String mealCancellation,
-                                 @RequestParam(value = "city", required = false) String city) throws SQLException, ClassNotFoundException {
+                                 @RequestParam(value = "city", required = false) String city,
+                                 HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
 
 
         if(!mealName.equals("") && !mealDescription.equals("") && !mealCancellation.equals("") && !city.equals("")) {
             Connection newConnection = Database.connectDatabase();
             Statement statement = newConnection.createStatement();
+            HttpSession session = request.getSession();
+            User user = (User) session.getAttribute("user");
+
             String insert = "INSERT Meals SET description = '"+ mealDescription + "', cancelationfee = '" + mealCancellation + "'"
-                    + ", hemail='"+UserController.userEmail+"'";
+                    + ", hemail='"+user.getEmail()+"'";
 
             try{
                 // SQL update

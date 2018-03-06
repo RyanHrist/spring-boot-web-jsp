@@ -12,8 +12,12 @@
 </head>
 <body>
 <%@ include file = "header.jsp" %>
+<% User loggedUser = (User) session.getAttribute("user");
+    pageContext.setAttribute("user", loggedUser);
+    if(loggedUser != null) {
+%>
     <h1>Host a meal:</h1>
-
+<div class="centered">
 <div class= "inner">
     <h1>${unsuccessMessage}</h1>
 
@@ -47,6 +51,10 @@
         <br/> <br/>
         <input type="submit" value="HostMeal">
     </form>
+</div>
+<% } else { %>
+<h1>Login to host a meal!</h1>
+<% } %>
 </div>
 </body>
 </html>

@@ -25,6 +25,7 @@
 	<img src="images/i1.jpg" alt="Meal 3" style="width:256px;height:200px;">
 
 </div>
+<%@ include file = "footer.jsp" %>
 
 </body>
 </html>

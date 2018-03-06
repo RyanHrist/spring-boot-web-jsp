@@ -1,4 +1,5 @@
 <%@ page import="application.controllers.UserController" %>
+<%@ page import="application.models.User" %>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -31,10 +32,11 @@
         <a href="/">HOME</a>
     </div>
 
-    <%boolean loggedIn = UserController.loggedIn;
-        if (loggedIn) {%>
+    <%  User user = (User) session.getAttribute("user");
+    pageContext.setAttribute("user", user);
+        if (user != null) {%>
     <div class="dropdownEAT">
-        <button class="dropbtnEAT">${UserController.userFirstName}</button> <!-- $username}--->
+        <button class="dropbtnEAT">${user.name}</button> <!-- $username}--->
         <div class="dropdown-contentEAT">
             <a href="/profile">Profile</a>
             <a href="/account">Account</a>

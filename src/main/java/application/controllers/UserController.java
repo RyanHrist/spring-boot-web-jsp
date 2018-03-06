@@ -9,18 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.sql.*;
 
 @Controller
 @RequestMapping("/registration")
 public class UserController {
-
-    public static boolean loggedIn;
-    public static String userFirstName;
-    public static String userLastName;
-    public static String userEmail;
-    // TODO: Add all
-
 
     @RequestMapping(value="", method = RequestMethod.GET)
     public ModelAndView showRegistrationPage(ModelAndView modelAndView){
@@ -33,7 +29,8 @@ public class UserController {
     public ModelAndView registerUser(@RequestParam("emailsignup") String email,
                                      @RequestParam("firstname") String firstName,
                                      @RequestParam("lastname") String lastName,
-                                     @RequestParam("passwordsignup") String password) throws SQLException, ClassNotFoundException {
+                                     @RequestParam("passwordsignup") String password,
+                                     HttpServletRequest request) throws SQLException, ClassNotFoundException {
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -68,6 +65,7 @@ public class UserController {
         User user = new User();
         user.setEmail(email);
         user.setName(name);
+        // TODO: SET user.set FOR ALL VALUES FROM SQL
         try{
             // SQL update
             statement.executeUpdate(update);
@@ -76,10 +74,9 @@ public class UserController {
             // Attempt at starting session, TODO
             modelAndView.setViewName("redirect:/profile");
 
-            loggedIn = true;
-            userFirstName = firstName;
-            userLastName = lastName;
-            userEmail = email;
+
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
 
             return modelAndView;
         } catch(SQLException e) {
@@ -108,17 +105,6 @@ public class UserController {
         }
 
         return false;
-    }
-
-    public static void logUserOut() {
-        loggedIn = false;
-    }
-
-    public static void logUserIn(String email, String firstName, String lastName) {
-        userEmail = email;
-        userFirstName = firstName;
-        userLastName = lastName;
-        loggedIn = true;
     }
 
 }

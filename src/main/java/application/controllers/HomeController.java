@@ -50,8 +50,7 @@ public class HomeController {
             }
 
             if(meal == null) {
-                modelAndView.addObject("nothingFound", "No meals have been found matching '"
-                        + searchQuery + "'.");
+                modelAndView.addObject("nothingFound", "No meals have been found matching '" + searchQuery + "'.");
             }
         }
 
@@ -79,6 +78,15 @@ public class HomeController {
                 // TODO: Also create all the static variables in the UserController (everything in DB).
                 user = new User();
                 user.setName(rs.getString("username"));
+                user.setEmail(rs.getString("email"));
+                user.setUserDescription(rs.getString("description"));
+                user.setCountry(rs.getString("country"));
+                user.setCurrency(rs.getString("currency"));
+                user.setDateOfBirth(rs.getString("dob"));
+                user.setGender(rs.getString("gender"));
+                user.setLanguage(rs.getString("language"));
+                user.setCreditCardInformation(rs.getString(??));
+                user.set
             }
             if (user != null) {
                 HttpSession session = request.getSession();
@@ -106,3 +114,5 @@ public class HomeController {
     }
 
 }
+~
+e32

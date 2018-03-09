@@ -37,6 +37,12 @@
                                font-size:18px;
                                vertical-align:9px;color:#2e2925" ><br>
 
+        Price: <input type="text" name="mealPrice" value="Meal Price" style="background-color:white;
+                               border: solid 1px #2e2925;
+                               height: 30px;
+                               font-size:18px;
+                               vertical-align:9px;color:#2e2925" ><br>
+
         Image URL: <input type="text" name="imageURL" value="www.example.com/image.jpg" style="background-color:white;
                                border: solid 1px #2e2925;
                                height: 30px;
@@ -50,8 +56,9 @@
                                vertical-align:9px;color:#2e2925" ><br>
 
         Date of Meal
-        <input type="date" name="bday">
+        <input type="date" name="date">
         <br/> <br/>
+
         <input type="submit" value="HostMeal">
     </form>
 </div>

@@ -14,33 +14,44 @@
 <%@ include file = "header.jsp" %>
 
 <div class="centered">
-    <% User loggedUser = (User) session.getAttribute("user");
-        pageContext.setAttribute("user", loggedUser);
-        if (loggedUser != null) {
-    %>
-    <h1>Account Information</h1>
-    <h1>${user.name}</h1>
+    <h1>Account Info</h1>
+    <div class = "inner">
+        <form action="/account" autocomplete="on" method="POST">
+            Name: <input type="text" name="name" id="name" value="Ryan H" readonly=""><br>
+            Email: <input type="text" name="name" id="email" value="asdasa@asdas.ca" readonly=""><br>
+            Location: <input type="text" name="location" value="St. Catharines" id="location" readonly=""><br>
+            Credit Card Info: <br>
+            Credit Card Number: <input type="text" name="num" value="123123131" id="ccnum" readonly=""> <br>
+            Type: <input type="text" name="location" value="Master Card" id="cctype" readonly=""> <br>
 
-    <img src="images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;">
-    <h2>St. Catharines, Ontario</h2>
-    <h2>English</h2>
-    <h2>About Me</h2>
+            CVV: <input type="text" name="location" value="123" id="ccdigits" readonly=""> <br>
 
-    <p>This is where I write about me. This should be editable. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <button type="button" onclick="myFunction()"> Edit </button>
+            <button type="button" onclick="myFunction2()"> Save </button hidden>
+        </form>
+    </div>
 
-    <h2>Host Rating</h2>
-    <img src="images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;">
-
-    <h2>Guest Rating</h2>
-    <img src="images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;">
-
-    <h2>Meals I'm Hosting</h2>
-    <img src="images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;">
-
-    <p>This is a meal description.</p>
-    <% } else { %>
-    <h1> You must be logged in to view your Profile.</h1>
-    <% } %>
 </div>
+
+<script>
+    function myFunction() {
+        document.getElementById("name").readOnly = false;
+        document.getElementById("email").readOnly = false;
+        document.getElementById("location").readOnly = false;
+        document.getElementById("ccnum").readOnly = false;
+        document.getElementById("cctype").readOnly = false;
+        document.getElementById("ccdigits").readOnly = false;
+
+    }
+
+    function myFunction2() {
+        document.getElementById("name").readOnly = true;
+        document.getElementById("email").readOnly = true;
+        document.getElementById("location").readOnly = true;
+        document.getElementById("ccnum").readOnly = true;
+        document.getElementById("cctype").readOnly = true;
+        document.getElementById("ccdigits").readOnly = true;
+    }
+</script>
 </body>
 </html>

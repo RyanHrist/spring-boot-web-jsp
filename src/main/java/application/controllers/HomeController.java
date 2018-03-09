@@ -32,19 +32,7 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping (value="/search/{searchQuery}", method = RequestMethod.GET)
-    public ModelAndView errorSearch(@PathVariable(value = "searchQuery", required = false) String searchQuery,
-            HttpServletRequest request) throws SQLException, ClassNotFoundException  {
-        ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("nothingFound", "No meals have been found matching '" + searchQuery + "'.");
-        ArrayList<Meals> foundMeals = null;
-        HttpSession session = request.getSession();
-        session.setAttribute("foundMeals", foundMeals);
-        return modelAndView;
-    }
-
-
-    @RequestMapping(value = "/search/{searchQuery}", method = RequestMethod.POST)
+    @RequestMapping(value = "/search/{searchQuery}", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView search(@PathVariable(value = "searchQuery", required = false) String searchQuery,
                                HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
@@ -53,8 +41,8 @@ public class HomeController {
         Connection newConnection = Database.connectDatabase();
         Statement statement = newConnection.createStatement();
 
-        String sql = "SELECT * FROM Meals WHERE description LIKE'%"+searchQuery+"%' OR city LIKE '%"+searchQuery+"%'" +
-                "OR country LIKE '%"+searchQuery+"%' OR category LIKE '%"+searchQuery+"%'";
+        String sql = "SELECT * FROM Meals WHERE description LIKE'%" + searchQuery + "%' OR city LIKE '%" + searchQuery + "%'" +
+                "OR country LIKE '%" + searchQuery + "%' OR category LIKE '%" + searchQuery + "%'";
         ResultSet rs = statement.executeQuery(sql);
         ArrayList<Meals> foundMeals = new ArrayList<>();
         Meals meal = null;
@@ -68,7 +56,7 @@ public class HomeController {
         }
         session.setAttribute("foundMeals", foundMeals);
 
-        if(meal == null) {
+        if (meal == null) {
             modelAndView.addObject("nothingFound", "No meals have been found matching '"
                     + searchQuery + "'.");
         }
@@ -122,13 +110,12 @@ public class HomeController {
         if (userLogin != null && userPassword != null) {
             Connection newConnection = Database.connectDatabase();
             Statement statement = newConnection.createStatement();
-            String sql = "SELECT * FROM Users where email='"+userLogin+"' and pass='"+userPassword+"'";
+            String sql = "SELECT * FROM Users where email='" + userLogin + "' and pass='" + userPassword + "'";
             ResultSet rs = statement.executeQuery(sql);
 
 
             User user = null;
-            while(rs.next())
-            {
+            while (rs.next()) {
                 // TODO: Set the UserController variables to everything in database like following:
                 // TODO: Also create all the static variables in the UserController (everything in DB).
                 user = new User();
@@ -157,5 +144,5 @@ public class HomeController {
         session.invalidate();
         return modelAndView;
     }
-
 }
+

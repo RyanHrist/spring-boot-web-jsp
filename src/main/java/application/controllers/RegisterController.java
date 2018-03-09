@@ -52,24 +52,38 @@ public class RegisterController {
         User user = null;
         while(rs.next()) {
             user = new User();
-            // TODO: SET user.set FOR ALL VALUES FROM SQL
             user.setEmail(rs.getString("email"));
-            user.setName(rs.getString("username"));
             user.setPassword(rs.getString("pass"));
+            user.setName(rs.getString("username"));
+        /*
+        TODO: SET user.set FOR ALL VALUES FROM SQL
+        Done by nik
+        */
 
+            user.setDateOfBirth(rs.getDate("dob"));
 
-//            email1 = rs.getString("email");
-//            pass = rs.getString("pass");
-//            username = rs.getString("username");
-//            country = rs.getString("country");
-//            dob = rs.getDate("dob");
-//
-//            System.out.println("Email: " + email1);
-//            System.out.println("Password: " + pass);
-//            System.out.println("Username: " + username);
-//            System.out.println("Country: " + country);
-//            System.out.println("Dare of Birth: " + dob);
-//            System.out.println();
+            //rs.get country and gender and language isnt a method
+            ///user.setCountry(rs.getCountry("country"));
+            ///user.setCurrency(rs.getCurrency("currency"));
+            ///user.setLanguage(rs.getLanguage("userlang"));
+            ///user.setGender(rs.getGender("Gender"));
+
+            user.setCountry(rs.getString("country"));
+            user.setCurrency(rs.getString("currency"));
+            user.setLanguage(rs.getString("userlang"));
+            user.setGender(rs.getString("Gender"));
+
+            //credit card info
+            user.setCcadress(rs.getString("ccadress"));
+            user.setCccity(rs.getString("cccity"));
+            user.setCccountry(rs.getString("cccountry"));
+            user.setCcprovince(rs.getString("ccprovince"));
+            user.setCcpostal(rs.getString("ccpostal"));
+            user.setCcvv(rs.getString("cccvv"));
+            user.setCcexp(rs.getString("ccexp"));
+            user.setCcnumber(rs.getString("ccnum"));
+
+            user.setUserDescription(rs.getString("description"));
         }
 
         try{

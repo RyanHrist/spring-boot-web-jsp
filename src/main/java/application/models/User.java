@@ -1,15 +1,10 @@
 package application.models;
 
-import application.models.enumerations.Country;
-import application.models.enumerations.Currency;
-import application.models.enumerations.Gender;
-import application.models.enumerations.Language;
-import org.springframework.boot.ImageBanner;
-
 import java.awt.*;
 import java.util.Date;
 
 public class User {
+
 
     public User() {
     }
@@ -18,13 +13,30 @@ public class User {
     private String password;
     private String userDescription;
     private GuestRating guestRating;
-    private CreditCardInformation creditCardInformation;
-    private Country country;
-    private Currency currency;
+
+    //private CreditCardInformation creditCardInformation;
+    //this is all for cc info
+    private String ccnumber;
+    private String ccvv;
+    private String cccountry;
+    private String ccprovince;
+    private String cccity;
+    private String ccadress;
+    private String ccpostal;
+    private String ccexp;
+
+    //private Country country;
+    private String country;
+    //private Currency currency;
+    private String currency;
+    //private Gender gender;
+    private String gender;
+    //private Language language;
+    private String language;
+
     private Image profilePicture;
     private Date dateOfBirth;
-    private Gender gender;
-    private Language language;
+
     private Meals pastVisits;
     private Meals futureVisits;
 
@@ -37,15 +49,47 @@ public class User {
         return guestRating;
     }
 
-    private CreditCardInformation getCreditCardInformation() {
-        return creditCardInformation;
+    //private CreditCardInformation getCreditCardInformation() {
+    //    return creditCardInformation;
+    //}
+
+    public String getCccnumber(){
+        return ccnumber;
     }
 
-    public Country getCountry() {
+    public String getCccity() {
+        return cccity;
+    }
+
+    public String getCccountry() {
+        return cccountry;
+    }
+
+    public String getCcadress() {
+        return ccadress;
+    }
+
+    public String getCcprovince() {
+        return ccprovince;
+    }
+
+    public String getCcpostal() {
+        return ccpostal;
+    }
+
+    public String getCcexp() {
+        return ccexp;
+    }
+
+    public String getCcvv() {
+        return ccvv;
+    }
+
+    public String getCountry() {
         return country;
     }
 
-    public Currency getCurrency() {
+    public String getCurrency() {
         return currency;
     }
 
@@ -57,11 +101,11 @@ public class User {
         return dateOfBirth;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public Language getLanguage() {
+    public String getLanguage() {
         return language;
     }
 
@@ -74,7 +118,7 @@ public class User {
     public void setEmail(String email){
         this.email = email;
     }
-    private void setPassword (String password){
+    public void setPassword(String password){
         this.password = password;
     }
 
@@ -84,23 +128,58 @@ public class User {
     public void setGuestRating(GuestRating guestRating){
         this.guestRating = guestRating;
     }
-    public void setCreditCardInformation(CreditCardInformation creditCardInformation){
-        this.creditCardInformation = creditCardInformation;
+
+    //public void setCreditCardInformation(CreditCardInformation creditCardInformation){
+    //    this.creditCardInformation = creditCardInformation;
+    //}
+
+
+    public void setCcadress(String ccadress) {
+        this.ccadress = ccadress;
     }
-    public void setCountry(Country country){
+
+    public void setCccity(String cccity) {
+        this.cccity = cccity;
+    }
+
+    public void setCcnumber(String ccnumber) {
+        this.ccnumber = ccnumber;
+    }
+
+    public void setCccountry(String cccountry) {
+        this.cccountry = cccountry;
+    }
+
+    public void setCcprovince(String ccprovince) {
+        this.ccprovince = ccprovince;
+    }
+
+    public void setCcvv(String ccvv) {
+        this.ccvv = ccvv;
+    }
+
+    public void setCcexp(String ccexp) {
+        this.ccexp = ccexp;
+    }
+
+    public void setCcpostal(String ccpostal) {
+        this.ccpostal = ccpostal;
+    }
+
+    public void setCountry(String country){
         this.country = country;
     }
-    public void setCurrency(Currency currency){
+    public void setCurrency(String currency){
         this.currency = currency;
     }
     //public void setProfilePicture(Image ){}
     public void setDateOfBirth(Date dateOfBirth){
         this.dateOfBirth = dateOfBirth;
     }
-    public void setGender(Gender gender){
+    public void setGender(String gender){
         this.gender = gender;
     }
-    public void setLanguage(Language language){
+    public void setLanguage(String language){
         this.language = language;
     }
     public void setPastVisits(Meals pastVisits){

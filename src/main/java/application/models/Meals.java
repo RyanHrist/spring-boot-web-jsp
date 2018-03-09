@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Meals {
     ArrayList<User> guestList = new ArrayList<User>();
     private boolean happened;
+    private String address;
     private int mealID;
     private String mealTitle;
     private String withHost;
@@ -19,6 +20,14 @@ public class Meals {
     private Category category;
     private String description;
     private Time time;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public void setMealTitle(String mealTitle) {
         this.mealTitle = mealTitle;

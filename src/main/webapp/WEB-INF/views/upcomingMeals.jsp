@@ -21,6 +21,7 @@
             pageContext.setAttribute("upcommingMeals", upcomingMeals);
             pageContext.setAttribute("user", loggedUser);
     %>
+    <h1>${bookedMeal}</h1>
     <h1>Upcoming Meals</h1>
     <nav>
         <ul>

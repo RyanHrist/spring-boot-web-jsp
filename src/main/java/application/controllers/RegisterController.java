@@ -60,7 +60,7 @@ public class RegisterController {
         Done by nik
         */
 
-            user.setDateOfBirth(rs.getDate("dob"));
+//            user.setDateOfBirth(rs.getDate("dob"));
 
             //rs.get country and gender and language isnt a method
             ///user.setCountry(rs.getCountry("country"));
@@ -68,20 +68,20 @@ public class RegisterController {
             ///user.setLanguage(rs.getLanguage("userlang"));
             ///user.setGender(rs.getGender("Gender"));
 
-            user.setCountry(rs.getString("country"));
-            user.setCurrency(rs.getString("currency"));
-            user.setLanguage(rs.getString("userlang"));
-            user.setGender(rs.getString("Gender"));
+//            user.setCountry(rs.getString("country"));
+//            user.setCurrency(rs.getString("currency"));
+//            user.setLanguage(rs.getString("userlang"));
+//            user.setGender(rs.getString("Gender"));
 
             //credit card info
-            user.setCcadress(rs.getString("ccadress"));
-            user.setCccity(rs.getString("cccity"));
-            user.setCccountry(rs.getString("cccountry"));
-            user.setCcprovince(rs.getString("ccprovince"));
-            user.setCcpostal(rs.getString("ccpostal"));
-            user.setCcvv(rs.getString("cccvv"));
-            user.setCcexp(rs.getString("ccexp"));
-            user.setCcnumber(rs.getString("ccnum"));
+//            user.setCcadress(rs.getString("ccadress"));
+//            user.setCccity(rs.getString("cccity"));
+//            user.setCccountry(rs.getString("cccountry"));
+//            user.setCcprovince(rs.getString("ccprovince"));
+//            user.setCcpostal(rs.getString("ccpostal"));
+//            user.setCcvv(rs.getString("cccvv"));
+//            user.setCcexp(rs.getString("ccexp"));
+//            user.setCcnumber(rs.getString("ccnum"));
 
             user.setUserDescription(rs.getString("description"));
         }

@@ -24,25 +24,31 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView getHome() {
+    @RequestMapping(value = "/", method = {RequestMethod.GET})
+    public ModelAndView getHome(HttpServletRequest request) throws SQLException, ClassNotFoundException {
         // TODO: setup all meals.
         ModelAndView modelAndView = new ModelAndView();
+        getAllMeals(request);
+
         modelAndView.setViewName("/home");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/search/{searchQuery}", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = {"/search/{searchQuery}", "/search/"}, method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView search(@PathVariable(value = "searchQuery", required = false) String searchQuery,
                                HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
-
         HttpSession session = request.getSession();
         Connection newConnection = Database.connectDatabase();
         Statement statement = newConnection.createStatement();
 
-        String sql = "SELECT * FROM Meals WHERE description LIKE'%" + searchQuery + "%' OR city LIKE '%" + searchQuery + "%'" +
-                "OR country LIKE '%" + searchQuery + "%' OR category LIKE '%" + searchQuery + "%'";
+        String sql;
+        if(searchQuery == null)
+            sql = "SELECT * FROM Meals";
+        else
+            sql = "SELECT * FROM Meals WHERE description LIKE'%" + searchQuery + "%' OR city LIKE '%" + searchQuery + "%'" +
+                    "OR country LIKE '%" + searchQuery + "%' OR category LIKE '%" + searchQuery + "%'";
+
         ResultSet rs = statement.executeQuery(sql);
         ArrayList<Meals> foundMeals = new ArrayList<>();
         Meals meal = null;
@@ -61,44 +67,28 @@ public class HomeController {
                     + searchQuery + "'.");
         }
 
-//        if(searchQuery != null) {
-//            String sql = "SELECT * FROM Meals WHERE description LIKE'%"+searchQuery+"%' OR city LIKE '%"+searchQuery+"%'" +
-//                    "OR country LIKE '%"+searchQuery+"%' OR category LIKE '%"+searchQuery+"%'";
-//            ResultSet rs = statement.executeQuery(sql);
-//            ArrayList<Meals> foundMeals = new ArrayList<>();
-//            Meals meal = null;
-//            while (rs.next()) {
-//                meal = new Meals();
-//                meal.setDescription(rs.getString("description"));
-//                meal.setImage(rs.getString("mpicture"));
-//                meal.setMealID(rs.getInt("mealid"));
-//                // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
-//                foundMeals.add(meal);
-//            }
-//            session.setAttribute("foundMeals", foundMeals);
-//
-//            if(meal == null) {
-//                modelAndView.addObject("nothingFound", "No meals have been found matching '"
-//                        + searchQuery + "'.");
-//            }
-//        }
-//        else {
-//            String sql = "SELECT * FROM Meals";
-//            ResultSet rs = statement.executeQuery(sql);
-//            ArrayList<Meals> allMeals = new ArrayList<>();
-//            Meals meal1 = null;
-//            while (rs.next()) {
-//                meal1 = new Meals();
-//                meal1.setDescription(rs.getString("description"));
-//                meal1.setImage(rs.getString("mpicture"));
-//                // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
-//                allMeals.add(meal1);
-//            }
-//            session.setAttribute("allMeals", allMeals);
-//        }
-
         modelAndView.setViewName("/home");
         return modelAndView;
+    }
+
+    public void getAllMeals(HttpServletRequest request) throws SQLException, ClassNotFoundException {
+        HttpSession session = request.getSession();
+        Connection newConnection = Database.connectDatabase();
+        Statement statement = newConnection.createStatement();
+
+        String getAllMeals = "SELECT * FROM Meals";
+        ResultSet allMealsSet = statement.executeQuery(getAllMeals);
+        ArrayList<Meals> foundMeals = new ArrayList<>();
+        Meals meal;
+        while (allMealsSet.next()) {
+            meal = new Meals();
+            meal.setDescription(allMealsSet.getString("description"));
+            meal.setImage(allMealsSet.getString("mpicture"));
+            meal.setMealID(allMealsSet.getInt("mealid"));
+            // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
+            foundMeals.add(meal);
+        }
+        session.setAttribute("foundMeals", foundMeals);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
@@ -106,14 +96,14 @@ public class HomeController {
                                   @RequestParam(value = "loginPassword", required = false) String userPassword,
                                   HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
+        HttpSession session = request.getSession();
+        Connection newConnection = Database.connectDatabase();
+        Statement statement = newConnection.createStatement();
+        getAllMeals(request);
 
         if (userLogin != null && userPassword != null) {
-            Connection newConnection = Database.connectDatabase();
-            Statement statement = newConnection.createStatement();
             String sql = "SELECT * FROM Users where email='" + userLogin + "' and pass='" + userPassword + "'";
             ResultSet rs = statement.executeQuery(sql);
-
-
             User user = null;
             while (rs.next()) {
                 // TODO: Set the UserController variables to everything in database like following:
@@ -123,7 +113,6 @@ public class HomeController {
                 user.setEmail(rs.getString("email"));
             }
             if (user != null) {
-                HttpSession session = request.getSession();
                 session.setAttribute("user", user);
                 System.out.println("Login Success");
             } else {
@@ -136,12 +125,12 @@ public class HomeController {
     }
 
     @RequestMapping("logout")
-    public ModelAndView logoutUser(HttpServletRequest request) {
+    public ModelAndView logoutUser(HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/home");
-        // CLOSE SESSION
         HttpSession session = request.getSession();
         session.invalidate();
+        getAllMeals(request);
         return modelAndView;
     }
 }

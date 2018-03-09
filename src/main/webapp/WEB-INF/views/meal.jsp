@@ -23,23 +23,30 @@
         pageContext.setAttribute("selectedMeal", selectedMeal);
         pageContext.setAttribute("mealHost", mealHost);
         %>
-        <h1>Steak and Potatoes</h1>
+        <h1>${selectedMeal.mealTitle}</h1>
         <h2>Host: ${mealHost.name}</h2>
         <img src="${selectedMeal.image}" alt="Meal 1" style="width:200px;height:200px;">
-        <h2>Location: 123 test road, St. Catharines, Ontario</h2>
-        <h2>Price: 123</h2>
-        <h2>Date: Dec 12, 2018 4PM</h2>
+        <h2>Location: ${selectedMeal.address}</h2>
+        <h2>Price:${selectedMeal.price}3</h2>
+        <h2>Date: ${selectedMeal.date} ${selectedMeal.time}</h2>
 
         <h2>Host Rating</h2>
         <img src="images/i1.png" alt="Meal 1" style="width:200px;height:50px;">
-        <h2>Guest Rating</h2>
-        <img src="images/i1.png" alt="Meal 1" style="width:200px;height:50px;">
+        <%--<h2>Guest Rating</h2>--%>
+        <%--<img src="images/i1.png" alt="Meal 1" style="width:200px;height:50px;">--%>
 
         <h3>Description</h3>
         <p>${selectedMeal.description}</p>
-        <p>This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test. This is what the meal is going to be this is just a test</p>
 
-        <button type="button" onclick="">Book Meal </button>
+        <% User loggedUser = (User) session.getAttribute("user");
+            pageContext.setAttribute("user", loggedUser);
+            if (loggedUser != null) { %>
+        <form  id="form" action="/meal/bookmeal/${selectedMeal.mealID}" autocomplete="on" method="POST">
+            <button type="submit"><i class="fa fa-search"></i>Book Meal</button>
+        </form>
+        <% } else { %>
+        <h2>Login to book a meal!</h2>
+        <% } %>
     </div>
     <% } else {%>
         <h1>This meal does not exist...</h1>

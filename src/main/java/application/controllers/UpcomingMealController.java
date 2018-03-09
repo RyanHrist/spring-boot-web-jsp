@@ -27,16 +27,26 @@ public class UpcomingMealController {
 
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
-            String getMeals = "SELECT * FROM Meals WHERE hemail='"+user.getEmail()+"'";
-            ResultSet rs=statement.executeQuery(getMeals);
+            String getAttendingMealIds = "SELECT * FROM Attending WHERE gemail='"+user.getEmail()+"'";
+            ResultSet rs;
+            rs=statement.executeQuery(getAttendingMealIds);
+
+            ArrayList<Integer> mealIds = new ArrayList<>();
+            while(rs.next()) {
+                mealIds.add(rs.getInt("mealid"));
+            }
 
             ArrayList<Meals> upcomingMeals = new ArrayList<>();
-
-            while (rs.next()) {
-                Meals meal = new Meals();
-                meal.setImage(rs.getString("mpicture"));
-                meal.setDescription(rs.getString("description"));
-                upcomingMeals.add(meal);
+            for (Integer id:mealIds) {
+                String getAttendingMeals = "SELECT * FROM Meals WHERE mealid='" + id + "'";
+                rs = statement.executeQuery(getAttendingMeals);
+                while(rs.next()) {
+                    Meals meal = new Meals();
+                    meal.setImage(rs.getString("mpicture"));
+                    meal.setDescription(rs.getString("description"));
+                    meal.setMealID(id);
+                    upcomingMeals.add(meal);
+                }
             }
 
             session.setAttribute("upcomingMeals", upcomingMeals);

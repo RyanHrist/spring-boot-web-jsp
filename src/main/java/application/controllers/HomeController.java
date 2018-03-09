@@ -12,6 +12,7 @@ import application.models.Meals;
 import application.models.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,35 +26,88 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getHome() {
+        // TODO: setup all meals.
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/home");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public ModelAndView search(@RequestParam(value = "search", required = false) String searchQuery) throws SQLException, ClassNotFoundException {
+    @RequestMapping (value="/search/{searchQuery}", method = RequestMethod.GET)
+    public ModelAndView errorSearch(@PathVariable(value = "searchQuery", required = false) String searchQuery,
+            HttpServletRequest request) throws SQLException, ClassNotFoundException  {
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("nothingFound", "No meals have been found matching '" + searchQuery + "'.");
+        ArrayList<Meals> foundMeals = null;
+        HttpSession session = request.getSession();
+        session.setAttribute("foundMeals", foundMeals);
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/search/{searchQuery}", method = RequestMethod.POST)
+    public ModelAndView search(@PathVariable(value = "searchQuery", required = false) String searchQuery,
+                               HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
 
-        if(searchQuery != null) {
-            Connection newConnection = Database.connectDatabase();
-            Statement statement = newConnection.createStatement();
-            String sql = "SELECT * FROM Meals WHERE description LIKE'%"+searchQuery+"%' OR city LIKE '%"+searchQuery+"%'" +
-                    "OR country LIKE '%"+searchQuery+"%' OR category LIKE '%"+searchQuery+"%'";
-            ResultSet rs = statement.executeQuery(sql);
-            ArrayList<Meals> foundMeals = new ArrayList<>();
-            Meals meal = null;
-            while (rs.next()) {
-                meal = new Meals();
-                meal.setDescription(rs.getString("description"));
-                // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
-                foundMeals.add(meal);
-            }
+        HttpSession session = request.getSession();
+        Connection newConnection = Database.connectDatabase();
+        Statement statement = newConnection.createStatement();
 
-            if(meal == null) {
-                modelAndView.addObject("nothingFound", "No meals have been found matching '"
-                        + searchQuery + "'.");
-            }
+        String sql = "SELECT * FROM Meals WHERE description LIKE'%"+searchQuery+"%' OR city LIKE '%"+searchQuery+"%'" +
+                "OR country LIKE '%"+searchQuery+"%' OR category LIKE '%"+searchQuery+"%'";
+        ResultSet rs = statement.executeQuery(sql);
+        ArrayList<Meals> foundMeals = new ArrayList<>();
+        Meals meal = null;
+        while (rs.next()) {
+            meal = new Meals();
+            meal.setDescription(rs.getString("description"));
+            meal.setImage(rs.getString("mpicture"));
+            meal.setMealID(rs.getInt("mealid"));
+            // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
+            foundMeals.add(meal);
         }
+        session.setAttribute("foundMeals", foundMeals);
+
+        if(meal == null) {
+            modelAndView.addObject("nothingFound", "No meals have been found matching '"
+                    + searchQuery + "'.");
+        }
+
+//        if(searchQuery != null) {
+//            String sql = "SELECT * FROM Meals WHERE description LIKE'%"+searchQuery+"%' OR city LIKE '%"+searchQuery+"%'" +
+//                    "OR country LIKE '%"+searchQuery+"%' OR category LIKE '%"+searchQuery+"%'";
+//            ResultSet rs = statement.executeQuery(sql);
+//            ArrayList<Meals> foundMeals = new ArrayList<>();
+//            Meals meal = null;
+//            while (rs.next()) {
+//                meal = new Meals();
+//                meal.setDescription(rs.getString("description"));
+//                meal.setImage(rs.getString("mpicture"));
+//                meal.setMealID(rs.getInt("mealid"));
+//                // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
+//                foundMeals.add(meal);
+//            }
+//            session.setAttribute("foundMeals", foundMeals);
+//
+//            if(meal == null) {
+//                modelAndView.addObject("nothingFound", "No meals have been found matching '"
+//                        + searchQuery + "'.");
+//            }
+//        }
+//        else {
+//            String sql = "SELECT * FROM Meals";
+//            ResultSet rs = statement.executeQuery(sql);
+//            ArrayList<Meals> allMeals = new ArrayList<>();
+//            Meals meal1 = null;
+//            while (rs.next()) {
+//                meal1 = new Meals();
+//                meal1.setDescription(rs.getString("description"));
+//                meal1.setImage(rs.getString("mpicture"));
+//                // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
+//                allMeals.add(meal1);
+//            }
+//            session.setAttribute("allMeals", allMeals);
+//        }
 
         modelAndView.setViewName("/home");
         return modelAndView;
@@ -79,6 +133,7 @@ public class HomeController {
                 // TODO: Also create all the static variables in the UserController (everything in DB).
                 user = new User();
                 user.setName(rs.getString("username"));
+                user.setEmail(rs.getString("email"));
             }
             if (user != null) {
                 HttpSession session = request.getSession();
@@ -97,11 +152,9 @@ public class HomeController {
     public ModelAndView logoutUser(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/home");
-
         // CLOSE SESSION
         HttpSession session = request.getSession();
         session.invalidate();
-
         return modelAndView;
     }
 

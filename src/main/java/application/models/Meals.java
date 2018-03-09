@@ -2,25 +2,39 @@ package application.models;
 
 import org.apache.log4j.Category;
 
-import java.awt.*;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class Meals {
     ArrayList<User> guestList = new ArrayList<User>();
     private boolean happened;
-    private Host withHost;
+    private int mealID;
+    private String mealTitle;
+    private String withHost;
     private CancellationPolicy cancellation;
-    private Date date;
-    private Image image;
+    private String date;
+    private String image;
     private int capacity;
     private double price;
     private Category category;
     private String description;
     private Time time;
 
+    public void setMealTitle(String mealTitle) {
+        this.mealTitle = mealTitle;
+    }
+
+    public String getMealTitle() {
+        return mealTitle;
+    }
+
+    public int getMealID() {
+        return mealID;
+    }
+
+    public void setMealID(int mealID) {
+        this.mealID = mealID;
+    }
 
     private boolean processPayment(){
         return false;
@@ -37,18 +51,18 @@ public class Meals {
         return happened;
      }
 
-    public Host getWithHost() {
+    public String getWithHost() {
         return withHost;
     }
 
     public CancellationPolicy getCancellation() {
         return cancellation;
     }
-    public Date getDate (){
+    public String getDate (){
         return date;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
     public int getCapacity(){
@@ -82,7 +96,7 @@ public class Meals {
         this.category = category;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -98,7 +112,7 @@ public class Meals {
         this.happened = happened;
     }
 
-    public void setImage(Image image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -110,7 +124,7 @@ public class Meals {
         this.time = time;
     }
 
-    public void setWithHost(Host withHost) {
+    public void setWithHost(String withHost) {
         this.withHost = withHost;
     }
 }

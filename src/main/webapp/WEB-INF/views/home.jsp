@@ -1,3 +1,9 @@
+<%@ page import="java.sql.Connection" %>
+<%@ page import="application.Database" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="application.models.Meals" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,19 +19,42 @@
 <div class="centered">
 	<h1>eat'n greet</h1>
 	<div class="search">
-		<form  action="<%=request.getContextPath()%>/search" autocomplete="on" method="POST">
-			<input type="text" placeholder="Search.." name="search">
+			<script>
+                function putQueryOnSubmit(){
+                    var action_src = "/search/" + document.getElementsByName("searchQuery")[0].value;
+                    var your_form = document.getElementById('search_form');
+                    your_form.action = action_src ;
+                }
+			</script>
+		<form  id="search_form" onsubmit="putQueryOnSubmit()" autocomplete="on" method="POST">
+			<input type="text" placeholder="Search.." name="searchQuery">
 			<button type="submit"><i class="fa fa-search"></i></button>
 		</form>
 	</div>
 
 	<h1>${nothingFound}</h1>
-	<img src="images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;">
-	<img src="images/i1.jpg" alt="Meal 2" style="width:256px;height:200px;">
-	<img src="images/i1.jpg" alt="Meal 3" style="width:256px;height:200px;">
+
+	<%
+		ArrayList<Meals> foundMeals = (ArrayList<Meals>) session.getAttribute("foundMeals");
+		if(foundMeals != null) {
+		for (Meals meals: foundMeals) {
+		    pageContext.setAttribute("localMeal", meals);
+
+	%>
+	<a href ="/meal/${localMeal.mealID}"><img src="${localMeal.image}" alt="Meal 1" style="width:256px;height:200px;"></a>
+	<% }
+	}%>
+	<%--} else {--%>
+		<%--ArrayList<Meals> allMeals = (ArrayList<Meals>) session.getAttribute("allMeals");--%>
+		<%--for (Meals meals: allMeals) {--%>
+			<%--pageContext.setAttribute("allMeals", meals);--%>
+
+	<%--%>--%>
+	<%--<img src="${allMeals.image}" alt="Meal 1" style="width:256px;height:200px;">--%>
+	<%--<% }--%>
+    <%--}--%>
+    <%--%>--%>
 
 </div>
-<%@ include file = "footer.jsp" %>
-
 </body>
 </html>

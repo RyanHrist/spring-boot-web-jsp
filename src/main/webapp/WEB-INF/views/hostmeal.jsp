@@ -14,33 +14,36 @@
 <%@ include file = "header.jsp" %>
 <% User loggedUser = (User) session.getAttribute("user");
     pageContext.setAttribute("user", loggedUser);
+    String mealID = (String) session.getAttribute("mealID");
+    pageContext.setAttribute("mealID", mealID);
     if(loggedUser != null) {
 %>
-    <h1>Host a meal:</h1>
 <div class="centered">
-<div class= "inner">
+    <h1>Host a meal</h1>
+
+    <div class= "inner">
     <h1>${unsuccessMessage}</h1>
 
     <form  action="/hostmeal" autocomplete="on" method="POST">
-        Meal: <input type="text" name="mealName" value="" style="background-color:white;
+        Meal: <input type="text" name="mealName" value="Meal title" style="background-color:white;
                                border: solid 1px #2e2925;
                                height: 30px;
                                font-size:18px;
                                vertical-align:9px;color:#2e2925" ><br>
 
-        Description: <input type="text" name="mealDesciption" value="" style="background-color:white;
+        Description: <input type="text" name="mealDescription" value="Meal description" style="background-color:white;
                                border: solid 1px #2e2925;
                                height: 30px;
                                font-size:18px;
                                vertical-align:9px;color:#2e2925" ><br>
 
-        Cancellation: <input type="text" name="cancellation" value="$2.5" style="background-color:white;
+        Image URL: <input type="text" name="imageURL" value="www.example.com/image.jpg" style="background-color:white;
                                border: solid 1px #2e2925;
                                height: 30px;
                                font-size:18px;
                                vertical-align:9px;color:#2e2925" ><br>
 
-        City: <input type="text" name="city" value="" style="background-color:white;
+        City: <input type="text" name="city" value="City" style="background-color:white;
                                border: solid 1px #2e2925;
                                height: 30px;
                                font-size:18px;

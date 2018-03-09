@@ -1,11 +1,10 @@
 package application.controllers;
 
 import application.Database;
+import application.models.Meals;
 import application.models.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,37 +14,43 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 @Controller
+@RequestMapping(value = "/hostmeal")
 public class HostMealController {
 
-    @RequestMapping(value = "/hostmeal", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getHostMealPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("hostmeal");
         return modelAndView;
     }
 
-    @RequestMapping(value = "hostmeal", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ModelAndView hostMeal(@RequestParam(value = "mealName", required = false) String mealName,
                                  @RequestParam(value = "mealDescription", required = false) String mealDescription,
-                                 @RequestParam(value = "cancellation", required = false) String mealCancellation,
+                                 @RequestParam(value = "imageURL", required = false) String imageURL,
                                  @RequestParam(value = "city", required = false) String city,
                                  HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
 
-
-        if(!mealName.equals("") && !mealDescription.equals("") && !mealCancellation.equals("") && !city.equals("")) {
+        if(request.getSession().getAttribute("user") != null) {
+            System.out.print(imageURL + " " + mealDescription);
             Connection newConnection = Database.connectDatabase();
             Statement statement = newConnection.createStatement();
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
 
-            String insert = "INSERT Meals SET description = '"+ mealDescription + "', cancelationfee = '" + mealCancellation + "'"
+
+            Meals newMeal = new Meals();
+            String insert = "INSERT Meals SET description = '"+ mealDescription + "', mpicture = '" + imageURL + "'"
                     + ", hemail='"+user.getEmail()+"'";
+            newMeal.setDescription(mealDescription);
+            newMeal.setImage(imageURL);
 
             try{
                 // SQL update
                 statement.executeUpdate(insert);
-                // Adds an object to the view ---- this is broken since update, hardcoding static variables now
+                modelAndView.setViewName("meal");
+                session.setAttribute("hostedMeal", newMeal);
                 // Attempt at starting session, TODO
                 //TODO ADD MEALS TO THE USERS HOSTED MEALS
                 return modelAndView;

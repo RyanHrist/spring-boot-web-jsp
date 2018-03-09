@@ -18,22 +18,23 @@
     <%  User loggedUser = (User) session.getAttribute("user");
         if(loggedUser != null) {
             ArrayList<Meals> upcomingMeals = (ArrayList<Meals>) session.getAttribute("upcomingMeals");
-            pageContext.setAttribute("upcommingMeals", upcomingMeals);
+            String contextBookedMeal = (String) session.getAttribute("bookedMeal");
+            pageContext.setAttribute("bookedMeal", contextBookedMeal);
+            pageContext.setAttribute("upcomingMeals", upcomingMeals);
             pageContext.setAttribute("user", loggedUser);
     %>
-    <h1>${bookedMeal}</h1>
     <h1>Upcoming Meals</h1>
+    <h1>${bookedMeal}</h1>
+
     <nav>
-        <ul>
             <%
                 if (upcomingMeals.size() != 0) {
                     for (Meals meal:upcomingMeals) {
                         pageContext.setAttribute("meal", meal);
             %>
             <form  action="/meal" autocomplete="on" method="POST">
-            <li> <a href="/meal/${meal.mealID}"><img src ="${meal.image}" style="width:200px;height:100px;"> ${meal.description} </a></li>
+            <a href="/meal/${meal.mealID}"><img src ="${meal.image}" style="width:200px;height:100px;"> ${meal.description} </a>
             </form>
-        </ul>
             <%}
             } else {%>
             <h3>You have no upcoming meals</h3>
@@ -43,16 +44,22 @@
 
     </nav>
     <h1>Previous Meals</h1>
-    <nav>
-        <ul>
-            <li> <button type="button" onclick=""> <img src ="https://www.w3schools.com/images/w3schools_green.jpg" style="width:200px;height:100px;"> Rice and Veggie Dinner  </button> </li>
-            <li> <button type="button" onclick=""> <img src ="images/i1.png" style="width:200px;height:100px;"> Steak  </button> </li>
-            <li> <button type="button" onclick=""> <img src ="images/i1.png" style="width:200px;height:100px;"> Burger  </button> </li>
-            <li> <button type="button" onclick=""> <img src ="images/i1.png" style="width:200px;height:100px;"> Fries  </button> </li>
-            <li> <button type="button" onclick=""> <img src ="images/i1.png" style="width:200px;height:100px;"> Test  </button> </li>
-            <li> <button type="button" onclick=""> <img src ="images/i1.png" style="width:200px;height:100px;"> Tesstt </button> </li>
-        </ul>
-    </nav>
+    <%--<%--%>
+        <%--if (upcomingMeals.size() != 0) {--%>
+            <%--for (Meals previousMeal:upcomingMeals) {--%>
+                <%--pageContext.setAttribute("meal", previousMeal);--%>
+                <%--//TODO:JORDAN--%>
+                <%--if(previousMeal.getDate() > todaysDateOrSomething) {--%>
+    <%--%>--%>
+    <%--<form  action="/meal" autocomplete="on" method="POST">--%>
+        <%--<a href="/meal/${previousMeal.mealID}"><img src ="${previousMeal.image}" style="width:200px;height:100px;"> ${previousMeal.description} </a>--%>
+    <%--</form>--%>
+    <%--<%      }--%>
+        <%--}--%>
+    <%--} else {%>--%>
+    <%--<h3>You have no upcoming meals</h3>--%>
+    <%--<%}%>--%>
+
 
     <% } else { %>
     <h1>You must login to view Upcoming Meals.</h1>

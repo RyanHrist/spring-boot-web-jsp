@@ -13,10 +13,20 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Host Meal Controller, in charge of all functionality relating to hosting a meal
+ *
+ * Controller mapped to "/hostmeal"
+ */
 @Controller
 @RequestMapping(value = "/hostmeal")
 public class HostMealController {
 
+    /**
+     * Generic method if a logged in user were to enter url.com/hostmeal
+     * Sends user to page for creating a meal
+     * @return
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getHostMealPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -24,6 +34,18 @@ public class HostMealController {
         return modelAndView;
     }
 
+    /**
+     * Host Meal method is incharge of creating the meal in the database using the parameters (requestParam)
+     * mentioned in the method, which are taken directly from the HTML inputs.
+     * @param mealName
+     * @param mealDescription
+     * @param imageURL
+     * @param city
+     * @param request
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ModelAndView hostMeal(@RequestParam(value = "mealName", required = false) String mealName,
                                  @RequestParam(value = "mealDescription", required = false) String mealDescription,

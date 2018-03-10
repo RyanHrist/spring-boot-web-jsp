@@ -21,9 +21,21 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Home Controller, in charge of all functionality on the home page & also login and logout
+ *
+ * Controller mapped to "", "/" which is the home page of the website
+ */
 @Controller
 public class HomeController {
 
+    /**
+     * General method which returns the home screen with all meals in the database listed
+     * @param request
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping(value = "/", method = {RequestMethod.GET})
     public ModelAndView getHome(HttpServletRequest request) throws SQLException, ClassNotFoundException {
         // TODO: setup all meals.
@@ -34,6 +46,17 @@ public class HomeController {
         return modelAndView;
     }
 
+    /**
+     * Search method on the home page which is used to search the entered query to match anything similar to
+     * the description, the city, country, or category of a meal
+     * It then sets "foundMeals" array list into all meals found through the query
+     * TODO: make the search more indepth
+     * @param searchQuery
+     * @param request
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping(value = {"/search/{searchQuery}", "/search/"}, method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView search(@PathVariable(value = "searchQuery", required = false) String searchQuery,
                                HttpServletRequest request) throws SQLException, ClassNotFoundException {
@@ -72,6 +95,13 @@ public class HomeController {
         return modelAndView;
     }
 
+    /**
+     * Get all meals in the database and places them into "foundMeals" array list
+     * TODO: narrow this search
+     * @param request
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void getAllMeals(HttpServletRequest request) throws SQLException, ClassNotFoundException {
         HttpSession session = request.getSession();
         Connection newConnection = Database.connectDatabase();
@@ -93,6 +123,17 @@ public class HomeController {
         Database.disconnectDatabase(newConnection);
     }
 
+    /**
+     * User login method, takes the loginname and username and ensures that there is a match in the database,
+     * used on the home page as it is a popup without a unique URL
+     * Key note: activates the session (keep track of user login)
+     * @param userLogin
+     * @param userPassword
+     * @param request
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ModelAndView loginUser(@RequestParam(value = "loginUsername", required = false) String userLogin,
                                   @RequestParam(value = "loginPassword", required = false) String userPassword,
@@ -128,6 +169,13 @@ public class HomeController {
         return modelAndView;
     }
 
+    /**
+     * Logs the user out deactivating the session they were previously in.
+     * @param request
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("logout")
     public ModelAndView logoutUser(HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();

@@ -20,6 +20,7 @@
             Boolean viewingOwnProfile = (Boolean) session.getAttribute("viewingOwnProfile");
             User loggedUser = (User) session.getAttribute("user");
             pageContext.setAttribute("user", loggedUser);
+            // If a user is logged in and viewing their own profile
             if (loggedUser != null && viewingOwnProfile) {
         %>
         <h1>${user.name}</h1>
@@ -38,7 +39,8 @@
             <button type="button" onclick="myFunction2()"> Save </button>
         </form>
     </div>
-    <% } else if ((profileExists && !viewingOwnProfile) || profileExists && loggedUser == null) {
+    <% // If profile ID exists and its not own, or profile exists and a user is logged in
+    } else if ((profileExists && !viewingOwnProfile) || profileExists && loggedUser == null) {
                 pageContext.setAttribute("userBeingViewed", userBeingViewed);%>
     <div class = "inner">
             Host Name: ${userBeingViewed.name}<br>
@@ -49,7 +51,8 @@
             About me:<br> ${userBeingViewed.userDescription} <br>
             Host Rating: <br>
     </div>
-    <% } else if (!profileExists){ %>
+    <% // If profile trying to be viewed does not exist
+    } else if (!profileExists){ %>
     <h1>This profile does not exist.</h1>
     <% } else { %>
     <h1> You must be logged in to view your Profile.</h1>

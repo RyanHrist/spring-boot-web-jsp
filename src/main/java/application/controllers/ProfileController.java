@@ -20,7 +20,7 @@ import java.sql.Statement;
 public class ProfileController {
 
     @RequestMapping(value = {"/", ""}, method = {RequestMethod.GET})
-    public ModelAndView viewProfile(HttpServletRequest request) {
+    public ModelAndView viewOwnProfile(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         HttpSession session = request.getSession();
         session.setAttribute("viewingOwnProfile", true);
@@ -29,7 +29,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value = {"/{profileId}"}, method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView viewProfile(@PathVariable("profileId") String profileId,
+    public ModelAndView viewOtherProfile(@PathVariable("profileId") String profileId,
                               HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
         Connection newConnection = Database.connectDatabase();
@@ -37,11 +37,8 @@ public class ProfileController {
         HttpSession session = request.getSession();
         session.setAttribute("profileId", profileId);
         session.setAttribute("viewingOwnProfile", false);
-
-        System.out.println("THIS FAR1");
         User profile = new User();//(User) session.getAttribute("user");
         if(!profileId.equals("")) {
-            System.out.println("BUT FURTHER NOW");
             String sql = "SELECT * FROM Users WHERE userid='" + profileId + "'";
             ResultSet rs=statement.executeQuery(sql);
             System.out.println(sql);
@@ -62,5 +59,4 @@ public class ProfileController {
         modelAndView.setViewName("profile");
         return modelAndView;
     }
-
 }

@@ -17,10 +17,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Meal Controller, in charge of all functionality relating to meal
+ *
+ * Controller mapped to "/meal" and "/meal/mealid"
+ *
+ * Meal id is from the database table Meals
+ */
 @Controller
 @RequestMapping("/meal")
 public class MealController {
 
+    /**
+     * This page, when selected takes the user to the book meal page of the specific meal selected
+     * @param mealId
+     * @param request
+     * @return
+     */
     @RequestMapping(value="/bookmeal/{mealId}", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView bookMeal(@PathVariable("mealId") String mealId, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -28,6 +41,14 @@ public class MealController {
         return modelAndView;
     }
 
+    /**
+     * This page is for confirming the bookMeal, giving all important info on the meal which can be confirmed.
+     * @param mealId
+     * @param request
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping(value="/bookmeal/{mealId}/confirmation", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView bookMealConfirmation(@PathVariable("mealId") String mealId, HttpServletRequest request)
             throws SQLException, ClassNotFoundException {
@@ -54,8 +75,16 @@ public class MealController {
         return modelAndView;
     }
 
+    /**
+     * View meal used for viewing specific meals
+     * @param mealId
+     * @param request
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping(value = "/{mealId}", method = RequestMethod.GET)
-    public ModelAndView hostMeal(@PathVariable("mealId") String mealId,
+    public ModelAndView viewMeal(@PathVariable("mealId") String mealId,
                                  HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
         HttpSession session = request.getSession();

@@ -116,6 +116,7 @@ public class HomeController {
                 session.setAttribute("user", user);
                 System.out.println("Login Success");
             } else {
+                session.setAttribute("loginFail", "Please enter a correct username and password.");
                 System.out.println("Login failed");
             }
         }

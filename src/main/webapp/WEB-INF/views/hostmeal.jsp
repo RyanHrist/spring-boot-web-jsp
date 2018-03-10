@@ -24,7 +24,7 @@
     <div class= "inner">
     <h1>${unsuccessMessage}</h1>
 
-    <form  action="/hostmeal" autocomplete="on" method="POST">
+    <form  action="/hostmeal/" autocomplete="on" method="POST">
         Meal: <input type="text" name="mealName" value="Meal title" style="background-color:white;
                                border: solid 1px #2e2925;
                                height: 30px;
@@ -59,7 +59,7 @@
         <input type="date" name="date">
         <br/> <br/>
 
-        <input type="submit" value="HostMeal">
+        <input type="submit" value="Host Meal">
     </form>
 </div>
 <% } else { %>

@@ -41,7 +41,7 @@ public class HostMealController {
 
 
             Meals newMeal = new Meals();
-            String insert = "INSERT Meals SET description = '"+ mealDescription + "', mpicture = '" + imageURL + "'"
+            String insert = "INSERT Meals SET mtitle='"+mealName+"', description = '"+ mealDescription + "', mpicture = '" + imageURL + "'"
                     + ", hemail='"+user.getEmail()+"'";
             newMeal.setDescription(mealDescription);
             newMeal.setImage(imageURL);
@@ -49,7 +49,11 @@ public class HostMealController {
             try{
                 // SQL update
                 statement.executeUpdate(insert);
-                modelAndView.setViewName("meal");
+                // TODO: GET UNIQUE MEAL ID
+//                int id =statement.executeUpdate(insert, Statement.RETURN_GENERATED_KEYS);
+//                System.out.println("SUCCESS");
+//                modelAndView.setViewName("meal/" + id);
+                modelAndView.setViewName("home");
                 session.setAttribute("hostedMeal", newMeal);
                 // Attempt at starting session, TODO
                 //TODO ADD MEALS TO THE USERS HOSTED MEALS

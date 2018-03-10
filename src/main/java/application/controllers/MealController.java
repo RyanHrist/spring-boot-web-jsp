@@ -41,13 +41,16 @@ public class MealController {
         try {
             // SQL update
             statement.executeUpdate(confirmBooking);
+            session.setAttribute("bookedMeal", "Congratulations on booking a meal!");
+            modelAndView.setViewName("redirect:/upcoming_meals");
+
         }catch(SQLException e) {
             // TODO: Front end team: create a popup that says that email is already used.
+            session.setAttribute("bookedMeal", "Unfortunately there was an error booking your meal!");
             modelAndView.setViewName("redirect:/upcoming_meals");
             return modelAndView;
         }
         modelAndView.setViewName("upcomingMeals");
-        modelAndView.addObject("bookedMeal", "Congratulations on booking a meal!");
         return modelAndView;
     }
 
@@ -72,6 +75,10 @@ public class MealController {
             selectedMeal.setDescription(rs.getString("description"));
             selectedMeal.setMealTitle(rs.getString("mtitle"));
             selectedMeal.setMealID(rs.getInt("mealid"));
+            selectedMeal.setWithHost(rs.getString("hemail"));
+            selectedMeal.setPrice(rs.getDouble("pricepp"));
+            selectedMeal.setDate(rs.getString("dom"));
+            selectedMeal.setAddress("saddress");
 
             String getHost = "SELECT * FROM Users WHERE email='"+rs.getString("hemail")+"'";
             rs = statement.executeQuery(getHost);

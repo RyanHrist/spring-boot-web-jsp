@@ -1,0 +1,34 @@
+<application>
+  <component name="LangManager">
+    <option name="languageName" value="JAVA" />
+  </component>
+  <component name="LessonStateBase">
+    <option name="myMap">
+      <map>
+        <entry key="CodeAssistance.CodeFormatting" value="NOT_PASSED" />
+        <entry key="CodeAssistance.EditorCodingAssistance" value="NOT_PASSED" />
+        <entry key="CodeAssistance.ParameterInfo" value="NOT_PASSED" />
+        <entry key="CodeAssistance.QuickPopups" value="NOT_PASSED" />
+        <entry key="Completions.BasicCompletion" value="NOT_PASSED" />
+        <entry key="Completions.CompletionwithTab" value="NOT_PASSED" />
+        <entry key="Completions.SmartTypeCompletion" value="NOT_PASSED" />
+        <entry key="Completions.StatementCompletion" value="NOT_PASSED" />
+        <entry key="EditorBasics.Collapse" value="NOT_PASSED" />
+        <entry key="EditorBasics.CommentLine" value="NOT_PASSED" />
+        <entry key="EditorBasics.DeleteLine" value="NOT_PASSED" />
+        <entry key="EditorBasics.Duplicate" value="NOT_PASSED" />
+        <entry key="EditorBasics.Move" value="NOT_PASSED" />
+        <entry key="EditorBasics.MultipleSelections" value="NOT_PASSED" />
+        <entry key="EditorBasics.Selection" value="NOT_PASSED" />
+        <entry key="Navigation.Declaration/Implementation" value="NOT_PASSED" />
+        <entry key="Navigation.FileStructure" value="NOT_PASSED" />
+        <entry key="Navigation.JumptoSource" value="NOT_PASSED" />
+        <entry key="Navigation.Next/PreviousOccurrences" value="NOT_PASSED" />
+        <entry key="Refactorings.ExtractMethod" value="NOT_PASSED" />
+        <entry key="Refactorings.ExtractVariable/Field" value="NOT_PASSED" />
+        <entry key="Refactorings.RefactoringBasics" value="NOT_PASSED" />
+        <entry key="Refactorings.Rename" value="NOT_PASSED" />
+      </map>
+    </option>
+  </component>
+</application>

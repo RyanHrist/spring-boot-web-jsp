@@ -60,6 +60,7 @@ public class ProfileController {
         }
         session.setAttribute("profile", profile);
         modelAndView.setViewName("profile");
+        Database.disconnectDatabase(newConnection);
         return modelAndView;
     }
 

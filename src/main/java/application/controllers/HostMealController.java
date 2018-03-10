@@ -57,11 +57,13 @@ public class HostMealController {
                 session.setAttribute("hostedMeal", newMeal);
                 // Attempt at starting session, TODO
                 //TODO ADD MEALS TO THE USERS HOSTED MEALS
+                Database.disconnectDatabase(newConnection);
                 return modelAndView;
             } catch(SQLException e) {
                 // TODO: Front end team: create a popup that says that email is already used.
                 modelAndView.setViewName("hostmeal");
                 modelAndView.addObject("unsuccessMessage", "Error creating meal.");
+                Database.disconnectDatabase(newConnection);
                 return modelAndView;
             }
 

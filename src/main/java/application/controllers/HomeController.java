@@ -68,6 +68,7 @@ public class HomeController {
         }
 
         modelAndView.setViewName("/home");
+        Database.disconnectDatabase(newConnection);
         return modelAndView;
     }
 
@@ -89,6 +90,7 @@ public class HomeController {
             foundMeals.add(meal);
         }
         session.setAttribute("foundMeals", foundMeals);
+        Database.disconnectDatabase(newConnection);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
@@ -122,6 +124,7 @@ public class HomeController {
         }
 
         modelAndView.setViewName("/home");
+        Database.disconnectDatabase(newConnection);
         return modelAndView;
     }
 

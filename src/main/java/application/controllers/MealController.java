@@ -48,9 +48,11 @@ public class MealController {
             // TODO: Front end team: create a popup that says that email is already used.
             session.setAttribute("bookedMeal", "Unfortunately there was an error booking your meal!");
             modelAndView.setViewName("redirect:/upcoming_meals");
+            Database.disconnectDatabase(newConnection);
             return modelAndView;
         }
         modelAndView.setViewName("upcomingMeals");
+        Database.disconnectDatabase(newConnection);
         return modelAndView;
     }
 
@@ -93,7 +95,7 @@ public class MealController {
         session.setAttribute("selectedMeal", selectedMeal);
         session.setAttribute("mealHost", mealHost);
         modelAndView.setViewName("meal");
-
+        Database.disconnectDatabase(newConnection);
         return modelAndView;
     }
 

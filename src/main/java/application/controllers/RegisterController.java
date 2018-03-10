@@ -98,12 +98,13 @@ public class RegisterController {
 
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-
+            Database.disconnectDatabase(newConnection);
             return modelAndView;
         } catch(SQLException e) {
             // TODO: Front end team: create a popup that says that email is already used.
             modelAndView.setViewName("/register");
             modelAndView.addObject("unsuccessMessage", "This email already exists.");
+            Database.disconnectDatabase(newConnection);
             return modelAndView;
         }
     }

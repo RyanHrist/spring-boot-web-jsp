@@ -22,7 +22,10 @@
     <div class = "inner">
         <form action="/account" autocomplete="on" method="POST">
             Name: <input type="text" name="name" id="name" value="${user.name}" readonly=""><br>
+
+            <%--i dont think user should be able to change their email--%>
             Email: <input type="text" name="name" id="email" value="${user.email}" readonly=""><br>
+
             Location: <input type="text" name="location" value="${user.cccity} ${user.ccprovince}" id="location" readonly=""><br>
             Credit Card Info: <br>
             Credit Card Number: <input type="text" name="num" value="${user.cccnumber}" id="ccnum" readonly=""> <br>
@@ -58,6 +61,10 @@
         document.getElementById("ccnum").readOnly = true;
         document.getElementById("cctype").readOnly = true;
         document.getElementById("ccdigits").readOnly = true;
+    }
+
+    function uptadeUser(){
+
     }
 </script>
 </body>

@@ -31,11 +31,11 @@
                                font-size:18px;
                                vertical-align:9px;color:#2e2925" ><br>
 
-        Description: <input type="text" name="mealDescription" value="Meal description" style="background-color:white;
+        Desciption: <textarea type = "textarea" name = "mealDesciption" rows="10" cols="32" style="background-color:white;
                                border: solid 1px #2e2925;
                                height: 30px;
                                font-size:18px;
-                               vertical-align:9px;color:#2e2925" ><br>
+                               vertical-align:9px;color:#2e2925"></textarea><br>
 
         Price: <input type="text" name="mealPrice" value="Meal Price" style="background-color:white;
                                border: solid 1px #2e2925;
@@ -43,11 +43,11 @@
                                font-size:18px;
                                vertical-align:9px;color:#2e2925" ><br>
 
-        Image URL: <input type="text" name="imageURL" value="www.example.com/image.jpg" style="background-color:white;
+        Photo: <input type="file" name="imageURL" accept="image/*" style="background-color:white;
                                border: solid 1px #2e2925;
                                height: 30px;
                                font-size:18px;
-                               vertical-align:9px;color:#2e2925" ><br>
+                               vertical-align:9px;color:#2e2925">
 
         City: <input type="text" name="city" value="City" style="background-color:white;
                                border: solid 1px #2e2925;
@@ -58,8 +58,7 @@
         Date of Meal
         <input type="date" name="date">
         <br/> <br/>
-
-        <input type="submit" value="HostMeal">
+        <button type="button" onclick="" value="HostMeal"> Host Meal </button>
     </form>
 </div>
 <% } else { %>

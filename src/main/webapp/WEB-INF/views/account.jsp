@@ -33,8 +33,8 @@
 
             CVV: <input type="text" name="location" value="123" id="ccdigits" readonly=""> <br>
 
-            <button type="button" onclick="myFunction()"> Edit </button>
-            <input type="submit" onclick="myFunction2()" value="Save">
+            <button type="button" onclick="myFunction()" class="button"> Edit </button>
+            <input type="submit" onclick="myFunction2()" value="Save" class="button">
         </form>
     </div>
     <% } else { %>

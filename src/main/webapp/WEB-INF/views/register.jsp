@@ -60,7 +60,7 @@
             Date of Birth
             <input type="date" name="bday">
             <br/> <br/>
-             <input type="submit" value="Register">
+             <input type="submit" value="Register" class = "button">
         </form>
     </div>
 </div>

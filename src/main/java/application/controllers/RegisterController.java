@@ -30,6 +30,10 @@ public class RegisterController {
                                      @RequestParam("firstname") String firstName,
                                      @RequestParam("lastname") String lastName,
                                      @RequestParam("passwordsignup") String password,
+                                     @RequestParam("passwordconfirm") String password2,
+                                     @RequestParam("country") String country,
+                                     @RequestParam("bday") Date bday,
+
                                      HttpServletRequest request) throws SQLException, ClassNotFoundException {
 
         ModelAndView modelAndView = new ModelAndView();
@@ -94,12 +98,13 @@ public class RegisterController {
 
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-
+            Database.disconnectDatabase(newConnection);
             return modelAndView;
         } catch(SQLException e) {
             // TODO: Front end team: create a popup that says that email is already used.
             modelAndView.setViewName("/register");
             modelAndView.addObject("unsuccessMessage", "This email already exists.");
+            Database.disconnectDatabase(newConnection);
             return modelAndView;
         }
     }
@@ -112,12 +117,15 @@ public class RegisterController {
         return m.matches();
     }
 
-    public static boolean ensureProperPasswordFormat(String password) {
-        return true;
+    public static boolean ensureProperPasswordFormat(String password, String password2) {
+        if (password == password2){
+            return true;
+        }
+        else {return false;}
     }
 
-    public static boolean validateFormat(String email, String password) {
-        if(ensureProperEmailFormat(email) && ensureProperPasswordFormat(password)) {
+    public static boolean validateFormat(String email, String password, String password2) {
+        if(ensureProperEmailFormat(email) && ensureProperPasswordFormat(password,password2)) {
             return true;
         }
 

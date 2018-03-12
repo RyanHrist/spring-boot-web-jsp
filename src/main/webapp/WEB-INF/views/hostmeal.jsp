@@ -56,9 +56,9 @@
                                vertical-align:9px;color:#2e2925" ><br>
 
         Date of Meal
-        <input type="date" name="date">
+        <input type="date" name="date" class = "button">
         <br/> <br/>
-        <button type="button" onclick="" value="HostMeal"> Host Meal </button>
+        <button type="button" onclick="" value="HostMeal" class = "button"> Host Meal </button>
     </form>
 </div>
 <% } else { %>

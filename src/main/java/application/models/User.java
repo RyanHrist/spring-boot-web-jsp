@@ -34,7 +34,7 @@ public class User {
     //private Language language;
     private String language;
 
-    private Image profilePicture;
+    private String profilePicture;
     private Date dateOfBirth;
 
     private Meals pastVisits;
@@ -52,6 +52,15 @@ public class User {
     //private CreditCardInformation getCreditCardInformation() {
     //    return creditCardInformation;
     //}
+
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 
     public String getCccnumber(){
         return ccnumber;
@@ -93,9 +102,6 @@ public class User {
         return currency;
     }
 
-    public Image getImageBanner() {
-        return profilePicture;
-    }
 
     public Date getDateOfBirth() {
         return dateOfBirth;

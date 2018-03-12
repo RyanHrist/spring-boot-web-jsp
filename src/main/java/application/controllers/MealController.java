@@ -17,10 +17,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Meal Controller, in charge of all functionality relating to meal
+ *
+ * Controller mapped to "/meal" and "/meal/mealid"
+ *
+ * Meal id is from the database table Meals
+ */
 @Controller
 @RequestMapping("/meal")
 public class MealController {
 
+    /**
+     * This page, when selected takes the user to the book meal page of the specific meal selected
+     * @param mealId
+     * @param request
+     * @return
+     */
     @RequestMapping(value="/bookmeal/{mealId}", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView bookMeal(@PathVariable("mealId") String mealId, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -28,6 +41,14 @@ public class MealController {
         return modelAndView;
     }
 
+    /**
+     * This page is for confirming the bookMeal, giving all important info on the meal which can be confirmed.
+     * @param mealId
+     * @param request
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping(value="/bookmeal/{mealId}/confirmation", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView bookMealConfirmation(@PathVariable("mealId") String mealId, HttpServletRequest request)
             throws SQLException, ClassNotFoundException {
@@ -41,18 +62,31 @@ public class MealController {
         try {
             // SQL update
             statement.executeUpdate(confirmBooking);
+            session.setAttribute("bookedMeal", "Congratulations on booking a meal!");
+            modelAndView.setViewName("redirect:/upcoming_meals");
+
         }catch(SQLException e) {
             // TODO: Front end team: create a popup that says that email is already used.
+            session.setAttribute("bookedMeal", "Unfortunately there was an error booking your meal!");
             modelAndView.setViewName("redirect:/upcoming_meals");
+            Database.disconnectDatabase(newConnection);
             return modelAndView;
         }
         modelAndView.setViewName("upcomingMeals");
-        modelAndView.addObject("bookedMeal", "Congratulations on booking a meal!");
+        Database.disconnectDatabase(newConnection);
         return modelAndView;
     }
 
+    /**
+     * View meal used for viewing specific meals
+     * @param mealId
+     * @param request
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping(value = "/{mealId}", method = RequestMethod.GET)
-    public ModelAndView hostMeal(@PathVariable("mealId") String mealId,
+    public ModelAndView viewMeal(@PathVariable("mealId") String mealId,
                                  HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
         HttpSession session = request.getSession();
@@ -72,6 +106,10 @@ public class MealController {
             selectedMeal.setDescription(rs.getString("description"));
             selectedMeal.setMealTitle(rs.getString("mtitle"));
             selectedMeal.setMealID(rs.getInt("mealid"));
+            selectedMeal.setWithHost(rs.getString("hemail"));
+            selectedMeal.setPrice(rs.getDouble("pricepp"));
+            selectedMeal.setDate(rs.getString("dom"));
+            selectedMeal.setAddress("saddress");
 
             String getHost = "SELECT * FROM Users WHERE email='"+rs.getString("hemail")+"'";
             rs = statement.executeQuery(getHost);
@@ -86,7 +124,7 @@ public class MealController {
         session.setAttribute("selectedMeal", selectedMeal);
         session.setAttribute("mealHost", mealHost);
         modelAndView.setViewName("meal");
-
+        Database.disconnectDatabase(newConnection);
         return modelAndView;
     }
 

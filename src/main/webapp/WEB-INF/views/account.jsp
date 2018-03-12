@@ -14,22 +14,32 @@
 <%@ include file = "header.jsp" %>
 
 <div class="centered">
+    <% User loggedUser = (User) session.getAttribute("user");
+        pageContext.setAttribute("user", loggedUser);
+        if (loggedUser != null) {
+    %>
     <h1>Account Info</h1>
     <div class = "inner">
         <form action="/account" autocomplete="on" method="POST">
-            Name: <input type="text" name="name" id="name" value="Ryan H" readonly=""><br>
-            Email: <input type="text" name="name" id="email" value="asdasa@asdas.ca" readonly=""><br>
-            Location: <input type="text" name="location" value="St. Catharines" id="location" readonly=""><br>
+            Name: <input type="text" name="name" id="name" value="${user.name}" readonly=""><br>
+
+            <%--i dont think user should be able to change their email--%>
+            Email: <input type="text" name="name" id="email" value="${user.email}" readonly=""><br>
+
+            Location: <input type="text" name="location" value="${user.cccity} ${user.ccprovince}" id="location" readonly=""><br>
             Credit Card Info: <br>
-            Credit Card Number: <input type="text" name="num" value="123123131" id="ccnum" readonly=""> <br>
+            Credit Card Number: <input type="text" name="num" value="${user.cccnumber}" id="ccnum" readonly=""> <br>
             Type: <input type="text" name="location" value="Master Card" id="cctype" readonly=""> <br>
 
             CVV: <input type="text" name="location" value="123" id="ccdigits" readonly=""> <br>
 
-            <button type="button" onclick="myFunction()"> Edit </button>
-            <button type="button" onclick="myFunction2()"> Save </button hidden>
+            <button type="button" onclick="myFunction()" class="button"> Edit </button>
+            <input type="submit" onclick="myFunction2()" value="Save" class="button">
         </form>
     </div>
+    <% } else { %>
+    <h1> You must be logged in to view your Profile.</h1>
+    <% } %>
 
 </div>
 
@@ -51,6 +61,10 @@
         document.getElementById("ccnum").readOnly = true;
         document.getElementById("cctype").readOnly = true;
         document.getElementById("ccdigits").readOnly = true;
+    }
+
+    function uptadeUser(){
+
     }
 </script>
 </body>

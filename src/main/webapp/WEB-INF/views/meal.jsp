@@ -27,7 +27,7 @@
         <h2>Host: ${mealHost.name}</h2>
         <img src="${selectedMeal.image}" alt="Meal 1" style="width:200px;height:200px;">
         <h2>Location: ${selectedMeal.address}</h2>
-        <h2>Price:${selectedMeal.price}3</h2>
+        <h2>Price:${selectedMeal.price}</h2>
         <h2>Date: ${selectedMeal.date} ${selectedMeal.time}</h2>
 
         <h2>Host Rating</h2>

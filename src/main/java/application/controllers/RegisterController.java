@@ -24,7 +24,6 @@ public class RegisterController {
         return modelAndView;
     }
 
-
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ModelAndView registerUser(@RequestParam("emailsignup") String email,
                                      @RequestParam("firstname") String firstName,

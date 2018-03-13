@@ -5,25 +5,26 @@ import java.util.Date;
 
 public class User {
 
-
     public User() {
     }
+    private int userID;
     private String name;
     private String email;
     private String password;
     private String userDescription;
     private GuestRating guestRating;
+    private String image;
 
     //private CreditCardInformation creditCardInformation;
     //this is all for cc info
     private String ccnumber;
-    private String ccvv;
+    private String cccvv;
     private String cccountry;
     private String ccprovince;
     private String cccity;
     private String ccadress;
     private String ccpostal;
-    private String ccexp;
+    private Date ccexp;
 
     //private Country country;
     private String country;
@@ -53,6 +54,13 @@ public class User {
     //    return creditCardInformation;
     //}
 
+    public void setImage(String image){this.image = image;}
+
+    public String getImage(){return image;}
+
+    public void setUserID(int userID){this.userID = userID;}
+
+    public int getUserID(){return userID;}
 
     public String getProfilePicture() {
         return profilePicture;
@@ -86,12 +94,12 @@ public class User {
         return ccpostal;
     }
 
-    public String getCcexp() {
+    public Date getCcexp() {
         return ccexp;
     }
 
-    public String getCcvv() {
-        return ccvv;
+    public String getCccvv() {
+        return cccvv;
     }
 
     public String getCountry() {
@@ -160,11 +168,11 @@ public class User {
         this.ccprovince = ccprovince;
     }
 
-    public void setCcvv(String ccvv) {
-        this.ccvv = ccvv;
+    public void setCccvv(String cccvv) {
+        this.cccvv = cccvv;
     }
 
-    public void setCcexp(String ccexp) {
+    public void setCcexp(Date ccexp) {
         this.ccexp = ccexp;
     }
 

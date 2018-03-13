@@ -9,6 +9,9 @@ public class Meals {
     ArrayList<User> guestList = new ArrayList<User>();
     private boolean happened;
     private String address;
+    private String country;
+    private String city;
+    private String postal;
     private int mealID;
     private String mealTitle;
     private String withHost;
@@ -20,6 +23,18 @@ public class Meals {
     private Category category;
     private String description;
     private Time time;
+
+    public void setCountry(String country) { this.country = country;}
+
+    public String getCountry() { return country;}
+
+    public void setCity(String city) {this.city = city;}
+
+    public String getCity() {return city;}
+
+    public void setPostal(String postal) {this.postal = postal;}
+
+    public String getPostal() {return postal;}
 
     public String getAddress() {
         return address;
@@ -74,10 +89,8 @@ public class Meals {
     public String getImage() {
         return image;
     }
-    public int getCapacity(){
+    public int getCapacity(){ return capacity; }
 
-        return capacity;
-    }
     public double getPrice(){
         return price;
     }

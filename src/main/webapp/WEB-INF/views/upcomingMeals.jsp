@@ -44,6 +44,15 @@
 
     </nav>
     <h1>Previous Meals</h1>
+    <%
+        if (false) {
+    %>
+    <form  action="/meal" autocomplete="on" method="POST">
+        <a href="/meal/${meal.mealID}"><img src ="${meal.image}" style="width:200px;height:100px;"> ${meal.description} </a>
+    </form>
+    <%} else {%>
+    <h3>You have no previous meals</h3>
+    <% } %>
     <%--<%--%>
         <%--if (upcomingMeals.size() != 0) {--%>
             <%--for (Meals previousMeal:upcomingMeals) {--%>

@@ -25,13 +25,18 @@
         %>
         <h1>${selectedMeal.mealTitle}</h1>
         <h2>Host: ${mealHost.name}</h2>
-        <img src="${selectedMeal.image}" alt="Meal 1" style="width:200px;height:200px;">
+        <% if (selectedMeal.getImage().equals("") || selectedMeal.getImage() == null) {%>
+        <img src="/images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;">
+        <% } else { %>
+        <img src="${selectedMeal.image}" alt="Meal 1" style="width:256px;height:200px;">
+        <%	} %>
+
         <h2>Location: ${selectedMeal.address}</h2>
         <h2>Price:${selectedMeal.price}</h2>
         <h2>Date: ${selectedMeal.date} ${selectedMeal.time}</h2>
 
         <h2>Host Rating</h2>
-        <img src="images/i1.png" alt="Meal 1" style="width:200px;height:50px;">
+        <%--<img src="images/i1.png" alt="Meal 1" style="width:200px;height:50px;">--%>
         <%--<h2>Guest Rating</h2>--%>
         <%--<img src="images/i1.png" alt="Meal 1" style="width:200px;height:50px;">--%>
 

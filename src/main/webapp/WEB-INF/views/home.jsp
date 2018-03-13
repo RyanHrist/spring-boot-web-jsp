@@ -39,10 +39,13 @@
 		if(foundMeals != null) {
 		for (Meals meals: foundMeals) {
 		    pageContext.setAttribute("localMeal", meals);
-
+		    if (meals.getImage().equals("") || meals.getImage() == null) {
 	%>
+	<a href ="/meal/${localMeal.mealID}"><img src="/images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;"></a>
+	<% } else { %>
 	<a href ="/meal/${localMeal.mealID}"><img src="${localMeal.image}" alt="Meal 1" style="width:256px;height:200px;"></a>
-	<% }
+	<%	}
+	  }
 	}%>
 	<%--} else {--%>
 		<%--ArrayList<Meals> allMeals = (ArrayList<Meals>) session.getAttribute("allMeals");--%>

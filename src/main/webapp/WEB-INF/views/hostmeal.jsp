@@ -12,11 +12,11 @@
 </head>
 <body>
 <%@ include file = "header.jsp" %>
-<% User loggedUser = (User) session.getAttribute("user");
-    pageContext.setAttribute("user", loggedUser);
+<%
+    pageContext.setAttribute("user", user);
     String mealID = (String) session.getAttribute("mealID");
     pageContext.setAttribute("mealID", mealID);
-    if(loggedUser != null) {
+    if(user != null) {
 %>
 <div class="centered">
     <h1>Host a meal</h1>
@@ -58,7 +58,7 @@
         Date of Meal
         <input type="date" name="date" class = "button">
         <br/> <br/>
-        <button type="button" onclick="" value="HostMeal" class = "button"> Host Meal </button>
+        <input type="submit" value="Host Meal">
     </form>
 </div>
 <% } else { %>

@@ -36,7 +36,7 @@
             Host Rating: <input type="text" name="language" value="4.5" id="hostrating" readonly="" readonly=""><br>
             Guest Rating: <input type="text" name="language" value="4.2" id="guestrating" readonly="" readonly=""><br>
             <button type="button" onclick="myFunction()" class="button"> Edit </button>
-            <button type="button" onclick="myFunction2()" class="button"> Save </button>
+            <button type="button" onclick="myFunction2()" class="button512"> Save </button>
         </form>
     </div>
     <% // If profile ID exists and its not own, or profile exists and a user is logged in
@@ -45,7 +45,14 @@
     <div class = "inner">
             Host Name: ${userBeingViewed.name}<br>
             Photo: <input type="file" name="pic" id="upload" accept="image/*"  hidden >
-            <img src="${userBeingViewed.profilePicture}" alt="Meal 1" id = "pic" style="width:200px;height:200px;" > <br>
+        <% System.out.println("TESTEST "  +  userBeingViewed.getProfilePicture());
+            if (userBeingViewed.getProfilePicture().equals("") || userBeingViewed.getProfilePicture() == null) {%>
+        <img src="/images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;">
+        <% } else { %>
+        <img src="${userBeingViewed.profilePicture}" alt="Meal 1" style="width:256px;height:200px;">
+        <%	} %>
+
+        <img src="${userBeingViewed.profilePicture}" alt="Meal 1" id = "pic" style="width:200px;height:200px;" > <br>
             Location: ${userBeingViewed.cccity}, ${userBeingViewed.ccprovince}, ${userBeingViewed.cccountry}<br>
             Language: <br> ${userBeingViewed.language}
             About me:<br> ${userBeingViewed.userDescription} <br>

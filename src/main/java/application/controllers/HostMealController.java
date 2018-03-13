@@ -46,7 +46,7 @@ public class HostMealController {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     // TODO: MICHAEL handeling the rest of the variables...are they all accessible through the typical nameing conventions?
     public ModelAndView hostMeal(@RequestParam(value = "mealName", required = false) String mealName,
                                  @RequestParam(value = "mealDescription", required = false) String mealDescription,
@@ -67,6 +67,7 @@ public class HostMealController {
                     + ", hemail='"+user.getEmail()+"'";
             newMeal.setDescription(mealDescription);
             newMeal.setImage(imageURL);
+            System.out.println(insert);
 
             try{
                 // SQL update

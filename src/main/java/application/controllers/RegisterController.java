@@ -48,13 +48,10 @@ public class RegisterController {
                 "    dob='2012-01-01', gender=null, userlang=null, ccnum=null, cccvv=null, cccountry=null,\n" +
                 "    ccprovince=null, cccity=null, ccaddress=null, ccpostal=null, ccexp='2020-5-2'\n";
 
-        ResultSet rs=statement.executeQuery("select * from Users");
 
 
 //        String email1, pass, username, country;
 //        Date dob;
-        User user = null;
-        while(rs.next()) {
 
         /*
         TODO: SET user.set FOR ALL VALUES FROM SQL
@@ -89,13 +86,14 @@ public class RegisterController {
 //            user.setName(rs.getString("username"));
 //            user.setUserDescription(rs.getString("description"));
 
-            user = new User();
+
+            User user = new User();
             user.setEmail(email);
             user.setName(firstName + " " + lastName);
             user.setPassword(password);
             user.setCountry(country);
             user.setDateOfBirth(bday);
-        }
+
 
         try{
             // SQL update

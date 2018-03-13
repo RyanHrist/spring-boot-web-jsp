@@ -41,7 +41,6 @@ public class AccountController {
         Connection newConnection = Database.connectDatabase();
         Statement statement = newConnection.createStatement();
 
-
         //String fullName = name;
         String update = "INSERT Users\n" +
                 //"set    email='" + email + "', pass = '" + password +"',\n" +

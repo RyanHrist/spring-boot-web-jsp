@@ -113,6 +113,12 @@ body {
 	z-index: 1 !important;
 }
 
+
+.button512 {
+	color: #000;
+
+}
+
 /* Links inside the dropdown */
 .dropdown-contentEAT a {
 	float: none  !important;

@@ -55,10 +55,7 @@ public class RegisterController {
 //        Date dob;
         User user = null;
         while(rs.next()) {
-            user = new User();
-            user.setEmail(rs.getString("email"));
-            user.setPassword(rs.getString("pass"));
-            user.setName(rs.getString("username"));
+
         /*
         TODO: SET user.set FOR ALL VALUES FROM SQL
         Done by nik
@@ -86,8 +83,18 @@ public class RegisterController {
 //            user.setCcvv(rs.getString("cccvv"));
 //            user.setCcexp(rs.getString("ccexp"));
 //            user.setCcnumber(rs.getString("ccnum"));
+//            user = new User();
+//            user.setEmail(rs.getString("email"));
+//            user.setPassword(rs.getString("pass"));
+//            user.setName(rs.getString("username"));
+//            user.setUserDescription(rs.getString("description"));
 
-            user.setUserDescription(rs.getString("description"));
+            user = new User();
+            user.setEmail(email);
+            user.setName(firstName + " " + lastName);
+            user.setPassword(password);
+            user.setCountry(country);
+            user.setDateOfBirth(bday);
         }
 
         try{
@@ -96,6 +103,8 @@ public class RegisterController {
             modelAndView.addObject("user", user);
             modelAndView.setViewName("redirect:/profile");
 
+            System.out.println(user.getName());
+            System.out.println(update);
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             Database.disconnectDatabase(newConnection);

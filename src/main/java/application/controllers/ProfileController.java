@@ -47,7 +47,6 @@ public class ProfileController {
             ResultSet rs=statement.executeQuery(sql);
             System.out.println(sql);
             if(rs.next()) {
-                // TODO: MAIN - fill in the rest of the profiles user info from Users table
                 profile.setUserID(rs.getInt("userid"));
                 profile.setEmail(rs.getString("email"));
                 profile.setPassword(rs.getString("password"));

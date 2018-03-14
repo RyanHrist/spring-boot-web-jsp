@@ -1,6 +1,13 @@
 package application.models;
 
+import application.Database;
+
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class User {
@@ -38,6 +45,7 @@ public class User {
     private String profilePicture;
     private Date dateOfBirth;
 
+    // TODO: Fix this to be array lists
     private Meals pastVisits;
     private Meals futureVisits;
 
@@ -200,6 +208,69 @@ public class User {
         this.pastVisits = pastVisits;
     }
     public void calculateRating(){}
+
+    public ArrayList<Meals> getHostingMeals() throws SQLException, ClassNotFoundException {
+        ArrayList<Meals> rtn = new ArrayList<>();
+        Connection newConnection = Database.connectDatabase();
+        Statement statement = newConnection.createStatement();
+        String selectCriteria = "";
+        selectCriteria += "where hemail = '" + email + "'";
+        ResultSet rs = statement.executeQuery("select * from Meals"
+                + selectCriteria + ";");
+        while (rs.next()){
+            Meals meal = new Meals();
+            meal.setMealID(rs.getInt("mealid"));
+            meal.setCapacity(rs.getInt("capacity"));
+            meal.setWithHost(rs.getString("hemail"));
+            meal.setDate(rs.getString("dom"));
+            meal.setMealTitle(rs.getString("mtitle"));
+            meal.setImage(rs.getString("mpicture"));
+            meal.setPrice(rs.getDouble("pricepp"));
+            meal.setCategory(rs.getString("cetegory"));
+            meal.setDescription(rs.getString("description"));
+            meal.setCancelBy(rs.getString("cancelationtime"));
+            meal.setCancelationFee(rs.getDouble("cancelationfee"));
+            meal.setCountry(rs.getString("country"));
+            meal.setCity(rs.getString("city"));
+            meal.setAddress(rs.getString("address"));
+            meal.setPostal(rs.getString("postal"));
+            rtn.add(meal);
+        }
+        return rtn;
+    }
+
+    public ArrayList<Meals> getAttendingMeals() throws SQLException, ClassNotFoundException {
+        ArrayList<Meals> rtn = new ArrayList<>();
+        Connection newConnection = Database.connectDatabase();
+        Statement statement = newConnection.createStatement();
+        String selectCriteria = "";
+        selectCriteria += "where gemail = '" + email + "'";
+        ResultSet rs = statement.executeQuery("select * from Attending"
+                + selectCriteria + ";");
+        while (rs.next()){
+            ResultSet theMeal = statement.executeQuery("select * from Meals where mealid ="
+                    + rs.getInt("mealid") + ";");
+            theMeal.first();
+            Meals meal = new Meals();
+            meal.setMealID(theMeal.getInt("mealid"));
+            meal.setCapacity(theMeal.getInt("capacity"));
+            meal.setWithHost(theMeal.getString("hemail"));
+            meal.setDate(theMeal.getString("dom"));
+            meal.setMealTitle(theMeal.getString("mtitle"));
+            meal.setImage(theMeal.getString("mpicture"));
+            meal.setPrice(theMeal.getDouble("pricepp"));
+            meal.setCategory(theMeal.getString("cetegory"));
+            meal.setDescription(theMeal.getString("description"));
+            meal.setCancelBy(theMeal.getString("cancelationtime"));
+            meal.setCancelationFee(theMeal.getDouble("cancelationfee"));
+            meal.setCountry(theMeal.getString("country"));
+            meal.setCity(theMeal.getString("city"));
+            meal.setAddress(theMeal.getString("address"));
+            meal.setPostal(theMeal.getString("postal"));
+            rtn.add(meal);
+        }
+        return rtn;
+    }
 
 
 }

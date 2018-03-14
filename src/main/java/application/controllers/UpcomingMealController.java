@@ -45,17 +45,14 @@ public class UpcomingMealController {
                     meal.setMealID(id);
                     meal.setCapacity(rs.getInt("capacity"));
                     meal.setWithHost(rs.getString("hemail"));
-                    // TODO: MICHAEL Change to date format?
                     meal.setDate(rs.getString("dom"));
                     meal.setMealTitle(rs.getString("mtitle"));
                     meal.setImage(rs.getString("mpicture"));
                     meal.setPrice(rs.getDouble("pricepp"));
-                    // TODO: MICHAEL what is the category type?
-                    // meal.setCategory(rs.getInt("cetegory"));
+                    meal.setCategory(rs.getString("cetegory"));
                     meal.setDescription(rs.getString("description"));
-                    // TODO: MICHAEL any need for this being it's own class?
-                    // meal.setCancellation();
-                    // meal.setCancelationFee
+                    meal.setCancelBy(rs.getString("cancelationtime"));
+                    meal.setCancelationFee(rs.getDouble("cancelationfee"));
                     meal.setCountry(rs.getString("country"));
                     meal.setCity(rs.getString("city"));
                     meal.setAddress(rs.getString("address"));

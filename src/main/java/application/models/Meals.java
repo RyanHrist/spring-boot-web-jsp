@@ -16,13 +16,24 @@ public class Meals {
     private String mealTitle;
     private String withHost;
     private CancellationPolicy cancellation;
+    private String cancelBy;
+    private double cancelationFee;
+    // TODO: Convert to date type for date and time for both cancelBy date and date of meal.
     private String date;
+    private Time time;
     private String image;
     private int capacity;
     private double price;
-    private Category category;
+    private String category;
     private String description;
-    private Time time;
+
+    public void setCancelBy(String cancelBy){this.cancelBy = cancelBy;}
+
+    public String getCancelBy(){return cancelBy;}
+
+    public void setCancelationFee(double cancelationFee){this.cancelationFee = cancelationFee;}
+
+    public double getCancelationFee(){return cancelationFee;}
 
     public void setCountry(String country) { this.country = country;}
 
@@ -95,7 +106,7 @@ public class Meals {
         return price;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
     public String getDescription(){
@@ -114,7 +125,7 @@ public class Meals {
         this.capacity = capacity;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

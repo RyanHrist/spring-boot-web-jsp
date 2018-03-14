@@ -73,7 +73,6 @@ public class HomeController {
         else
             sql = "SELECT * FROM Meals WHERE description LIKE'%" + searchQuery + "%' OR city LIKE '%" + searchQuery + "%'" +
                     "OR country LIKE '%" + searchQuery + "%' OR category LIKE '%" + searchQuery + "%'";
-        // TODO: MICHAEL need to fix category as category is currently stored as an integer.
 
         ResultSet rs = statement.executeQuery(sql);
         ArrayList<Meals> foundMeals = new ArrayList<>();
@@ -87,12 +86,10 @@ public class HomeController {
             meal.setMealTitle(rs.getString("mtitle"));
             meal.setImage(rs.getString("mpicture"));
             meal.setPrice(rs.getDouble("pricepp"));
-            // TODO: MICHAEL what is the category type?
-            // meal.setCategory(rs.getInt("cetegory"));
+            meal.setCategory(rs.getString("cetegory"));
             meal.setDescription(rs.getString("description"));
-            // TODO: MICHAEL any need for this being it's own class?
-            // meal.setCancellation();
-            // meal.setCancelationFee
+            meal.setCancelBy(rs.getString("cancelationtime"));
+            meal.setCancelationFee(rs.getDouble("cancelationfee"));
             meal.setCountry(rs.getString("country"));
             meal.setCity(rs.getString("city"));
             meal.setAddress(rs.getString("address"));
@@ -137,12 +134,10 @@ public class HomeController {
             meal.setMealTitle(allMealsSet.getString("mtitle"));
             meal.setImage(allMealsSet.getString("mpicture"));
             meal.setPrice(allMealsSet.getDouble("pricepp"));
-            // TODO: MICHAEL what is the category type?
-            // meal.setCategory(allMealsSet.getInt("cetegory"));
+            meal.setCategory(allMealsSet.getString("cetegory"));
             meal.setDescription(allMealsSet.getString("description"));
-            // TODO: MICHAEL any need for this being it's own class?
-            // meal.setCancellation();
-            // meal.setCancelationFee
+            meal.setCancelBy(allMealsSet.getString("cancelationtime"));
+            meal.setCancelationFee(allMealsSet.getDouble("cancelationfee"));
             meal.setCountry(allMealsSet.getString("country"));
             meal.setCity(allMealsSet.getString("city"));
             meal.setAddress(allMealsSet.getString("address"));
@@ -184,8 +179,6 @@ public class HomeController {
             while (rs.next()) {
                 // TODO: Set the UserController variables to everything in database like following:
                 // TODO: Also create all the static variables in the UserController (everything in DB).
-                // TODO: MICHAEL could probably delete the class CreditCardInfo...too much work
-                // TODO: MICHAE same with location
                 user = new User();
                 user.setUserID(rs.getInt("userid"));
                 user.setEmail(rs.getString("email"));

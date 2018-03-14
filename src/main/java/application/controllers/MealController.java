@@ -109,17 +109,14 @@ public class MealController {
             selectedMeal.setMealID(rs.getInt("mealid"));
             selectedMeal.setCapacity(rs.getInt("capacity"));
             selectedMeal.setWithHost(rs.getString("hemail"));
-            // TODO: MICHAEL Change to date format?
             selectedMeal.setDate(rs.getString("dom"));
             selectedMeal.setMealTitle(rs.getString("mtitle"));
             selectedMeal.setImage(rs.getString("mpicture"));
             selectedMeal.setPrice(rs.getDouble("pricepp"));
-            // TODO: MICHAEL what is the category type?
-            // selectedMeal.setCategory(rs.getInt("cetegory"));
+            selectedMeal.setCategory(rs.getString("cetegory"));
             selectedMeal.setDescription(rs.getString("description"));
-            // TODO: MICHAEL any need for this being it's own class?
-            // selectedMeal.setCancellation();
-            // selectedMeal.setCancelationFee
+            selectedMeal.setCancelBy(rs.getString("cancelationtime"));
+            selectedMeal.setCancelationFee(rs.getDouble("cancelationfee"));
             selectedMeal.setCountry(rs.getString("country"));
             selectedMeal.setCity(rs.getString("city"));
             selectedMeal.setAddress(rs.getString("address"));

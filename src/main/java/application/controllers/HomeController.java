@@ -40,7 +40,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/", method = {RequestMethod.GET})
     public ModelAndView getHome(HttpServletRequest request) throws SQLException, ClassNotFoundException {
-        // TODO: setup all meals.
+        // TODO: setup all meals!
         ModelAndView modelAndView = new ModelAndView();
         getAllMeals(request);
 

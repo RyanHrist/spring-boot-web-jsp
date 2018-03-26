@@ -2,7 +2,6 @@ package application.models;
 
 import application.Database;
 
-import java.awt.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -226,7 +225,7 @@ public class User {
             meal.setMealTitle(rs.getString("mtitle"));
             meal.setImage(rs.getString("mpicture"));
             meal.setPrice(rs.getDouble("pricepp"));
-            meal.setCategory(rs.getString("cetegory"));
+            meal.setCategory(rs.getString("category"));
             meal.setDescription(rs.getString("description"));
             meal.setCancelBy(rs.getString("cancelationtime"));
             meal.setCancelationFee(rs.getDouble("cancelationfee"));
@@ -259,7 +258,7 @@ public class User {
             meal.setMealTitle(theMeal.getString("mtitle"));
             meal.setImage(theMeal.getString("mpicture"));
             meal.setPrice(theMeal.getDouble("pricepp"));
-            meal.setCategory(theMeal.getString("cetegory"));
+            meal.setCategory(theMeal.getString("category"));
             meal.setDescription(theMeal.getString("description"));
             meal.setCancelBy(theMeal.getString("cancelationtime"));
             meal.setCancelationFee(theMeal.getDouble("cancelationfee"));

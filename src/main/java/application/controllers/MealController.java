@@ -16,8 +16,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 
 /**
  * Meal Controller, in charge of all functionality relating to meal
@@ -96,8 +94,6 @@ public class MealController {
         User mealHost = new User();
         Connection newConnection = Database.connectDatabase();
         Statement statement = newConnection.createStatement();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        ParsePosition p = new ParsePosition(0);
 
         ResultSet rs;
         String getMeals = "SELECT * FROM Meals WHERE mealid='"+mealId+"'";
@@ -106,45 +102,20 @@ public class MealController {
             // DOES THE MEAL ID EXIST:
             session.setAttribute("correctURL", true);
             // SELECTED MEAL INFORMATION:
-            selectedMeal.setMealID(rs.getInt("mealid"));
-            selectedMeal.setCapacity(rs.getInt("capacity"));
-            selectedMeal.setWithHost(rs.getString("hemail"));
-            selectedMeal.setDate(rs.getString("dom"));
-            selectedMeal.setMealTitle(rs.getString("mtitle"));
             selectedMeal.setImage(rs.getString("mpicture"));
-            selectedMeal.setPrice(rs.getDouble("pricepp"));
-            selectedMeal.setCategory(rs.getString("cetegory"));
             selectedMeal.setDescription(rs.getString("description"));
-            selectedMeal.setCancelBy(rs.getString("cancelationtime"));
-            selectedMeal.setCancelationFee(rs.getDouble("cancelationfee"));
-            selectedMeal.setCountry(rs.getString("country"));
-            selectedMeal.setCity(rs.getString("city"));
-            selectedMeal.setAddress(rs.getString("address"));
-            selectedMeal.setPostal(rs.getString("postal"));
+            selectedMeal.setMealTitle(rs.getString("mtitle"));
+            selectedMeal.setMealID(rs.getInt("mealid"));
+            selectedMeal.setWithHost(rs.getString("hemail"));
+            selectedMeal.setPrice(rs.getDouble("pricepp"));
+            selectedMeal.setDate(rs.getString("dom"));
+            selectedMeal.setAddress("saddress");
+
             String getHost = "SELECT * FROM Users WHERE email='"+rs.getString("hemail")+"'";
             rs = statement.executeQuery(getHost);
             if (rs.next()) {
                 // HOST OF MEAL INFORMATION:
                 mealHost.setName(rs.getString("username"));
-                mealHost.setUserID(rs.getInt("userid"));
-                mealHost.setEmail(rs.getString("email"));
-                mealHost.setPassword(rs.getString("password"));
-                mealHost.setName(rs.getString("username"));
-                mealHost.setUserDescription(rs.getString("description"));
-                mealHost.setCountry(rs.getString("country"));
-                mealHost.setCurrency(rs.getString("currency"));
-                mealHost.setImage(rs.getString("ppicture"));
-                mealHost.setDateOfBirth(df.parse(rs.getString("dob"),p));
-                mealHost.setGender(rs.getString("gender"));
-                mealHost.setLanguage(rs.getString("language"));
-                mealHost.setCcnumber(rs.getString("ccnum"));
-                mealHost.setCccvv(rs.getString("cccvv"));
-                mealHost.setCccountry(rs.getString("cccountry"));
-                mealHost.setCcprovince(rs.getString("ccprovince"));
-                mealHost.setCccity(rs.getString("city"));
-                mealHost.setCcadress((rs.getString("ccaddress")));
-                mealHost.setCcpostal((rs.getString("ccpostal")));
-                mealHost.setCcexp(df.parse(rs.getString("ccexp"),p));
             }
         } else {
             session.setAttribute("correctURL", false);

@@ -14,8 +14,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 
 @Controller
 @RequestMapping("/profile")
@@ -32,40 +30,25 @@ public class ProfileController {
 
     @RequestMapping(value = {"/{profileId}"}, method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView viewOtherProfile(@PathVariable("profileId") String profileId,
-                              HttpServletRequest request) throws SQLException, ClassNotFoundException {
+                                         HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
         Connection newConnection = Database.connectDatabase();
         Statement statement = newConnection.createStatement();
         HttpSession session = request.getSession();
         session.setAttribute("profileId", profileId);
         session.setAttribute("viewingOwnProfile", false);
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        ParsePosition p = new ParsePosition(0);
         User profile = new User();//(User) session.getAttribute("user");
         if(!profileId.equals("")) {
             String sql = "SELECT * FROM Users WHERE userid='" + profileId + "'";
             ResultSet rs=statement.executeQuery(sql);
             System.out.println(sql);
             if(rs.next()) {
-                profile.setUserID(rs.getInt("userid"));
-                profile.setEmail(rs.getString("email"));
-                profile.setPassword(rs.getString("password"));
+                // TODO: MAIN - fill in the rest of the profiles user info from Users table
                 profile.setName(rs.getString("username"));
                 profile.setUserDescription(rs.getString("description"));
-                profile.setCountry(rs.getString("country"));
-                profile.setCurrency(rs.getString("currency"));
-                profile.setImage(rs.getString("ppicture"));
-                profile.setDateOfBirth(df.parse(rs.getString("dob"),p));
-                profile.setGender(rs.getString("gender"));
-                profile.setLanguage(rs.getString("language"));
-                profile.setCcnumber(rs.getString("ccnum"));
-                profile.setCccvv(rs.getString("cccvv"));
-                profile.setCccountry(rs.getString("cccountry"));
-                profile.setCcprovince(rs.getString("ccprovince"));
-                profile.setCccity(rs.getString("city"));
-                profile.setCcadress((rs.getString("ccaddress")));
-                profile.setCcpostal((rs.getString("ccpostal")));
-                profile.setCcexp(df.parse(rs.getString("ccexp"),p));
+                profile.setCccity(rs.getString("cccity"));
+                profile.setCountry(rs.getString("cccountry"));
+                profile.setProfilePicture(rs.getString("ppicture"));
                 session.setAttribute("existingProfile", true);
                 session.setAttribute("userBeingViewed", profile);
             } else {

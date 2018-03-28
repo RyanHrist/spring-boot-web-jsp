@@ -24,6 +24,7 @@ public class RegisterController {
         return modelAndView;
     }
 
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ModelAndView registerUser(@RequestParam("emailsignup") String email,
                                      @RequestParam("firstname") String firstName,
@@ -59,18 +60,18 @@ public class RegisterController {
 
 //            user.setDateOfBirth(rs.getDate("dob"));
 
-            //rs.get country and gender and language isnt a method
-            ///user.setCountry(rs.getCountry("country"));
-            ///user.setCurrency(rs.getCurrency("currency"));
-            ///user.setLanguage(rs.getLanguage("userlang"));
-            ///user.setGender(rs.getGender("Gender"));
+        //rs.get country and gender and language isnt a method
+        ///user.setCountry(rs.getCountry("country"));
+        ///user.setCurrency(rs.getCurrency("currency"));
+        ///user.setLanguage(rs.getLanguage("userlang"));
+        ///user.setGender(rs.getGender("Gender"));
 
 //            user.setCountry(rs.getString("country"));
 //            user.setCurrency(rs.getString("currency"));
 //            user.setLanguage(rs.getString("userlang"));
 //            user.setGender(rs.getString("Gender"));
 
-            //credit card info
+        //credit card info
 //            user.setCcadress(rs.getString("ccadress"));
 //            user.setCccity(rs.getString("cccity"));
 //            user.setCccountry(rs.getString("cccountry"));
@@ -86,12 +87,12 @@ public class RegisterController {
 //            user.setUserDescription(rs.getString("description"));
 
 
-            User user = new User();
-            user.setEmail(email);
-            user.setName(firstName + " " + lastName);
-            user.setPassword(password);
-            user.setCountry(country);
-            user.setDateOfBirth(bday);
+        User user = new User();
+        user.setEmail(email);
+        user.setName(firstName + " " + lastName);
+        user.setPassword(password);
+        user.setCountry(country);
+        user.setDateOfBirth(bday);
 
 
         try{

@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -40,7 +38,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/", method = {RequestMethod.GET})
     public ModelAndView getHome(HttpServletRequest request) throws SQLException, ClassNotFoundException {
-        // TODO: setup all meals!
+        // TODO: setup all meals.
         ModelAndView modelAndView = new ModelAndView();
         getAllMeals(request);
 
@@ -79,21 +77,9 @@ public class HomeController {
         Meals meal = null;
         while (rs.next()) {
             meal = new Meals();
-            meal.setMealID(rs.getInt("mealid"));
-            meal.setCapacity(rs.getInt("capacity"));
-            meal.setWithHost(rs.getString("hemail"));
-            meal.setDate(rs.getString("dom"));
-            meal.setMealTitle(rs.getString("mtitle"));
-            meal.setImage(rs.getString("mpicture"));
-            meal.setPrice(rs.getDouble("pricepp"));
-            meal.setCategory(rs.getString("cetegory"));
             meal.setDescription(rs.getString("description"));
-            meal.setCancelBy(rs.getString("cancelationtime"));
-            meal.setCancelationFee(rs.getDouble("cancelationfee"));
-            meal.setCountry(rs.getString("country"));
-            meal.setCity(rs.getString("city"));
-            meal.setAddress(rs.getString("address"));
-            meal.setPostal(rs.getString("postal"));
+            meal.setImage(rs.getString("mpicture"));
+            meal.setMealID(rs.getInt("mealid"));
             // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
             foundMeals.add(meal);
         }
@@ -127,21 +113,9 @@ public class HomeController {
         Meals meal;
         while (allMealsSet.next()) {
             meal = new Meals();
-            meal.setMealID(allMealsSet.getInt("mealid"));
-            meal.setCapacity(allMealsSet.getInt("capacity"));
-            meal.setWithHost(allMealsSet.getString("hemail"));
-            meal.setDate(allMealsSet.getString("dom"));
-            meal.setMealTitle(allMealsSet.getString("mtitle"));
-            meal.setImage(allMealsSet.getString("mpicture"));
-            meal.setPrice(allMealsSet.getDouble("pricepp"));
-            meal.setCategory(allMealsSet.getString("cetegory"));
             meal.setDescription(allMealsSet.getString("description"));
-            meal.setCancelBy(allMealsSet.getString("cancelationtime"));
-            meal.setCancelationFee(allMealsSet.getDouble("cancelationfee"));
-            meal.setCountry(allMealsSet.getString("country"));
-            meal.setCity(allMealsSet.getString("city"));
-            meal.setAddress(allMealsSet.getString("address"));
-            meal.setPostal(allMealsSet.getString("postal"));
+            meal.setImage(allMealsSet.getString("mpicture"));
+            meal.setMealID(allMealsSet.getInt("mealid"));
             // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
             foundMeals.add(meal);
         }
@@ -169,8 +143,6 @@ public class HomeController {
         Connection newConnection = Database.connectDatabase();
         Statement statement = newConnection.createStatement();
         getAllMeals(request);
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        ParsePosition p = new ParsePosition(0);
 
         if (userLogin != null && userPassword != null) {
             String sql = "SELECT * FROM Users where email='" + userLogin + "' and pass='" + userPassword + "'";
@@ -180,25 +152,8 @@ public class HomeController {
                 // TODO: Set the UserController variables to everything in database like following:
                 // TODO: Also create all the static variables in the UserController (everything in DB).
                 user = new User();
-                user.setUserID(rs.getInt("userid"));
-                user.setEmail(rs.getString("email"));
-                user.setPassword(rs.getString("password"));
                 user.setName(rs.getString("username"));
-                user.setUserDescription(rs.getString("description"));
-                user.setCountry(rs.getString("country"));
-                user.setCurrency(rs.getString("currency"));
-                user.setImage(rs.getString("ppicture"));
-                user.setDateOfBirth(df.parse(rs.getString("dob"),p));
-                user.setGender(rs.getString("gender"));
-                user.setLanguage(rs.getString("language"));
-                user.setCcnumber(rs.getString("ccnum"));
-                user.setCccvv(rs.getString("cccvv"));
-                user.setCccountry(rs.getString("cccountry"));
-                user.setCcprovince(rs.getString("ccprovince"));
-                user.setCccity(rs.getString("city"));
-                user.setCcadress((rs.getString("ccaddress")));
-                user.setCcpostal((rs.getString("ccpostal")));
-                user.setCcexp(df.parse(rs.getString("ccexp"),p));
+                user.setEmail(rs.getString("email"));
             }
             if (user != null) {
                 session.setAttribute("user", user);
@@ -231,4 +186,3 @@ public class HomeController {
         return modelAndView;
     }
 }
-

@@ -47,7 +47,6 @@ public class HostMealController {
      * @throws ClassNotFoundException
      */
     @RequestMapping(value = "", method = RequestMethod.POST)
-
     public ModelAndView hostMeal(@RequestParam(value = "mealName", required = false) String mealName,
                                  @RequestParam(value = "mealDescription", required = false) String mealDescription,
                                  @RequestParam(value = "imageURL", required = false) String imageURL,
@@ -61,6 +60,7 @@ public class HostMealController {
             Statement statement = newConnection.createStatement();
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
+
 
             Meals newMeal = new Meals();
             String insert = "INSERT Meals SET mtitle='"+mealName+"', description = '"+ mealDescription + "', mpicture = '" + imageURL + "'"
@@ -79,6 +79,7 @@ public class HostMealController {
                 modelAndView.setViewName("home");
                 session.setAttribute("hostedMeal", newMeal);
                 // Attempt at starting session, TODO
+                //TODO ADD MEALS TO THE USERS HOSTED MEALS
                 Database.disconnectDatabase(newConnection);
                 return modelAndView;
             } catch(SQLException e) {

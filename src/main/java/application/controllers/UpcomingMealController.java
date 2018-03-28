@@ -42,21 +42,9 @@ public class UpcomingMealController {
                 rs = statement.executeQuery(getAttendingMeals);
                 while(rs.next()) {
                     Meals meal = new Meals();
-                    meal.setMealID(id);
-                    meal.setCapacity(rs.getInt("capacity"));
-                    meal.setWithHost(rs.getString("hemail"));
-                    meal.setDate(rs.getString("dom"));
-                    meal.setMealTitle(rs.getString("mtitle"));
                     meal.setImage(rs.getString("mpicture"));
-                    meal.setPrice(rs.getDouble("pricepp"));
-                    meal.setCategory(rs.getString("cetegory"));
                     meal.setDescription(rs.getString("description"));
-                    meal.setCancelBy(rs.getString("cancelationtime"));
-                    meal.setCancelationFee(rs.getDouble("cancelationfee"));
-                    meal.setCountry(rs.getString("country"));
-                    meal.setCity(rs.getString("city"));
-                    meal.setAddress(rs.getString("address"));
-                    meal.setPostal(rs.getString("postal"));
+                    meal.setMealID(id);
                     upcomingMeals.add(meal);
                 }
             }

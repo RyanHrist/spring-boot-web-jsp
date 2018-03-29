@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <%@ page import="application.models.Meals" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -8,23 +7,17 @@
 
 </head>
 <body>
-=======
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<!-- INCLUDE HEADER -->
-<%@ include file = "header.jsp" %>
-<!-- END INCLUDE HEADER -->
->>>>>>> Stashed changes
 
 <div class="centered">
     <h1>eat'n greet</h1>
 
     <div class= "inner">
-<<<<<<< Updated upstream
         <%
             boolean correctURL = (boolean) session.getAttribute("correctURL");
             if(correctURL) {
@@ -46,18 +39,6 @@
         <% } else {%>
             <h2> You must be logged in to book a meal</h2>
         <% } %>
-=======
-        <form action="/action_page.php">
-            Meal Title: <input type="text" name="mealtitle" value=""><br>
-            Host Name: <input type="text" name="hostname" value=""><br>
-            Location: <input type="text" name="location" value=""><br>
-            Price: <input type="text" name="price" value=""><br>
-            Date: <input type="text" name="date" value=""><br>
-            Desciption: <textarea type = "textarea" name = "desciption" rows="10" cols="32"></textarea><br>
-            Photo: <input type="file" name="pic" accept="image/*">
-            <button type="button" onclick="" class = "button" > Setup Meal </button>
-        </form>
->>>>>>> Stashed changes
     </div>
 </div>
 </body>

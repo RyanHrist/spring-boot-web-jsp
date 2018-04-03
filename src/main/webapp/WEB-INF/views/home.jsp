@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="centered">
-	<h1>eat'n greet</h1>
+	<h1>eat'n greet with mitch</h1>
 	<div class="search">
 			<script>
                 function putQueryOnSubmit(){

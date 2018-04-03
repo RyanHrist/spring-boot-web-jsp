@@ -18,12 +18,14 @@
     <%  User loggedUser = (User) session.getAttribute("user");
         if(loggedUser != null) {
             ArrayList<Meals> upcomingMeals = (ArrayList<Meals>) session.getAttribute("upcomingMeals");
+            ArrayList<Meals> previousMeals = (ArrayList<Meals>) session.getAttribute("previousMeals");
             String contextBookedMeal = (String) session.getAttribute("bookedMeal");
             pageContext.setAttribute("bookedMeal", contextBookedMeal);
             pageContext.setAttribute("upcomingMeals", upcomingMeals);
+            pageContext.setAttribute("previousMeals", previousMeals);
             pageContext.setAttribute("user", loggedUser);
     %>
-    <h1>Upcoming Meals</h1>
+    <h1>Upcoming Meal</h1>
     <h3>${bookedMeal}</h3>
     <hr>
 

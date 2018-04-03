@@ -301,10 +301,10 @@ public class AccountController {
 
         email2 = email1;
         //pass2 = pass;
-        //username2 = username;
-        //description2 = description;
-        //country2 = null;
-        //currency2 = null;
+        username2 = name1;
+        description2 = description;
+        country2 = null;
+        currency2 = null;
 
         dob2 = null; // Date
         gender2 = null;
@@ -320,86 +320,86 @@ public class AccountController {
 
         // IGNORE - Create the insert line
         String insertLine = "";
-        insertLine += "email = '" + email + "', ";
+        insertLine += "email = '" + email2 + "', ";
         insertLine += "pass = '" + pass + "', ";
-        if (username != null) {
-            insertLine += "username = '" + username + "', ";
+        if (username2 != null) {
+            insertLine += "username = '" + username2 + "', ";
         } else {
-            insertLine += "username = null, ";
+            insertLine += "username2 = null, ";
         }
-        if (description != null) {
-            insertLine += "description = '" + description + "', ";
+        if (description2 != null) {
+            insertLine += "description = '" + description2 + "', ";
         } else {
-            insertLine += "description = null, ";
+            insertLine += "description2 = null, ";
         }
-        if (country != null) {
-            insertLine += "country = '" + country + "', ";
+        if (country2 != null) {
+            insertLine += "country = '" + country2 + "', ";
         } else {
             insertLine += "country = null, ";
         }
-        if (currency != null) {
-            insertLine += "currency = '" + currency + "', ";
+        if (currency2 != null) {
+            insertLine += "currency = '" + currency2 + "', ";
         } else {
-            insertLine += "currency = null, ";
+            insertLine += "currency2 = null, ";
         }
         // For testing
 //        String fileToUpload = "words.jpg";
 //        profilePicture = new File(fileToUpload);
 
-        if (dob != null) {
-            insertLine += "dob = '" + dob + "', ";
+        if (dob2 != null) {
+            insertLine += "dob = '" + dob2 + "', ";
         } else {
-            insertLine += "dob = null, ";
+            insertLine += "dob2 = null, ";
         }
-        if (gender != null) {
-            insertLine += "gender = '" + gender + "', ";
+        if (gender2 != null) {
+            insertLine += "gender = '" + gender2 + "', ";
         } else {
-            insertLine += "gender = null, ";
+            insertLine += "gender2 = null, ";
         }
-        if (userlang != null) {
-            insertLine += "userlang = '" + userlang + "', ";
+        if (userlang2 != null) {
+            insertLine += "userlang = '" + userlang2 + "', ";
         } else {
-            insertLine += "userlang = null, ";
+            insertLine += "userlang2 = null, ";
         }
-        if (ccnum != null) {
-            insertLine += "ccnum = '" + ccnum + "', ";
+        if (ccnum2 != null) {
+            insertLine += "ccnum = '" + ccnum2 + "', ";
         } else {
-            insertLine += "ccnum = null, ";
+            insertLine += "ccnum2 = null, ";
         }
-        if (cccvv != null) {
-            insertLine += "cccvv = '" + cccvv + "', ";
+        if (cccvv2 != null) {
+            insertLine += "cccvv = '" + cccvv2 + "', ";
         } else {
-            insertLine += "cccvv = null, ";
+            insertLine += "cccvv2 = null, ";
         }
-        if (cccountry != null) {
-            insertLine += "cccountry = '" + cccountry + "', ";
+        if (cccountry2 != null) {
+            insertLine += "cccountry = '" + cccountry2 + "', ";
         } else {
-            insertLine += "cccountry = null, ";
+            insertLine += "cccountry2 = null, ";
         }
-        if (ccprovince != null) {
-            insertLine += "ccprovince = '" + ccprovince + "', ";
+        if (ccprovince2 != null) {
+            insertLine += "ccprovince = '" + ccprovince2 + "', ";
         } else {
-            insertLine += "ccprovince = null, ";
+            insertLine += "ccprovince2 = null, ";
         }
-        if (cccity != null) {
-            insertLine += "cccity = '" + cccity + "', ";
+        if (cccity2 != null) {
+            insertLine += "cccity = '" + cccity2 + "', ";
         } else {
-            insertLine += "cccity = null, ";
+            insertLine += "cccity2 = null, ";
         }
-        if (ccaddress != null) {
-            insertLine += "ccaddress = '" + ccaddress + "', ";
+        if (ccaddress2 != null) {
+            insertLine += "ccaddress = '" + ccaddress2 + "', ";
         } else {
-            insertLine += "ccaddress = null, ";
+            insertLine += "ccaddress2 = null, ";
         }
-        if (ccpostal != null) {
-            insertLine += "ccpostal = '" + ccpostal + "', ";
+        if (ccpostal2 != null) {
+            insertLine += "ccpostal = '" + ccpostal2 + "', ";
         } else {
-            insertLine += "ccpostal = null, ";
+            insertLine += "ccpostal2 = null, ";
         }
-        if (ccexp != null) {
-            insertLine += "ccexp = '" + ccexp + "'";
+        if (ccexp2 != null) {
+            insertLine += "ccexp = '" + ccexp2 + "'";
         } else {
-            insertLine += "ccexp = null";
+            insertLine += "ccexp2 = null";
         }
 
         // Run the insert and explain outcome
@@ -414,24 +414,24 @@ public class AccountController {
             try {
                 statement.executeUpdate("insert into Users set " + insertLine + ";");
                 System.out.println("Following User Added");
-                System.out.println("Email: " + email);
+                System.out.println("Email: " + email2);
                 System.out.println("Password: " + pass);
-                System.out.println("Username: " + username);
-                System.out.println("User Description: " + description);
-                System.out.println("Country: " + country);
-                System.out.println("Currency: " + currency);
+                System.out.println("Username: " + username2);
+                System.out.println("User Description: " + description2);
+                System.out.println("Country: " + country2);
+                System.out.println("Currency: " + currency2);
                 System.out.println("Profile Picture Location: " + ppicture);
-                System.out.println("Date of Birth: " + dob);
-                System.out.println("Gender: " + gender);
-                System.out.println("User Language: " + userlang);
-                System.out.println("Credit Card Number: " + ccnum);
-                System.out.println("Credit Card CVV: " + cccvv);
-                System.out.println("Credit Card Country: " + cccountry);
-                System.out.println("Credit Card Province: " + ccprovince);
-                System.out.println("Credit Card City: " + cccity);
-                System.out.println("Credit Card Address: " + ccaddress);
-                System.out.println("Credit Card Postal: " + ccpostal);
-                System.out.println("Credit Card Expirary Date: " + ccexp);
+                System.out.println("Date of Birth: " + dob2);
+                System.out.println("Gender: " + gender2);
+                System.out.println("User Language: " + userlang2);
+                System.out.println("Credit Card Number: " + ccnum2);
+                System.out.println("Credit Card CVV: " + cccvv2);
+                System.out.println("Credit Card Country: " + cccountry2);
+                System.out.println("Credit Card Province: " + ccprovince2);
+                System.out.println("Credit Card City: " + cccity2);
+                System.out.println("Credit Card Address: " + ccaddress2);
+                System.out.println("Credit Card Postal: " + ccpostal2);
+                System.out.println("Credit Card Expirary Date: " + ccexp2);
             } catch (com.mysql.jdbc.MysqlDataTruncation e) {
                 System.out.println("Error in length/format of input");
             } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {

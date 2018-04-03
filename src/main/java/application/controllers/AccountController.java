@@ -283,6 +283,163 @@ public class AccountController {
         } else {
             System.out.println("No Results");
         }
+
+        // Insert criteria
+        /*
+        The default value for each variable is set to null.  In order to
+        insert a user with the specified values simply change the value from
+        null to the desired value.  Note that email and password are not
+        allowed to be null for an insert.
+
+
+        Date string format: year-month-day
+         */
+
+        String  email2, pass2, username2, description2, country2, currency2, ppicture2;
+        String dob2, gender2, userlang2,  ccnum2, cccvv2, cccountry2, ccprovince2;
+        String cccity2, ccaddress2, ccpostal2, ccexp2;
+
+        email2 = email1;
+        //pass2 = pass;
+        //username2 = username;
+        //description2 = description;
+        //country2 = null;
+        //currency2 = null;
+
+        dob2 = null; // Date
+        gender2 = null;
+        userlang2 = null;
+        ccnum2 = ccnum1;
+        cccvv2 = ccdigits1;
+        cccountry2 = null;
+        ccprovince2 = null;
+        cccity2 = null;
+        ccaddress2 = null;
+        ccpostal2 = null;
+        ccexp2 = null; // Date
+
+        // IGNORE - Create the insert line
+        String insertLine = "";
+        insertLine += "email = '" + email + "', ";
+        insertLine += "pass = '" + pass + "', ";
+        if (username != null) {
+            insertLine += "username = '" + username + "', ";
+        } else {
+            insertLine += "username = null, ";
+        }
+        if (description != null) {
+            insertLine += "description = '" + description + "', ";
+        } else {
+            insertLine += "description = null, ";
+        }
+        if (country != null) {
+            insertLine += "country = '" + country + "', ";
+        } else {
+            insertLine += "country = null, ";
+        }
+        if (currency != null) {
+            insertLine += "currency = '" + currency + "', ";
+        } else {
+            insertLine += "currency = null, ";
+        }
+        // For testing
+//        String fileToUpload = "words.jpg";
+//        profilePicture = new File(fileToUpload);
+
+        if (dob != null) {
+            insertLine += "dob = '" + dob + "', ";
+        } else {
+            insertLine += "dob = null, ";
+        }
+        if (gender != null) {
+            insertLine += "gender = '" + gender + "', ";
+        } else {
+            insertLine += "gender = null, ";
+        }
+        if (userlang != null) {
+            insertLine += "userlang = '" + userlang + "', ";
+        } else {
+            insertLine += "userlang = null, ";
+        }
+        if (ccnum != null) {
+            insertLine += "ccnum = '" + ccnum + "', ";
+        } else {
+            insertLine += "ccnum = null, ";
+        }
+        if (cccvv != null) {
+            insertLine += "cccvv = '" + cccvv + "', ";
+        } else {
+            insertLine += "cccvv = null, ";
+        }
+        if (cccountry != null) {
+            insertLine += "cccountry = '" + cccountry + "', ";
+        } else {
+            insertLine += "cccountry = null, ";
+        }
+        if (ccprovince != null) {
+            insertLine += "ccprovince = '" + ccprovince + "', ";
+        } else {
+            insertLine += "ccprovince = null, ";
+        }
+        if (cccity != null) {
+            insertLine += "cccity = '" + cccity + "', ";
+        } else {
+            insertLine += "cccity = null, ";
+        }
+        if (ccaddress != null) {
+            insertLine += "ccaddress = '" + ccaddress + "', ";
+        } else {
+            insertLine += "ccaddress = null, ";
+        }
+        if (ccpostal != null) {
+            insertLine += "ccpostal = '" + ccpostal + "', ";
+        } else {
+            insertLine += "ccpostal = null, ";
+        }
+        if (ccexp != null) {
+            insertLine += "ccexp = '" + ccexp + "'";
+        } else {
+            insertLine += "ccexp = null";
+        }
+
+        // Run the insert and explain outcome
+        /*
+        Obviously for the website printing is not required.  Therefore, after
+        a success you can just display a success message to user and after a
+        failure you can display an error message to the user.  Although,
+        these constraints are best tested before sending an insert to the
+        database.
+         */
+        if (email != null && pass != null) {
+            try {
+                statement.executeUpdate("insert into Users set " + insertLine + ";");
+                System.out.println("Following User Added");
+                System.out.println("Email: " + email);
+                System.out.println("Password: " + pass);
+                System.out.println("Username: " + username);
+                System.out.println("User Description: " + description);
+                System.out.println("Country: " + country);
+                System.out.println("Currency: " + currency);
+                System.out.println("Profile Picture Location: " + ppicture);
+                System.out.println("Date of Birth: " + dob);
+                System.out.println("Gender: " + gender);
+                System.out.println("User Language: " + userlang);
+                System.out.println("Credit Card Number: " + ccnum);
+                System.out.println("Credit Card CVV: " + cccvv);
+                System.out.println("Credit Card Country: " + cccountry);
+                System.out.println("Credit Card Province: " + ccprovince);
+                System.out.println("Credit Card City: " + cccity);
+                System.out.println("Credit Card Address: " + ccaddress);
+                System.out.println("Credit Card Postal: " + ccpostal);
+                System.out.println("Credit Card Expirary Date: " + ccexp);
+            } catch (com.mysql.jdbc.MysqlDataTruncation e) {
+                System.out.println("Error in length/format of input");
+            } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
+                System.out.println("This user already exists");
+            }
+        } else {
+            System.out.println("Email and password not entered");
+        }
         Database.disconnectDatabase(newConnection);
         return modelAndView;
     }

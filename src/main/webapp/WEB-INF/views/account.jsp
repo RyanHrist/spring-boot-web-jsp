@@ -63,7 +63,7 @@
         document.getElementById("ccdigits").readOnly = true;
     }
 
-    function uptadeUser(){
+    function updateUser(){
 
     }
 </script>

@@ -46,7 +46,8 @@
 <script>
     function myFunction() {
         document.getElementById("name").readOnly = false;
-        document.getElementById("email").readOnly = false;
+        //should not be able to edit email
+        document.getElementById("email").readOnly = true;
         document.getElementById("location").readOnly = false;
         document.getElementById("ccnum").readOnly = false;
         document.getElementById("cctype").readOnly = false;

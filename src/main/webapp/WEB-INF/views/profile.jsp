@@ -36,7 +36,7 @@
             Host Rating: <input type="text" name="language" value="4.5" id="hostrating" readonly="" readonly=""><br>
             Guest Rating: <input type="text" name="language" value="4.2" id="guestrating" readonly="" readonly=""><br>
             <button type="button" onclick="myFunction()" class="button"> Edit </button>
-            <button type="button" onclick="myFunction2()" class="button512"> Save </button>
+            <button type="button" onclick="myFunction2()" class="button"> Save </button>
         </form>
     </div>
     <% // If profile ID exists and its not own, or profile exists and a user is logged in

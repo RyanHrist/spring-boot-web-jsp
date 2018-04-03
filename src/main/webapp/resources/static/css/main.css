@@ -1,18 +1,26 @@
 
 /* EatnGreet Colour Scheme */
 body {
-	--c0: white;
-	--c1: #c8bebe;
-	--c2: #2e2925;
+	--c0: #28180c; /* text */
+	--c1: #c8bebe; /* */
+    --c2: #28180c; /* nav bar */
+    --c3: #f0f0f0; /* background */
+}
+
+/* forcing scrollbar at all times for consistency*/
+html {
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
 }
 
 @font-face {
 	font-family: opi;
-	src: url(fonts/opi.ttf);
+	src: url(Opificio_rounded.ttf);
 }
 
 h1{
 	font-family: opi;
+	font-size: 72px;
 	color: var(--c0);
 }
 
@@ -21,13 +29,14 @@ h2{
 }
 
 body {
-	background-color: var(--c1);
+	background-color: var(--c3);
+    /*background-image: url("../images/Tile_BG_02.jpg");*/
 	margin:0;
 }
 
 .centered {
 	margin: auto;
-	width: 50%;
+	width: 75%;
 	padding: 10px;
 	padding-top: 50px;
 	text-align: center;
@@ -35,27 +44,44 @@ body {
 
 .centered img{
 	margin: 10px;
+
+    border: 2px solid var(--c0);
+    border-radius: 5px;
+
 }
+/* Fixes text on buttons to be visible */
+.button {
+    font-family: opi;
+    color: black;
+}
+
+.input{
+    font-family: opi;
+    color: black;
+}
+
 
 /* Search field on home screen */
 .search input[type=text] {
-	padding: 6px;
-	margin-top: 8px;
+    padding: 10px;
+    padding-right: 0px;
 	font-size: 17px;
 	border: none;
+    border: 2px solid var(--c0);
+    border-radius: 5px;
 }
 
 /* Search button for search field on home screen */
 .search button{
-	padding: 6px 10px;
-	margin-top: 8px;
-	margin-left: -4px;
-	margin-right: 16px;
-	padding-bottom: 9px;
+    margin: 0px;
+    margin-left: -6px;
+    padding: 10px;
 	background: #ddd;
 	font-size: 17px;
 	border: none;
 	cursor: pointer;
+    border: 2px solid var(--c0);
+    border-radius: 5px;
 }
 
 /* Navbar container */
@@ -76,6 +102,8 @@ body {
 }
 .home {
 	float:left !important;
+    border: 0px solid var(--c0);
+    border-radius: 0px;
 }
 
 /* The dropdown container */
@@ -116,7 +144,7 @@ body {
 
 .button512 {
 	color: #000;
-
+    font-family: opi;
 }
 
 /* Links inside the dropdown */
@@ -152,4 +180,12 @@ body {
 .inner input {
 	width: 100%;
 	clear: both;
+}
+
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    color: var(--c0);
 }

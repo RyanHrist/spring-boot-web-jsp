@@ -24,7 +24,8 @@
             pageContext.setAttribute("user", loggedUser);
     %>
     <h1>Upcoming Meals</h1>
-    <h1>${bookedMeal}</h1>
+    <h3>${bookedMeal}</h3>
+    <hr>
 
     <nav>
             <%
@@ -44,6 +45,7 @@
 
     </nav>
     <h1>Previous Meals</h1>
+    <hr>
     <%
         if (false) {
     %>

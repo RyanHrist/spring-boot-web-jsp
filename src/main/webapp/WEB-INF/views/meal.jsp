@@ -24,30 +24,32 @@
         pageContext.setAttribute("mealHost", mealHost);
         %>
         <h1>${selectedMeal.mealTitle}</h1>
+        <hr>
         <h2>Host: ${mealHost.name}</h2>
+        <h2>$${selectedMeal.price}</h2>
         <% if (selectedMeal.getImage().equals("") || selectedMeal.getImage() == null) {%>
         <img src="/images/i1.jpg" alt="Meal 1" style="width:256px;height:200px;">
         <% } else { %>
         <img src="${selectedMeal.image}" alt="Meal 1" style="width:256px;height:200px;">
         <%	} %>
 
-        <h2>Location: ${selectedMeal.address}</h2>
-        <h2>Price:${selectedMeal.price}</h2>
-        <h2>Date: ${selectedMeal.date} ${selectedMeal.time}</h2>
+        <h3>${selectedMeal.address}</h3>
+        <h3>${selectedMeal.date}</h3>
+        <h3>${selectedMeal.time}</h3>
 
-        <h2>Host Rating</h2>
+        <%--<h2>Host Rating</h2>--%>
         <%--<img src="images/i1.png" alt="Meal 1" style="width:200px;height:50px;">--%>
         <%--<h2>Guest Rating</h2>--%>
         <%--<img src="images/i1.png" alt="Meal 1" style="width:200px;height:50px;">--%>
 
-        <h3>Description</h3>
+        <h3>Description: </h3>
         <p>${selectedMeal.description}</p>
 
         <% User loggedUser = (User) session.getAttribute("user");
             pageContext.setAttribute("user", loggedUser);
             if (loggedUser != null) { %>
         <form  id="form" action="/meal/bookmeal/${selectedMeal.mealID}" autocomplete="on" method="POST">
-            <button type="submit"><i class="fa fa-search"></i>Book Meal</button>
+            <button type="submit" class="button"><i class="fa fa-search"></i> Book Meal</button>
         </form>
         <% } else { %>
         <h2>Login to book a meal!</h2>

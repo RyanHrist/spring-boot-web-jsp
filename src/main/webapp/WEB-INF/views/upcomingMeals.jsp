@@ -1,5 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="application.models.Meals" %><%--
+<%@ page import="application.models.Meals" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %><%--
   Created by IntelliJ IDEA.
   User: Nancy
   Date: 2/22/2018
@@ -18,20 +20,21 @@
     <%  User loggedUser = (User) session.getAttribute("user");
         if(loggedUser != null) {
             ArrayList<Meals> upcomingMeals = (ArrayList<Meals>) session.getAttribute("upcomingMeals");
-            ArrayList<Meals> previousMeals = (ArrayList<Meals>) session.getAttribute("previousMeals");
+            ArrayList<Meals> previousMeals = (ArrayList<Meals>) session.getAttribute("upcomingMeals");
             String contextBookedMeal = (String) session.getAttribute("bookedMeal");
             pageContext.setAttribute("bookedMeal", contextBookedMeal);
             pageContext.setAttribute("upcomingMeals", upcomingMeals);
-            pageContext.setAttribute("previousMeals", previousMeals);
+            pageContext.setAttribute("previousMeals", upcomingMeals);
             pageContext.setAttribute("user", loggedUser);
     %>
-    <h1>Upcoming Meal</h1>
+    <h1>Upcoming Meals</h1>
     <h3>${bookedMeal}</h3>
     <hr>
 
     <nav>
             <%
                 if (upcomingMeals.size() != 0) {
+
                     for (Meals meal:upcomingMeals) {
                         pageContext.setAttribute("meal", meal);
             %>
@@ -43,38 +46,49 @@
             <h3>You have no upcoming meals</h3>
             <%}%>
 
+    </nav>
 
+    <h1>Previous Meals</h1>
+    <h3>${bookedMeal}</h3>
+    <hr>
+
+    <nav>
+        <%
+            if (previousMeals.size() != 0) {
+
+                for (Meals meal:previousMeals) {
+                    pageContext.setAttribute("meal", meal);
+
+                    String date;
+                    date = meal.getDate();
+                    date=date.replaceAll("\\D","");
+                    long DOM = Long.parseLong(date);
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+                    LocalDateTime now = LocalDateTime.now();
+                    long CD =Long.parseLong(dtf.format(now));;
+                    if(DOM>CD ) {
+                        previousMeals.remove(meal);
+                                         }
+        %>
+        <form  action="/meal" autocomplete="on" method="POST">
+            <a href="/meal/${meal.mealID}"><img src ="${meal.image}" style="width:200px;height:100px;"> ${meal.description} </a>
+        </form>
+        <%}
+        } else {%>
+        <h3>You have no upcoming meals</h3>
+        <%}%>
 
     </nav>
-    <h1>Previous Meals</h1>
-    <hr>
-    <%
-        if (false) {
-    %>
-    <form  action="/meal" autocomplete="on" method="POST">
-        <a href="/meal/${meal.mealID}"><img src ="${meal.image}" style="width:200px;height:100px;"> ${meal.description} </a>
-    </form>
-    <%} else {%>
-    <h3>You have no previous meals</h3>
-    <% } %>
-    <%--<%--%>
-        <%--if (upcomingMeals.size() != 0) {--%>
-            <%--for (Meals previousMeal:upcomingMeals) {--%>
-                <%--pageContext.setAttribute("meal", previousMeal);--%>
-                <%--//TODO:JORDAN--%>
-                <%--if(previousMeal.getDate() > todaysDateOrSomething) {--%>
-    <%--%>--%>
-    <%--<form  action="/meal" autocomplete="on" method="POST">--%>
-        <%--<a href="/meal/${previousMeal.mealID}"><img src ="${previousMeal.image}" style="width:200px;height:100px;"> ${previousMeal.description} </a>--%>
-    <%--</form>--%>
-    <%--<%      }--%>
-        <%--}--%>
-    <%--} else {%>--%>
-    <%--<h3>You have no upcoming meals</h3>--%>
-    <%--<%}%>--%>
 
 
-    <% } else { %>
+
+
+
+
+
+
+
+            <% } else { %>
     <h1>You must login to view Upcoming Meals.</h1>
     <% } %>
 

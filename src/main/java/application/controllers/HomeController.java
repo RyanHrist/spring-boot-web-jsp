@@ -80,6 +80,8 @@ public class HomeController {
             meal.setDescription(rs.getString("description"));
             meal.setImage(rs.getString("mpicture"));
             meal.setMealID(rs.getInt("mealid"));
+            meal.setMealTitle(rs.getString("mtitle"));
+
             // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
             foundMeals.add(meal);
         }
@@ -116,6 +118,7 @@ public class HomeController {
             meal.setDescription(allMealsSet.getString("description"));
             meal.setImage(allMealsSet.getString("mpicture"));
             meal.setMealID(allMealsSet.getInt("mealid"));
+            meal.setMealTitle(allMealsSet.getString("mtitle"));
             // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
             foundMeals.add(meal);
         }

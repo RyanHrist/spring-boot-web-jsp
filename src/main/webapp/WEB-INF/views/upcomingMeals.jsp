@@ -20,11 +20,9 @@
     <%  User loggedUser = (User) session.getAttribute("user");
         if(loggedUser != null) {
             ArrayList<Meals> upcomingMeals = (ArrayList<Meals>) session.getAttribute("upcomingMeals");
-            ArrayList<Meals> previousMeals = (ArrayList<Meals>) session.getAttribute("upcomingMeals");
             String contextBookedMeal = (String) session.getAttribute("bookedMeal");
             pageContext.setAttribute("bookedMeal", contextBookedMeal);
             pageContext.setAttribute("upcomingMeals", upcomingMeals);
-            pageContext.setAttribute("previousMeals", upcomingMeals);
             pageContext.setAttribute("user", loggedUser);
     %>
     <h1>Upcoming Meals</h1>
@@ -33,10 +31,17 @@
 
     <nav>
             <%
+                ArrayList<Meals> previousMeals = new ArrayList<Meals>();
                 if (upcomingMeals.size() != 0) {
 
                     for (Meals meal:upcomingMeals) {
                         pageContext.setAttribute("meal", meal);
+
+
+                        // if (date)
+                        // add meals
+
+                        System.out.println(meal.getDate());
             %>
             <form  action="/meal" autocomplete="on" method="POST">
             <a href="/meal/${meal.mealID}"><img src ="${meal.image}" style="width:200px;height:100px;"> ${meal.description} </a>
@@ -57,7 +62,7 @@
             if (previousMeals.size() != 0) {
 
                 for (Meals meal:previousMeals) {
-                    pageContext.setAttribute("meal", meal);
+//                    pageContext.setAttribute("meal", meal);
 
                     String date;
                     date = meal.getDate();

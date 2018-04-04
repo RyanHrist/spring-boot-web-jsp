@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.Data;
 
 /**
  * Home Controller, in charge of all functionality on the home page & also login and logout
@@ -38,10 +39,12 @@ public class HomeController {
      */
     @RequestMapping(value = "/", method = {RequestMethod.GET})
     public ModelAndView getHome(HttpServletRequest request) throws SQLException, ClassNotFoundException {
-        // TODO: setup all meals.
         ModelAndView modelAndView = new ModelAndView();
-        getAllMeals(request);
 
+
+
+
+        getAllMeals(request);
         modelAndView.setViewName("/home");
         return modelAndView;
     }
@@ -107,21 +110,26 @@ public class HomeController {
     public void getAllMeals(HttpServletRequest request) throws SQLException, ClassNotFoundException {
         HttpSession session = request.getSession();
         Connection newConnection = Database.connectDatabase();
-        Statement statement = newConnection.createStatement();
 
-        String getAllMeals = "SELECT * FROM Meals";
-        ResultSet allMealsSet = statement.executeQuery(getAllMeals);
-        ArrayList<Meals> foundMeals = new ArrayList<>();
-        Meals meal;
-        while (allMealsSet.next()) {
-            meal = new Meals();
-            meal.setDescription(allMealsSet.getString("description"));
-            meal.setImage(allMealsSet.getString("mpicture"));
-            meal.setMealID(allMealsSet.getInt("mealid"));
-            meal.setMealTitle(allMealsSet.getString("mtitle"));
-            // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
-            foundMeals.add(meal);
-        }
+        ResultSet allMealsSet = Database.selectAllMeals(newConnection);
+        allMealsSet.first();
+        ArrayList<Meals> foundMeals = Database.createMealsList(allMealsSet);
+
+//        ArrayList<Meals> foundMeals = new ArrayList<>();
+//        Meals meal;
+//        while (allMealsSet.next()) {
+//            meal = new Meals();
+//            meal.setDescription(allMealsSet.getString("description"));
+//            meal.setImage(allMealsSet.getString("mpicture"));
+//            meal.setMealID(allMealsSet.getInt("mealid"));
+//            meal.setMealTitle(allMealsSet.getString("mtitle"));
+//
+//
+//
+//
+//            // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
+//            foundMeals.add(meal);
+//        }
         session.setAttribute("foundMeals", foundMeals);
         Database.disconnectDatabase(newConnection);
     }

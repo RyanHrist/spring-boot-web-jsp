@@ -1,4 +1,5 @@
 package application;
+import application.models.Meals;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -13,6 +14,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Database {
 
@@ -1270,6 +1272,40 @@ public class Database {
         }
         disconnectDatabase(newConnection);
         return updateSuccess;
+    }
+
+
+
+
+    public static ArrayList<Meals> createMealsList (ResultSet rs) throws SQLException {
+        ArrayList<Meals> meals = new ArrayList<>();
+        Meals meal;
+        do {
+            meal = createMeal(rs);
+            meals.add(meal);
+        } while (rs.next());
+        return meals;
+    }
+
+    public static Meals createMeal(ResultSet rs) throws SQLException {
+        Meals newMeal;
+        newMeal = new Meals();
+        newMeal.setMealID(rs.getInt("mealid"));
+        newMeal.setWithHost(rs.getString("hemail"));
+        newMeal.setDate(rs.getString("dom"));
+        newMeal.setMealTitle(rs.getString("mtitle"));
+        newMeal.setImage(rs.getString("mpicture"));
+        newMeal.setCapacity(rs.getInt("capacity"));
+        newMeal.setPrice(rs.getDouble("pricepp"));
+        newMeal.setCategory(rs.getString("category"));
+        newMeal.setDescription(rs.getString("description"));
+        newMeal.setCancelBy(rs.getString("cancelationtime"));
+        newMeal.setCancelationFee(rs.getDouble("cancelationfee"));
+        newMeal.setCountry(rs.getString("country"));
+        newMeal.setCity(rs.getString("city"));
+        newMeal.setAddress(rs.getString("saddress"));
+        newMeal.setPostal(rs.getString("postal"));
+        return newMeal;
     }
 
 }

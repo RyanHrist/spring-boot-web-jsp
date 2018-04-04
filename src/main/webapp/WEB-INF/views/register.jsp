@@ -26,11 +26,11 @@
         <div class="eag-row">
             <h4>Accounts</h4>
             <div class="eag-input-group eag-input-group-icon">
-                <input type="text" placeholder="Full Name"/>
+                <input type="text" name="firstname" placeholder="Full Name"/>
                 <div class="eag-input-icon"><i class="fa fa-user"></i></div>
             </div>
             <div class="eag-input-group eag-input-group-icon">
-                <input type="email" placeholder="Email Adress"/>
+                <input type="email" name="emailsignup" placeholder="Email Address"/>
                 <div class="eag-input-icon"><i class="fa fa-envelope"></i></div>
             </div>
             <div class="eag-input-group eag-input-group-icon">
@@ -66,10 +66,10 @@
         <div class="eag-row">
             <h4>Payment Details</h4>
             <div class="eag-input-group">
-                <input type="radio" name="payment-method" value="card" id="payment-method-card" checked="true"/>
-                <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
-                <input type="radio" name="payment-method" value="paypal" id="payment-method-paypal"/>
-                <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>Paypal</span></label>
+                <input type="radio" name="payment-method" value="visa" id="payment-method-card" checked="true"/>
+                <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Visa</span></label>
+                <input type="radio" name="payment-method" value="mastercard" id="payment-method-paypal"/>
+                <label for="payment-method-paypal"> <span><i class="fa fa-cc-mastercard"></i>Mastercard</span></label>
             </div>
             <div class="eag-input-group eag-input-group-icon">
                 <input type="text" placeholder="Card Number"/>

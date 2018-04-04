@@ -35,6 +35,50 @@ html {
 h2{
     color: var(--c1);
 }
+.contain{
+
+    float:left;
+    position: relative;
+    text-align: center;
+    color: white;
+
+}
+
+.fadeimg{
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contain:hover .fadeimg {
+    opacity: 0.6;
+}
+
+.contain:hover .middle {
+    opacity: 0.8;
+}
+
+.text {
+    background-color: var(--c1);
+    color: white;
+    font-size: 16px;
+    padding: 12px 32px;
+}
+
 
 .centered {
     margin: auto;
@@ -47,9 +91,17 @@ h2{
 .centered img{
     margin: 10px;
 
-    border: 2px solid var(--c5);
+    border: 1px solid var(--c5);
     border-radius: 5px;
 
+}
+
+.fadeimg:hover {
+    transition: 0.35s ease;
+    opacity: 0.6;
+
+    border: 1px solid var(--c5);
+    border-radius: 5px;
 }
 /* Fixes text on buttons to be visible */
 .button {
@@ -68,9 +120,10 @@ h2{
     padding: 10px;
     padding-right: 0px;
     font-size: 17px;
-    border: none;
-    border: 2px solid var(--c5);
+    border: 1px solid var(--c5);
     border-radius: 5px;
+    width: 30%;
+    height: 50px;
 }
 
 /* Search button for search field on home screen */
@@ -78,12 +131,14 @@ h2{
     margin: 0px;
     margin-left: -6px;
     padding: 10px;
-    background: #ddd;
+    background: var(--c3);
     font-size: 17px;
     border: none;
     cursor: pointer;
-    border: 2px solid var(--c5);
+    border: 1px solid var(--c5);
     border-radius: 5px;
+    width: 50px;
+    height: 50px;
 }
 
 /* Navbar container */
@@ -91,6 +146,7 @@ h2{
     overflow: hidden;
     background-color: var(--c5);
     font-family: Calibri;
+    box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
 }
 
 /* Links inside the navbar */
@@ -101,6 +157,7 @@ h2{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+
 }
 .home {
     float:left !important;
@@ -145,7 +202,7 @@ h2{
 
 
 .button512 {
-    color: #000;
+    color: green;
     font-family: opi;
 }
 
@@ -161,7 +218,7 @@ h2{
 
 /* Add a grey background color to dropdown links on hover */
 .dropdown-contentEAT a:hover {
-    background-color: #ddd !important;
+    background-color: var(--c1) !important;
 }
 
 /* Show the dropdown menu on hover */
@@ -184,7 +241,6 @@ h2{
     clear: both;
 }
 
-
 hr {
     border: 0;
     height: 1px;
@@ -198,39 +254,48 @@ hr {
 /* REGISTRATION STUFF */
 
 
-h4 {
-    color: #7ed321;
-}
+
 .centered h1{
     font-family: opi;
     font-size: 72px;
     color: var(--c1);
 }
+
+h4{
+    font-family: opi;
+    color: var(--c1) !important;
+}
 input, input[type="radio"] + label, input[type="checkbox"] + label:before, select option, select {
     width: 100%;
     padding: 1em;
     line-height: 1.4;
-    background-color: #f9f9f9;
-    border: 1px solid #e5e5e5;
-    border-radius: 3px;
+    background-color: var(--c2);
     -webkit-transition: 0.35s ease-in-out;
     -moz-transition: 0.35s ease-in-out;
     -o-transition: 0.35s ease-in-out;
     transition: 0.35s ease-in-out;
     transition: all 0.35s ease-in-out;
+    border: 1px solid var(--c5);
+    border-radius: 5px;
 }
 input:focus {
     outline: 0;
-    border-color: #64ac15;
+    border-color: var(--c1);
 }
-input:focus + .input-icon i {
-    color: #7ed321;
+.eag-input-icon i {
+    color: var(--c5);
+    margin-top: 38%;
 }
-input:focus + .input-icon:after {
-    border-right-color: #7ed321;
+input:focus + .eag-input-icon i {
+    color: var(--c1);
+    margin-top: 30%;
+}
+input:focus + .eag-input-icon:after {
+    border-right-color: var(--c1);
 }
 input[type="radio"] {
     display: none;
+
 }
 input[type="radio"] + label,
 select {
@@ -255,9 +320,9 @@ input[type="radio"]:checked + label,
 input:checked + label:before,
 select:focus,
 select:active {
-    background-color: #7ed321;
-    color: #fff;
-    border-color: #64ac15;
+    background-color: var(--c1);
+    color: var(--t1);
+    border-color: var(--c5);
 }
 input[type="checkbox"] {
     display: none;
@@ -282,10 +347,11 @@ input[type="checkbox"] + label:after {
     top: 0.45em;
     left: 0.2em;
     font-size: 0.8em;
-    color: #fff;
+    color: var(--c5);
     opacity: 0;
     font-family: FontAwesome;
     content: "\f00c";
+
 }
 input:checked + label:after {
     opacity: 1;
@@ -307,8 +373,8 @@ select:active {
     outline: 0;
 }
 select option {
-    background-color: #7ed321;
-    color: #fff;
+    background-color: var(--c1);
+    color: var(--t1);
 }
 .eag-input-group {
     margin-bottom: 1em;
@@ -344,7 +410,7 @@ select option {
     bottom: 0.6em;
     left: 3.4em;
     display: block;
-    border-right: 1px solid #e5e5e5;
+    border-right: 1px solid var(--c5);
     content: "";
     -webkit-transition: 0.35s ease-in-out;
     -moz-transition: 0.35s ease-in-out;
@@ -368,12 +434,18 @@ select option {
     max-width: 38em;
     padding: 1em 3em 2em 3em;
     margin: 0em auto;
-    background-color: #fff;
+    background-color: var(--c3);
     border-radius: 4.2px;
     box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+    padding-bottom: 0px;
+    margin-bottom: 50px;
 }
 .eag-row {
     zoom: 1;
+}
+.eag-row h4{
+    background: var(--c3);
+    color: var(--c1);
 }
 .eag-row:before,
 .eag-row:after {

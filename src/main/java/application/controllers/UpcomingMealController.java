@@ -43,6 +43,7 @@ public class UpcomingMealController {
                     Meals meal = new Meals();
                     meal.setImage(rs.getString("mpicture"));
                     meal.setDescription(rs.getString("description"));
+                    meal.setDate(rs.getString("dom"));
                     meal.setMealID(id);
                     upcomingMeals.add(meal);
                 }

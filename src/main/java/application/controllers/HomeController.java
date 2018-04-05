@@ -49,7 +49,6 @@ public class HomeController {
      * Search method on the home page which is used to search the entered query to match anything similar to
      * the description, the city, country, or category of a meal
      * It then sets "foundMeals" array list into all meals found through the query
-     * TODO: make the search more indepth
      * @param searchQuery
      * @param request
      * @return
@@ -62,35 +61,20 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         HttpSession session = request.getSession();
         Connection newConnection = Database.connectDatabase();
-        Statement statement = newConnection.createStatement();
-
-        String sql;
-        if(searchQuery == null)
-            sql = "SELECT * FROM Meals";
-        else
-            sql = "SELECT * FROM Meals WHERE description LIKE'%" + searchQuery + "%' OR city LIKE '%" + searchQuery + "%'" +
-                    "OR country LIKE '%" + searchQuery + "%' OR category LIKE '%" + searchQuery + "%'";
-
-        ResultSet rs = statement.executeQuery(sql);
+        ResultSet rs = Database.selectSimilarMeal(newConnection, searchQuery);
         ArrayList<Meals> foundMeals = new ArrayList<>();
-        Meals meal = null;
-        while (rs.next()) {
-            meal = new Meals();
-            meal.setDescription(rs.getString("description"));
-            meal.setImage(rs.getString("mpicture"));
-            meal.setMealID(rs.getInt("mealid"));
-            meal.setMealTitle(rs.getString("mtitle"));
-
-            // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
-            foundMeals.add(meal);
-        }
-        session.setAttribute("foundMeals", foundMeals);
-
-        if (meal == null) {
+        if (rs.first()){
+            ArrayList<Meals> selectedMeals = Database.createMealsList(rs);
+            for (Meals m : selectedMeals) {
+                if (!m.mealHappened()) {
+                    foundMeals.add(m);
+                }
+            }
+        } else {
             modelAndView.addObject("nothingFound", "No meals have been found matching '"
                     + searchQuery + "'.");
         }
-
+        session.setAttribute("foundMeals", foundMeals);
         modelAndView.setViewName("/home");
         Database.disconnectDatabase(newConnection);
         return modelAndView;
@@ -98,7 +82,6 @@ public class HomeController {
 
     /**
      * Get all meals in the database and places them into "foundMeals" array list
-     * TODO: narrow this search
      * @param request
      * @throws SQLException
      * @throws ClassNotFoundException

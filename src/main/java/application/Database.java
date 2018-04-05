@@ -541,10 +541,10 @@ public class Database {
         }
     }
 
-    public static ResultSet selectMeal(Connection conn, int mealid, String hemail, String dom, String mtitle, String mpicture,
-                                       int capacity, double pricepp, String category, String description,
-                                       String cancelationtime, double cancelationfee, String country, String city,
-                                       String saddress, String postal)
+    public static ResultSet selectMeal(Connection conn, int mealid, String hemail, String dom, String mtitle,
+                                       String mpicture, int capacity, double pricepp, String category,
+                                       String description, String cancelationtime, double cancelationfee,
+                                       String country, String city, String saddress, String postal)
             throws SQLException, ClassNotFoundException {
         Statement statement = conn.createStatement();
 
@@ -718,7 +718,19 @@ public class Database {
                 null);
     }
 
-    // TODO: Test
+    public static ResultSet selectSimilarMeal(Connection conn, String searchQuery) throws SQLException, ClassNotFoundException {
+        Statement statement = conn.createStatement();
+        ResultSet rs;
+        if (searchQuery != null && !searchQuery.equals("")){
+            rs = statement.executeQuery("select * from Meals where mtitle like '%" + searchQuery
+                    + "%' or category like '%" + searchQuery + "%' or description like '%" + searchQuery
+                    + "%' or country like '%" + searchQuery + "%' or city like '%" + searchQuery + "%';");
+        } else {
+            rs = selectAllMeals(conn);
+        }
+        return rs;
+    }
+
     public static ResultSet selectAllMeals(Connection conn) throws SQLException, ClassNotFoundException {
         return selectMeal(conn,0, null, null, null, null, 0, 0.0,
                 null, null, null, 0.0, null, null,

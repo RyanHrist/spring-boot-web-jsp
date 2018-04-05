@@ -20,17 +20,12 @@ public class AccountController {
             return modelAndView;
         }
 
-//    @RequestMapping("/account")
-//    public String hostMeal() {
-//        return "account";
-//    }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ModelAndView registerUser(//@RequestParam("emailsignup") String email,
-                                     @RequestParam("name") String name1,
+    public ModelAndView registerUser(@RequestParam("name") String name1,
                                      @RequestParam("email") String email1,
                                      @RequestParam("location") String location1,
-                                     @RequestParam("ccnum") String ccnum1,
+                                     @RequestParam("num") String ccnum1,
                                      @RequestParam("cctype") String cctype1,
                                      @RequestParam("ccdigits") String ccdigits1,
 
@@ -39,9 +34,16 @@ public class AccountController {
         ModelAndView modelAndView = new ModelAndView();
 
 
-        Database.updateUser(email1,null,null,null,null,null,
-                null,null,null,null,null,null,null,
-                null,null,null,null,null);
+        try {
+            Database.updateUser(email1, null, name1, null, null, null,
+                    null, null, null, null, null, null, null,
+                    null, null, null, null, null);
+        }catch(SQLException e) {
+        // TODO: Front end team: create a popup
+        modelAndView.setViewName("/account");
+        modelAndView.addObject("unsuccessMessage", "unable to update information");
+        return modelAndView;
+        }
 
 //        Connection newConnection = Database.connectDatabase();
 //        Statement statement = newConnection.createStatement();

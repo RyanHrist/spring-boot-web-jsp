@@ -280,14 +280,14 @@ public class Database {
 //                System.out.println("Street Address: " + saddress);
 //                System.out.println("Postal Code: " + postal);
             } catch (com.mysql.jdbc.MysqlDataTruncation e) {
-//                System.out.println("Error in length/format of input");
+                System.out.println("Error in length/format of input");
                 insertSuccess = false;
             } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
-//                System.out.println("This meal already exists");
+                System.out.println("This meal already exists");
                 insertSuccess = false;
             }
         } else {
-//            System.out.println("An entry was left blank");
+            System.out.println("An entry was left blank");
             insertSuccess = false;
         }
         disconnectDatabase(newConnection);
@@ -541,7 +541,6 @@ public class Database {
         }
     }
 
-    // TODO: Test
     public static ResultSet selectMeal(Connection conn, int mealid, String hemail, String dom, String mtitle, String mpicture,
                                        int capacity, double pricepp, String category, String description,
                                        String cancelationtime, double cancelationfee, String country, String city,
@@ -711,6 +710,15 @@ public class Database {
         }
     }
 
+    // TODO: Test
+    public static ResultSet selectMeal(Connection conn, int mealid, String hemail, String dom)
+            throws SQLException, ClassNotFoundException {
+        return selectMeal(conn, mealid, hemail, dom, null, null, 0, 0.0, null,
+                null, null, 0.0, null, null, null,
+                null);
+    }
+
+    // TODO: Test
     public static ResultSet selectAllMeals(Connection conn) throws SQLException, ClassNotFoundException {
         return selectMeal(conn,0, null, null, null, null, 0, 0.0,
                 null, null, null, 0.0, null, null,
@@ -1273,9 +1281,6 @@ public class Database {
         disconnectDatabase(newConnection);
         return updateSuccess;
     }
-
-
-
 
     public static ArrayList<Meals> createMealsList (ResultSet rs) throws SQLException {
         ArrayList<Meals> meals = new ArrayList<>();

@@ -30,6 +30,29 @@ public class Meals {
     private String category;
     private String description;
 
+    public Meals(){
+
+    }
+
+    public Meals(String hemail, String dom, String mtitle, String mpicture, int capacity, double pricepp,
+                 String category, String description, String cancelationtime, double cancelationfee,
+                 String country, String city, String saddress, String postal){
+        this.withHost = hemail;
+        this.date = dom;
+        this.mealTitle = mtitle;
+        this.image = mpicture;
+        this.capacity = capacity;
+        this.price = pricepp;
+        this.category = category;
+        this.description = description;
+        this.cancelBy = cancelationtime;
+        this.cancelationFee = cancelationfee;
+        this.country = country;
+        this.city = city;
+        this.address = saddress;
+        this.postal = postal;
+    }
+
     public void setCancelBy(String cancelBy){this.cancelBy = cancelBy;}
 
     public String getCancelBy(){return cancelBy;}

@@ -3,7 +3,10 @@ package application.models;
 import org.apache.log4j.Category;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Meals {
     ArrayList<User> guestList = new ArrayList<User>();
@@ -159,5 +162,22 @@ public class Meals {
 
     public void setWithHost(String withHost) {
         this.withHost = withHost;
+    }
+
+    public Date getDateAsDate(){
+        Date toReturn = new Date(0);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        try {
+            toReturn = sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
+    public boolean mealHappened(){
+        Date dom = getDateAsDate();
+        Date now = new Date();
+        return dom.before(now);
     }
 }

@@ -40,10 +40,6 @@ public class HomeController {
     @RequestMapping(value = "/", method = {RequestMethod.GET})
     public ModelAndView getHome(HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
-
-
-
-
         getAllMeals(request);
         modelAndView.setViewName("/home");
         return modelAndView;
@@ -110,26 +106,15 @@ public class HomeController {
     public void getAllMeals(HttpServletRequest request) throws SQLException, ClassNotFoundException {
         HttpSession session = request.getSession();
         Connection newConnection = Database.connectDatabase();
-
         ResultSet allMealsSet = Database.selectAllMeals(newConnection);
         allMealsSet.first();
-        ArrayList<Meals> foundMeals = Database.createMealsList(allMealsSet);
-
-//        ArrayList<Meals> foundMeals = new ArrayList<>();
-//        Meals meal;
-//        while (allMealsSet.next()) {
-//            meal = new Meals();
-//            meal.setDescription(allMealsSet.getString("description"));
-//            meal.setImage(allMealsSet.getString("mpicture"));
-//            meal.setMealID(allMealsSet.getInt("mealid"));
-//            meal.setMealTitle(allMealsSet.getString("mtitle"));
-//
-//
-//
-//
-//            // TODO: Create a new meal for each result found, then figure out a way to display them in front end.
-//            foundMeals.add(meal);
-//        }
+        ArrayList<Meals> allMeals = Database.createMealsList(allMealsSet);
+        ArrayList<Meals> foundMeals = new ArrayList<>();
+        for (Meals m : allMeals){
+            if (!m.mealHappened()){
+                foundMeals.add(m);
+            }
+        }
         session.setAttribute("foundMeals", foundMeals);
         Database.disconnectDatabase(newConnection);
     }

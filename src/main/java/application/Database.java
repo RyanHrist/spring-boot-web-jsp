@@ -1,4 +1,5 @@
 package application;
+import application.models.Meals;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -13,6 +14,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class Database {
 
@@ -491,9 +493,9 @@ public class Database {
     }
 
     // TODO: Test
-    public static ResultSet selectAttending(int mealid, String gemail) throws SQLException, ClassNotFoundException {
-        Connection newConnection = connectDatabase();
-        Statement statement = newConnection.createStatement();
+    public static ResultSet selectAttending(Connection conn, int mealid, String gemail)
+            throws SQLException, ClassNotFoundException {
+        Statement statement = conn.createStatement();
 
         // IGNORE - Create the select line
         String selectCriteria = "";
@@ -523,7 +525,6 @@ public class Database {
         Obviously for the website printing is not required.  Therefore, after
         select you can display a message to the user.
          */
-        disconnectDatabase(newConnection);
         if (rs.first()) {
             return rs;
 //            System.out.println("The following attending relationships were found matching your criteria:");
@@ -541,13 +542,12 @@ public class Database {
     }
 
     // TODO: Test
-    public static ResultSet selectMeal(int mealid, String hemail, String dom, String mtitle, String mpicture,
+    public static ResultSet selectMeal(Connection conn, int mealid, String hemail, String dom, String mtitle, String mpicture,
                                        int capacity, double pricepp, String category, String description,
                                        String cancelationtime, double cancelationfee, String country, String city,
                                        String saddress, String postal)
             throws SQLException, ClassNotFoundException {
-        Connection newConnection = connectDatabase();
-        Statement statement = newConnection.createStatement();
+        Statement statement = conn.createStatement();
 
         // IGNORE - Create the search line
         String selectCriteria = "";
@@ -668,7 +668,6 @@ public class Database {
         Obviously for the website printing is not required.  Therefore, after
         retrival you can do whatever is necessary with the data.
          */
-        disconnectDatabase(newConnection);
         if (rs.first()) {
             return rs;
 //            System.out.println("The following meals were found matching your criteria:");
@@ -712,14 +711,19 @@ public class Database {
         }
     }
 
+    public static ResultSet selectAllMeals(Connection conn) throws SQLException, ClassNotFoundException {
+        return selectMeal(conn,0, null, null, null, null, 0, 0.0,
+                null, null, null, 0.0, null, null,
+                null, null);
+    }
+
     // TODO: Test
-    public static ResultSet selectUser(int userid, String email, String pass, String username, String description,
+    public static ResultSet selectUser(Connection conn, int userid, String email, String pass, String username, String description,
                                        String country, String currency, String ppicture, String dob, String gender,
                                        String userlang, String ccnum, String cccvv, String cccountry, String ccprovince,
                                        String ccaddress, String cccity, String ccpostal, String ccexp)
             throws SQLException, ClassNotFoundException {
-        Connection newConnection = connectDatabase();
-        Statement statement = newConnection.createStatement();
+        Statement statement = conn.createStatement();
 
         // IGNORE - Create the search line
         String selectCriteria = "";
@@ -869,7 +873,6 @@ public class Database {
         Obviously for the website printing is not required.  Therefore, after
         retrival you can do whatever is necessary with the data.
          */
-        disconnectDatabase(newConnection);
         if (rs.first()) {
             return rs;
 //            do {
@@ -1269,6 +1272,40 @@ public class Database {
         }
         disconnectDatabase(newConnection);
         return updateSuccess;
+    }
+
+
+
+
+    public static ArrayList<Meals> createMealsList (ResultSet rs) throws SQLException {
+        ArrayList<Meals> meals = new ArrayList<>();
+        Meals meal;
+        do {
+            meal = createMeal(rs);
+            meals.add(meal);
+        } while (rs.next());
+        return meals;
+    }
+
+    public static Meals createMeal(ResultSet rs) throws SQLException {
+        Meals newMeal;
+        newMeal = new Meals();
+        newMeal.setMealID(rs.getInt("mealid"));
+        newMeal.setWithHost(rs.getString("hemail"));
+        newMeal.setDate(rs.getString("dom"));
+        newMeal.setMealTitle(rs.getString("mtitle"));
+        newMeal.setImage(rs.getString("mpicture"));
+        newMeal.setCapacity(rs.getInt("capacity"));
+        newMeal.setPrice(rs.getDouble("pricepp"));
+        newMeal.setCategory(rs.getString("category"));
+        newMeal.setDescription(rs.getString("description"));
+        newMeal.setCancelBy(rs.getString("cancelationtime"));
+        newMeal.setCancelationFee(rs.getDouble("cancelationfee"));
+        newMeal.setCountry(rs.getString("country"));
+        newMeal.setCity(rs.getString("city"));
+        newMeal.setAddress(rs.getString("saddress"));
+        newMeal.setPostal(rs.getString("postal"));
+        return newMeal;
     }
 
 }

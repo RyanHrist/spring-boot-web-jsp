@@ -26,12 +26,17 @@
             <%--i dont think user should be able to change their email--%>
             Email: <input type="text" name="email" id="email" value="${user.email}" readonly=""><br/>
 
-            Location: <input type="text" name="location" value="${user.cccity} ${user.ccprovince}" id="location" readonly=""><br/>
+            Password: <input type="text" name="pass" id="pass" value="${user.password}" readonly=""><br/>
+
+            Location: <input type="text" name="location" id="location" value="${user.country}"  readonly=""><br/>
+
             Credit Card Info: <br>
-            Credit Card Number: <input type="text" name="num" value="${user.cccnumber}" id="ccnum" readonly=""> <br/>
+
+            Credit Card Number: <input type="text" name="num" id="ccnum" value="${user.cccnumber}"  readonly=""> <br/>
+
             Type: <input type="text" name="cctype" value="Master Card" id="cctype" readonly=""> <br/>
 
-            CVV: <input type="text" name="ccdigits" value="123" id="ccdigits" readonly=""/> <br/>
+            CVV: <input type="text" name="ccdigits" id="ccdigits" value="${user.cccvv}"  readonly=""/> <br/>
 
             <button type="button" onclick="myFunction()" class="button"> Edit </button>
             <input type="submit" onclick="myFunction2()" value="Save" class="button"/>
@@ -48,6 +53,7 @@
         document.getElementById("name").readOnly = false;
         //should not be able to edit email
         //document.getElementById("email").readOnly = true;
+        document.getElementById("pass").readOnly = false;
         document.getElementById("location").readOnly = false;
         document.getElementById("ccnum").readOnly = false;
         document.getElementById("cctype").readOnly = false;
@@ -58,14 +64,11 @@
     function myFunction2() {
         document.getElementById("name").readOnly = true;
         //document.getElementById("email").readOnly = true;
+        document.getElementById("pass").readOnly = true;
         document.getElementById("location").readOnly = true;
         document.getElementById("ccnum").readOnly = true;
         document.getElementById("cctype").readOnly = true;
         document.getElementById("ccdigits").readOnly = true;
-    }
-
-    function updateUser(){
-
     }
 </script>
 </body>

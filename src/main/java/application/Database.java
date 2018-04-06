@@ -451,7 +451,6 @@ public class Database {
         return insertSuccess;
     }
 
-    // TODO: Test
     public static boolean login(String email, String pass) throws SQLException, ClassNotFoundException {
         Connection newConnection = connectDatabase();
         Statement statement = newConnection.createStatement();
@@ -738,7 +737,6 @@ public class Database {
                 null, null);
     }
 
-    // TODO: Test
     public static ResultSet selectUser(Connection conn, int userid, String email, String pass, String username, String description,
                                        String country, String currency, String ppicture, String dob, String gender,
                                        String userlang, String ccnum, String cccvv, String cccountry, String ccprovince,
@@ -944,7 +942,6 @@ public class Database {
         }
     }
 
-    // TODO: Test
     public static ResultSet selectUser(Connection conn, String email) throws SQLException, ClassNotFoundException {
         return selectUser(conn, 0, email, null, null, null, null,
                 null, null, null, null, null, null, null,

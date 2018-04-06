@@ -12,7 +12,9 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-
+<div class="centered">
+    <h1>Profile</h1>
+</div>
 
 <div class="centered">
         <% User userBeingViewed = (User) session.getAttribute("userBeingViewed");
@@ -76,8 +78,6 @@
         </form>
 
         <input type="file" name="imageURL" accept="image/*" id="selectedFile" style="display: none;" >
-
-
         <button type="button" onclick="myFunction()" class="button"> Edit</button>
         <button type="button" onclick="myFunction2()" class="button"> Save</button>
         <br/>

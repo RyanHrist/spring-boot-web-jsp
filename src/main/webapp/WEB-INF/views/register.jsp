@@ -101,6 +101,9 @@
                 <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
             </div>
         </div>
+        <div class="eag-row">
+            <input type="submit" value="Register" class = "button">
+        </div>
     </form>
 </div>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

@@ -47,7 +47,7 @@
                         <div class="contain">
                         <img src="${localMeal.image}" alt="Meal Preview Image" style="width:256px;height:200px;" class="fadeimg">
                             <div class="middle">
-                                <div class="text">${meals.getMealTitle()}</div>
+                                <div class="text">${localMeal.getMealTitle()}</div>
                             </div>
                         </div>
                         </a>

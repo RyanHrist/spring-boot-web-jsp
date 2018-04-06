@@ -11,10 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 @Controller
 @RequestMapping("/registration")
@@ -26,58 +23,40 @@ public class RegisterController {
         return modelAndView;
     }
 
-
+    // TODO: UPDATE - remove default dates
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ModelAndView registerUser(@RequestParam("emailsignup") String email,
                                      @RequestParam("firstname") String firstName,
                                      @RequestParam("lastname") String lastName,
                                      @RequestParam("passwordsignup") String password,
                                      @RequestParam("country") String country,
-                                     @RequestParam("bday") String bday,
-
+                                     @RequestParam("day") String day,
+                                     @RequestParam("month") String month,
+                                     @RequestParam("year") String year,
+                                     @RequestParam("ccexpmonth") String ccexpmonth,
+                                     @RequestParam("ccexpyear") String ccexpyear,
                                      HttpServletRequest request) throws SQLException, ClassNotFoundException {
-
         ModelAndView modelAndView = new ModelAndView();
-
         Connection newConnection = Database.connectDatabase();
-        Statement statement = newConnection.createStatement();
-
-        String name = firstName + " " + lastName;
-        String update = "INSERT Users\n" +
-                "set    email='" + email + "', pass = '" + password +"',\n" +
-                "	username='" + name + "', description=null, country=null, currency=null, ppicture=null,\n" +
-                "    dob='2012-01-01', gender=null, userlang=null, ccnum=null, cccvv=null, cccountry=null,\n" +
-                "    ccprovince=null, cccity=null, ccaddress=null, ccpostal=null, ccexp='2020-5-2'\n";
-
-
-
-        User user = new User();
-        user.setEmail(email);
-        user.setName(firstName + " " + lastName);
-        user.setPassword(password);
-        user.setCountry(country);
-        user.setDateOfBirth(bday);
-
-
+        String username = firstName + " " + lastName;
+        String dob = year + "-" + month + "-" + day;
+        String ccexp = ccexpyear + "-" + ccexpmonth + "-" + "1";
         try{
-            // SQL update
-            statement.executeUpdate(update);
-            modelAndView.addObject("user", user);
+            Database.insertUser(email, password, username, null, country, null, null,
+                    dob, null, null, null, null, null,
+                    null, null,null, null, ccexp);
+            ResultSet rs = Database.selectUser(newConnection, email);
+            User newUser = Database.createUser(rs);
+            modelAndView.addObject("user", newUser);
             modelAndView.setViewName("redirect:/profile");
-
-            System.out.println(user.getName());
-            System.out.println(update);
             HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            Database.disconnectDatabase(newConnection);
-            return modelAndView;
+            session.setAttribute("user", newUser);
         } catch(SQLException e) {
-            // TODO: Front end team: create a popup that says that email is already used.
             modelAndView.setViewName("/register");
             modelAndView.addObject("unsuccessMessage", "This email already exists.");
-            Database.disconnectDatabase(newConnection);
-            return modelAndView;
         }
+        Database.disconnectDatabase(newConnection);
+        return modelAndView;
     }
 
     @ExceptionHandler

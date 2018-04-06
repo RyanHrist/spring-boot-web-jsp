@@ -52,13 +52,13 @@
                 <h4>Date of Birth</h4>
                 <div class="eag-input-group">
                     <div class="eag-col-third">
-                        <input type="text" placeholder="DD"/>
+                        <input type="text" name="day" placeholder="DD"/>
                     </div>
                     <div class="eag-col-third">
-                        <input type="text" placeholder="MM"/>
+                        <input type="text" name="month" placeholder="MM"/>
                     </div>
                     <div class="eag-col-third">
-                        <input type="text" name="bday" placeholder="YYYY" required/>
+                        <input type="text" name="year" placeholder="YYYY" required/>
                     </div>
                 </div>
             </div>
@@ -79,32 +79,32 @@
                 <label for="payment-method-paypal"> <span><i class="fa fa-cc-mastercard"></i>Mastercard</span></label>
             </div>
             <div class="eag-input-group eag-input-group-icon">
-                <input type="text" placeholder="Card Number"/>
+                <input type="text" name="ccnum" placeholder="Card Number"/>
                 <div class="eag-input-icon"><i class="fa fa-credit-card"></i></div>
             </div>
             <div class="eag-col-half">
                 <div class="eag-input-group eag-input-group-icon">
-                    <input type="text" placeholder="Card CVC"/>
+                    <input type="text" name="cccvv" placeholder="Card CVC"/>
                     <div class="eag-input-icon"><i class="fa fa-user"></i></div>
                 </div>
             </div>
             <div class="eag-col-half">
                 <div class="eag-input-group">
-                    <select>
-                        <option>Jan</option>
-                        <option>Feb</option>
-                        <option>Mar</option>
-                        <option>Apr</option>
-                        <option>May</option>
-                        <option>Jun</option>
-                        <option>Jul</option>
-                        <option>Aug</option>
-                        <option>Sep</option>
-                        <option>Oct</option>
-                        <option>Nov</option>
-                        <option>Dec</option>
+                    <select name="ccexpmonth">
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
                     </select>
-                    <select>
+                    <select name="ccexpyear">
                         <option>2018</option>
                         <option>2019</option>
                         <option>2020</option>
@@ -153,7 +153,6 @@
     }
 
 </script>
-
 
 </body>
 

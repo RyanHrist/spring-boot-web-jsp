@@ -32,7 +32,6 @@ public class RegisterController {
                                      @RequestParam("firstname") String firstName,
                                      @RequestParam("lastname") String lastName,
                                      @RequestParam("passwordsignup") String password,
-                                     @RequestParam("passwordconfirm") String password2,
                                      @RequestParam("country") String country,
                                      @RequestParam("bday") String bday,
 

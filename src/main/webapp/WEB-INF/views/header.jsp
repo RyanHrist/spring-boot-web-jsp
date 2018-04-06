@@ -9,8 +9,6 @@
     <!--- This is breaking the dropdown but is necessary for login popup --->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -68,7 +66,7 @@
                         <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
                     </div>
                     <div class="modal-body" style="padding:40px 50px;">
-                        <form  action="<%=request.getContextPath()%>/" autocomplete="on" method="POST">
+                        <form  action="<%=request.getContextPath()%>" autocomplete="on" method="POST">
                             <div class="form-group">
                                 <label for="loginUsername"><span class="glyphicon glyphicon-user"></span> Username</label>
                                 <input type="email" class="form-control" id="loginUsername" name="loginUsername" placeholder="Enter email" required>

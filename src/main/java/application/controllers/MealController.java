@@ -129,30 +129,4 @@ public class MealController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/{mealId}", method = RequestMethod.POST)
-    public ModelAndView loginUser(@PathVariable("mealId") String mealId,
-                                  @RequestParam(value = "loginUsername", required = false) String userLogin,
-                                  @RequestParam(value = "loginPassword", required = false) String userPassword,
-                                  HttpServletRequest request) throws SQLException, ClassNotFoundException {
-        ModelAndView modelAndView = new ModelAndView();
-        HttpSession session = request.getSession();
-        Connection newConnection = Database.connectDatabase();
-
-        if (userLogin != null && userPassword != null) {
-            if (Database.login(userLogin, userPassword)){
-                ResultSet rs = Database.selectUser(newConnection, userLogin);
-                rs.first();
-                User user = Database.createUser(rs);
-                session.setAttribute("user", user);
-                session.setAttribute("loginFail", "");
-
-            } else {
-                session.setAttribute("loginFail", "Please enter a correct username and password.");
-            }
-        }
-        modelAndView.setViewName("/meal");
-        Database.disconnectDatabase(newConnection);
-        return modelAndView;
-    }
-
 }

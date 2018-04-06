@@ -80,6 +80,9 @@ public class HomeController {
         return modelAndView;
     }
 
+
+
+
     /**
      * Get all meals in the database and places them into "foundMeals" array list
      * @param request
@@ -113,7 +116,7 @@ public class HomeController {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView loginUser(@RequestParam(value = "loginUsername", required = false) String userLogin,
                                   @RequestParam(value = "loginPassword", required = false) String userPassword,
                                   HttpServletRequest request) throws SQLException, ClassNotFoundException {
@@ -128,6 +131,8 @@ public class HomeController {
                 rs.first();
                 User user = Database.createUser(rs);
                 session.setAttribute("user", user);
+                session.setAttribute("loginFail", "");
+
             } else {
                 session.setAttribute("loginFail", "Please enter a correct username and password.");
             }

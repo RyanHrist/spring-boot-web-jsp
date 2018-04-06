@@ -131,8 +131,6 @@ public class HomeController {
             } else {
                 session.setAttribute("loginFail", "Please enter a correct username and password.");
             }
-        } else {
-            session.setAttribute("loginFail", "Please enter both a username and a password.");
         }
         modelAndView.setViewName("/home");
         Database.disconnectDatabase(newConnection);

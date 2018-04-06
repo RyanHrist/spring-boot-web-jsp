@@ -71,11 +71,11 @@
                         <form  action="<%=request.getContextPath()%>/" autocomplete="on" method="POST">
                             <div class="form-group">
                                 <label for="loginUsername"><span class="glyphicon glyphicon-user"></span> Username</label>
-                                <input type="text" class="form-control" id="loginUsername" name="loginUsername" placeholder="Enter email">
+                                <input type="email" class="form-control" id="loginUsername" name="loginUsername" placeholder="Enter email" required>
                             </div>
                             <div class="form-group">
                                 <label for="loginPassword"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                                <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password">
+                                <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password" required>
                             </div>
                             <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
                         </form>

@@ -75,10 +75,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="loginPassword"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                                <input type="text" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password">
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" checked>Remember me</label>
+                                <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password">
                             </div>
                             <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
                         </form>

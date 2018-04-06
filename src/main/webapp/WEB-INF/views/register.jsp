@@ -11,9 +11,12 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+
 </head>
+
 <body>
-<jsp:include page="header.jsp"/>
+<%@ include file="header.jsp" %>
+
 <div class="centered">
     <h1>Register</h1>
     <h3>${unsuccessMessage}</h3>
@@ -136,10 +139,10 @@
         <br/>
     </form>
 </div>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
 
-<%--<script src="js/index.js"></script>--%>
-<script src="../../resources/static/js/loginPopup.js"></script>
+<script src="js/index.js"></script>
 
 <script>
     function myFunction() {

@@ -1,4 +1,3 @@
-<%@ page import="application.models.User" %><%--
 <%--
   Created by IntelliJ IDEA.
   User: Nancy
@@ -84,6 +83,42 @@
                 </div>
             </div>
         </div>
+
+        <div class="eag-row">
+            <h4>Exp Date</h4>
+            <div class="eag-input-group">
+                <select id = "dropdown" disabled = true>
+                    <option>Jan</option>
+                    <option>Feb</option>
+                    <option>Mar</option>
+                    <option>Apr</option>
+                    <option>May</option>
+                    <option>Jun</option>
+                    <option>Jul</option>
+                    <option>Aug</option>
+                    <option>Sep</option>
+                    <option>Oct</option>
+                    <option>Nov</option>
+                    <option>Dec</option>
+                </select>
+                <select id = "dropdown2" disabled = true>
+                    <option>2018</option>
+                    <option>2019</option>
+                    <option>2020</option>
+                    <option>2021</option>
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                    <option>2026</option>
+                    <option>2027</option>
+                    <option>2028</option>
+                    <option>2029</option>
+                </select>
+            </div>
+
+
+        </div>
         <br/>
         <input type="submit" onclick="myFunction2()"  id = "submitbutton" class="button" disabled = "false" style="opacity:0.5"/>
 
@@ -112,6 +147,8 @@
         document.getElementById("ccdigits").readOnly = false;
         document.getElementById("submitbutton").disabled = false;
         document.getElementById("submitbutton").style.opacity = "1";
+        document.getElementById("dropdown").disabled = false;
+        document.getElementById("dropdown2").disabled = false;
     }
 
     function myFunction2() {
@@ -122,6 +159,8 @@
         document.getElementById("ccnum").readOnly = true;
         document.getElementById("cctype").readOnly = true;
         document.getElementById("ccdigits").readOnly = true;
+        document.getElementById("dropdown").disabled = true;
+        document.getElementById("dropdown2").disabled = true;
     }
 </script>
 </body>

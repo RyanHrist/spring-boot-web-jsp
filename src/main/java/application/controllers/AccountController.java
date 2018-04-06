@@ -15,13 +15,13 @@ import java.sql.SQLException;
 public class AccountController {
 
     @RequestMapping(value="", method = RequestMethod.GET)
-    public ModelAndView showRegistrationPage(ModelAndView modelAndView){
+    public ModelAndView showAccountPage(ModelAndView modelAndView){
         modelAndView.setViewName("account");
         return modelAndView;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ModelAndView registerUser(@RequestParam("name") String name,
+    public ModelAndView updateUser(@RequestParam("name") String name,
                                      @RequestParam("email") String email,
                                      @RequestParam("pass" ) String pass,
                                      @RequestParam("location") String country,

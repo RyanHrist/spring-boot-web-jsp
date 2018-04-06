@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -124,6 +125,32 @@ public class MealController {
         session.setAttribute("selectedMeal", selectedMeal);
         session.setAttribute("mealHost", mealHost);
         modelAndView.setViewName("meal");
+        Database.disconnectDatabase(newConnection);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/{mealId}", method = RequestMethod.POST)
+    public ModelAndView loginUser(@PathVariable("mealId") String mealId,
+                                  @RequestParam(value = "loginUsername", required = false) String userLogin,
+                                  @RequestParam(value = "loginPassword", required = false) String userPassword,
+                                  HttpServletRequest request) throws SQLException, ClassNotFoundException {
+        ModelAndView modelAndView = new ModelAndView();
+        HttpSession session = request.getSession();
+        Connection newConnection = Database.connectDatabase();
+
+        if (userLogin != null && userPassword != null) {
+            if (Database.login(userLogin, userPassword)){
+                ResultSet rs = Database.selectUser(newConnection, userLogin);
+                rs.first();
+                User user = Database.createUser(rs);
+                session.setAttribute("user", user);
+                session.setAttribute("loginFail", "");
+
+            } else {
+                session.setAttribute("loginFail", "Please enter a correct username and password.");
+            }
+        }
+        modelAndView.setViewName("/meal");
         Database.disconnectDatabase(newConnection);
         return modelAndView;
     }

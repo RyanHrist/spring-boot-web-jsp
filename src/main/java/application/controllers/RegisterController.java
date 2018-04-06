@@ -34,7 +34,7 @@ public class RegisterController {
                                      @RequestParam("passwordsignup") String password,
                                      @RequestParam("passwordconfirm") String password2,
                                      @RequestParam("country") String country,
-                                     @RequestParam("bday") Date bday,
+                                     @RequestParam("bday") String bday,
 
                                      HttpServletRequest request) throws SQLException, ClassNotFoundException {
 

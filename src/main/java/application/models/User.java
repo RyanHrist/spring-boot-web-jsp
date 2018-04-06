@@ -11,8 +11,7 @@ import java.util.Date;
 
 public class User {
 
-    public User() {
-    }
+
     private int userID;
     private String name;
     private String email;
@@ -30,7 +29,7 @@ public class User {
     private String cccity;
     private String ccadress;
     private String ccpostal;
-    private Date ccexp;
+    private String ccexp;
 
     //private Country country;
     private String country;
@@ -42,11 +41,15 @@ public class User {
     private String language;
 
     private String profilePicture;
-    private Date dateOfBirth;
+    private String dateOfBirth;
 
     // TODO: Fix this to be array lists
     private Meals pastVisits;
     private Meals futureVisits;
+
+    public User() {
+
+    }
 
     public String getName(){return name;}
     public String getEmail(){return email;}
@@ -101,7 +104,7 @@ public class User {
         return ccpostal;
     }
 
-    public Date getCcexp() {
+    public String getCcexp() {
         return ccexp;
     }
 
@@ -118,7 +121,7 @@ public class User {
     }
 
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -179,7 +182,7 @@ public class User {
         this.cccvv = cccvv;
     }
 
-    public void setCcexp(Date ccexp) {
+    public void setCcexp(String ccexp) {
         this.ccexp = ccexp;
     }
 
@@ -194,9 +197,11 @@ public class User {
         this.currency = currency;
     }
     //public void setProfilePicture(Image ){}
-    public void setDateOfBirth(Date dateOfBirth){
+
+    public void setDateOfBirth(String dateOfBirth){
         this.dateOfBirth = dateOfBirth;
     }
+
     public void setGender(String gender){
         this.gender = gender;
     }

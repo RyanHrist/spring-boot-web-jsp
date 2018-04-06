@@ -21,7 +21,6 @@ public class Meals {
     private CancellationPolicy cancellation;
     private String cancelBy;
     private double cancelationFee;
-    // TODO: Convert to date type for date and time for both cancelBy date and date of meal.
     private String date;
     private Time time;
     private String image;
@@ -34,6 +33,7 @@ public class Meals {
 
     }
 
+    // TODO: Check if this is used
     public Meals(String hemail, String dom, String mtitle, String mpicture, int capacity, double pricepp,
                  String category, String description, String cancelationtime, double cancelationfee,
                  String country, String city, String saddress, String postal){

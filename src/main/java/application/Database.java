@@ -1,5 +1,6 @@
 package application;
 import application.models.Meals;
+import application.models.User;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -944,6 +945,13 @@ public class Database {
     }
 
     // TODO: Test
+    public static ResultSet selectUser(Connection conn, String email) throws SQLException, ClassNotFoundException {
+        return selectUser(conn, 0, email, null, null, null, null,
+                null, null, null, null, null, null, null,
+                null, null, null, null, null, null);
+    }
+
+    // TODO: Test
     public static boolean updateMeal(int mealid, String hemail, String dom, String mtitle, File mealPicture,
                                      int capacity, double pricepp, String category, String description,
                                      String cancelationtime, double cancelationfee, String country, String city,
@@ -1325,4 +1333,28 @@ public class Database {
         return newMeal;
     }
 
+    public static User createUser(ResultSet rs) throws SQLException {
+        User newUser;
+        newUser = new User();
+        newUser.setUserID(rs.getInt("userid"));
+        newUser.setEmail(rs.getString("email"));
+        newUser.setPassword(rs.getString("pass"));
+        newUser.setName(rs.getString("username"));
+        newUser.setUserDescription(rs.getString("description"));
+        newUser.setCountry(rs.getString("country"));
+        newUser.setCurrency(rs.getString("currency"));
+        newUser.setProfilePicture(rs.getString("ppicture"));
+        newUser.setDateOfBirth(rs.getString("dob"));
+        newUser.setGender(rs.getString("gender"));
+        newUser.setLanguage(rs.getString("userlang"));
+        newUser.setCcnumber(rs.getString("ccnum"));
+        newUser.setCccvv(rs.getString("cccvv"));
+        newUser.setCccountry(rs.getString("cccountry"));
+        newUser.setCcprovince(rs.getString("ccprovince"));
+        newUser.setCccity(rs.getString("cccity"));
+        newUser.setCcadress(rs.getString("ccaddress"));
+        newUser.setCcpostal(rs.getString("ccpostal"));
+        newUser.setCcexp(rs.getString("ccexp"));
+        return newUser;
+    }
 }

@@ -120,29 +120,20 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         HttpSession session = request.getSession();
         Connection newConnection = Database.connectDatabase();
-        Statement statement = newConnection.createStatement();
         getAllMeals(request);
 
         if (userLogin != null && userPassword != null) {
-            String sql = "SELECT * FROM Users where email='" + userLogin + "' and pass='" + userPassword + "'";
-            ResultSet rs = statement.executeQuery(sql);
-            User user = null;
-            while (rs.next()) {
-                // TODO: Set the UserController variables to everything in database like following:
-                // TODO: Also create all the static variables in the UserController (everything in DB).
-                user = new User();
-                user.setName(rs.getString("username"));
-                user.setEmail(rs.getString("email"));
-            }
-            if (user != null) {
+            if (Database.login(userLogin, userPassword)){
+                ResultSet rs = Database.selectUser(newConnection, userLogin);
+                rs.first();
+                User user = Database.createUser(rs);
                 session.setAttribute("user", user);
-                System.out.println("Login Success");
             } else {
                 session.setAttribute("loginFail", "Please enter a correct username and password.");
-                System.out.println("Login failed");
             }
+        } else {
+            session.setAttribute("loginFail", "Please enter both a username and a password.");
         }
-
         modelAndView.setViewName("/home");
         Database.disconnectDatabase(newConnection);
         return modelAndView;

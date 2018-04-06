@@ -404,6 +404,7 @@ select option {
     text-align: center;
     pointer-events: none;
 }
+
 .eag-input-group-icon .eag-input-icon:after {
     position: absolute;
     top: 0.6em;
@@ -433,6 +434,7 @@ select option {
 .eag-container {
     max-width: 38em;
     padding: 1em 3em 2em 3em;
+    display:inline-block;
     margin: 0em auto;
     background-color: var(--c3);
     border-radius: 4.2px;

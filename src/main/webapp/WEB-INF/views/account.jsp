@@ -16,6 +16,7 @@
 <div class="centered">
     <h1>Account Info</h1>
 </div>
+
 <div class="centered">
     <% User loggedUser = (User) session.getAttribute("user");
         pageContext.setAttribute("user", loggedUser);
@@ -23,7 +24,11 @@
     %>
 
 <div class="eag-container">
+
     <form action="/account" autocomplete="on" method="POST">
+        <div class="eag-row">
+        <div style = 'float: right'><button type="button" onclick="myFunction()" class="editbutton" align = "right"> Edit <i class="fa fa-edit"></i></button></div>
+        </div>
         <div class="eag-row">
             <div class="eag-col-half">
                 <h4>Name</h4>
@@ -80,10 +85,11 @@
             </div>
         </div>
         <br/>
+        <input type="submit" onclick="myFunction2()"  id = "submitbutton" class="button" disabled = "false" style="opacity:0.5"/>
 
     </form>
-    <button type="button" onclick="myFunction()" class="button"> Edit</button>
-    <button type="button" onclick="myFunction2()"  class="button"> Save</button>
+
+
 
     <br/>
 </div>
@@ -104,6 +110,8 @@
         document.getElementById("ccnum").readOnly = false;
         document.getElementById("cctype").readOnly = false;
         document.getElementById("ccdigits").readOnly = false;
+        document.getElementById("submitbutton").disabled = false;
+        document.getElementById("submitbutton").style.opacity = "1";
     }
 
     function myFunction2() {

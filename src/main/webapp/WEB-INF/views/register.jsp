@@ -20,7 +20,7 @@
 <div class="centered">
     <h1>Register</h1>
     <h3>${unsuccessMessage}</h3>
-</div>
+
 
 <div class="eag-container">
     <form action="/registration" autocomplete="on" method="POST">
@@ -139,9 +139,11 @@
         <br/>
     </form>
 </div>
+</div>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-<%--<script src="js/index.js"></script>--%>
-<script src="../../resources/static/js/loginPopup.js"></script>
+
+<script src="js/index.js"></script>
 
 <script>
     function myFunction() {

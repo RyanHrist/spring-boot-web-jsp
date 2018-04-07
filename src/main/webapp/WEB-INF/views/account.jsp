@@ -49,7 +49,7 @@
                 <div class="eag-col-half">
                     <h4>Password</h4>
                     <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="pass" id="pass" value="${user.password}" readonly=""/>
+                        <input type="password" name="pass" id="pass" value="${user.password}" readonly=""/>
                         <div class="eag-input-icon"><i class="fa fa-key"></i></div>
                     </div>
                 </div>

@@ -106,7 +106,6 @@ public class Database {
         return deleteSuccess;
     }
 
-    // TODO: Test
     public static boolean insertAttending(int mealid, String gemail) throws SQLException, ClassNotFoundException {
         Connection newConnection = connectDatabase();
         Statement statement = newConnection.createStatement();

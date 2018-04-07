@@ -17,6 +17,8 @@
 </head>
 <body>
 <%@ include file = "header.jsp" %>
+<c:url value="${pageContext.request.contextPath}/resources/static/css/main.css" var="jstlCss" />
+<link href="${jstlCss}" rel="stylesheet" />
 <div class="centered">
 
     <%  User loggedUser = (User) session.getAttribute("user");
@@ -82,7 +84,6 @@
     </nav>
 
     <h1>Previous Meals</h1>
-    <h3>${bookedMeal}</h3>
     <hr>
 
     <nav>

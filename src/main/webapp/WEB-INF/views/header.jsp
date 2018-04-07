@@ -66,7 +66,8 @@
                         <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
                     </div>
                     <div class="modal-body" style="padding:40px 50px;">
-                        <form  action="<%=request.getContextPath()%>" autocomplete="on" method="POST">
+                        <form  action="<%=request.getContextPath()%>/login" autocomplete="on" method="POST">
+                            <h3 style="color: red">${unsuccessMessage}</h3>
                             <div class="form-group">
                                 <label for="loginUsername"><span class="glyphicon glyphicon-user"></span> Username</label>
                                 <input type="email" class="form-control" id="loginUsername" name="loginUsername" placeholder="Enter email" required>

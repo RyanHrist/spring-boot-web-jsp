@@ -29,6 +29,12 @@
     <div class="eag-container">
         <form action="/registration" autocomplete="on" method="POST">
             <div class="eag-row">
+                <div style = 'float: right'><button type="button" onclick="myFunction()" class="button"> Edit <i class="fa fa-edit"></i></button></div>
+
+                <div style = 'float: right'> <button type="button" onclick="myFunction2()" class="button"> Save <i class="fa fa-save"></i></button></div>
+
+            </div>
+            <div class="eag-row">
                 <img src="${user.profilePicture}" alt="Profile Picture??" id="pic" style="width:200px;height:200px;">
             </div>
             <div class="eag-row">
@@ -69,18 +75,15 @@
             <div class="eag-row">
                 <h4>About ${user.name}</h4>
                 <div class="eag-input-group eag-input-group-icon">
-                <textarea type="textarea" name="description" id="aboutme" rows="10" cols="32" readonly="">
+                <textarea type="textarea" name="description" id="aboutme" rows="10" cols="60" readonly="">
                     ${user.userDescription}
                 </textarea>
                 </div>
             </div>
-            <br/>
         </form>
 
         <input type="file" name="imageURL" accept="image/*" id="selectedFile" style="display: none;" >
-        <button type="button" onclick="myFunction()" class="button"> Edit</button>
-        <button type="button" onclick="myFunction2()" class="button"> Save</button>
-        <br/>
+
     </div>
 
         <% // If profile ID exists and its not own, or profile exists and a user is logged in
@@ -88,6 +91,7 @@
         pageContext.setAttribute("userBeingViewed", userBeingViewed);%>
 
     <div class="eag-container">
+
             <div class="eag-row">
                 <% if (userBeingViewed.getProfilePicture().equals("") || userBeingViewed.getProfilePicture() == null) {%>
                 <img src="../images/i1.jpg" alt="Profile Picture546" style="width:200px;height:200px;">
@@ -130,12 +134,11 @@
             <div class="eag-row">
                 <h4>About ${userBeingViewed.name}</h4>
                 <div class="eag-input-group eag-input-group-icon">
-                <textarea type="textarea" name="description" id="aboutme" rows="10" cols="32" readonly="">
+                <textarea type="textarea" name="description" id="aboutme" rows="10" cols="60" readonly="">
                     ${userBeingViewed.userDescription}
                 </textarea>
                 </div>
             </div>
-            <br/>
     </div>
 
         <% // If profile trying to be viewed does not exist

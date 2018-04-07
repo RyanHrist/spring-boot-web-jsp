@@ -204,7 +204,6 @@ public class Database {
         return insertSuccess;
     }
 
-    // TODO: Test
     public static boolean insertMeal(String hemail, String dom, String mtitle, File mealPicture, int capacity,
                                      double pricepp, String category, String description, String cancelationtime,
                                      double cancelationfee, String country, String city, String saddress, String postal)
@@ -709,7 +708,6 @@ public class Database {
         }
     }
 
-    // TODO: Test
     public static ResultSet selectMeal(Connection conn, int mealid, String hemail, String dom)
             throws SQLException, ClassNotFoundException {
         return selectMeal(conn, mealid, hemail, dom, null, null, 0, 0.0, null,
@@ -1113,7 +1111,6 @@ public class Database {
         return updateSuccess;
     }
 
-    // TODO: Test
     public static boolean updateUser(String email, String pass, String username, String description,
                                      String country, String currency, File profilePicture, String dob,
                                      String gender, String userlang, String ccnum, String cccvv, String cccountry,

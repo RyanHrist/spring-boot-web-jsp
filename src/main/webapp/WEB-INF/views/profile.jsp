@@ -88,54 +88,54 @@
         pageContext.setAttribute("userBeingViewed", userBeingViewed);%>
 
     <div class="eag-container">
-            <div class="eag-row">
-                <% if (userBeingViewed.getProfilePicture().equals("") || userBeingViewed.getProfilePicture() == null) {%>
-                <img src="../images/i1.jpg" alt="Profile Picture546" style="width:200px;height:200px;">
-                <% } else { %>
-                <img src="${userBeingViewed.getProfilePicture()}" alt="Profile Picture258" style="width:200px;height:200px;">
-                <% } %>
-            </div>
-            <div class="eag-row">
-                <div class="eag-col-half">
-                    <h4>Name</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="hostname" id="hostname" value="${userBeingViewed.name}" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-user"></i></div>
-                    </div>
-                </div>
-                <div class="eag-col-half">
-                    <h4>Location</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="location" value="${userBeingViewed.country}" id="location" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-globe"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="eag-row">
-                <div class="eag-col-half">
-                    <h4>Language</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="language" value="${userBeingViewed.language}" id="language" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-font"></i></div>
-                    </div>
-                </div>
-                <div class="eag-col-half">
-                    <h4>Rating</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="hostrating" value="4.5" id="hostrating" readonly="" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-star"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="eag-row">
-                <h4>About ${userBeingViewed.name}</h4>
+        <div class="eag-row">
+            <% if (userBeingViewed.getProfilePicture().equals("") || userBeingViewed.getProfilePicture() == null) {%>
+            <img src="../images/i1.jpg" alt="Profile Picture546" style="width:200px;height:200px;">
+            <% } else { %>
+            <img src="${userBeingViewed.getProfilePicture()}" alt="Profile Picture258" style="width:200px;height:200px;">
+            <% } %>
+        </div>
+        <div class="eag-row">
+            <div class="eag-col-half">
+                <h4>Name</h4>
                 <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="hostname" id="hostname" value="${userBeingViewed.name}" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-user"></i></div>
+                </div>
+            </div>
+            <div class="eag-col-half">
+                <h4>Location</h4>
+                <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="location" value="${userBeingViewed.country}" id="location" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-globe"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="eag-row">
+            <div class="eag-col-half">
+                <h4>Language</h4>
+                <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="language" value="${userBeingViewed.language}" id="language" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-font"></i></div>
+                </div>
+            </div>
+            <div class="eag-col-half">
+                <h4>Rating</h4>
+                <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="hostrating" value="4.5" id="hostrating" readonly="" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-star"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="eag-row">
+            <h4>About ${userBeingViewed.name}</h4>
+            <div class="eag-input-group eag-input-group-icon">
                 <textarea type="textarea" name="description" id="aboutme" rows="10" cols="32" readonly="">
                     ${userBeingViewed.userDescription}
                 </textarea>
-                </div>
             </div>
-            <br/>
+        </div>
+        <br/>
     </div>
 
         <% // If profile trying to be viewed does not exist

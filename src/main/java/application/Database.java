@@ -206,8 +206,8 @@ public class Database {
 
     // TODO: Test
     public static boolean insertMeal(String hemail, String dom, String mtitle, File mealPicture, int capacity,
-                                  double pricepp, String category, String description, String cancelationtime,
-                                  double cancelationfee, String country, String city, String saddress, String postal)
+                                     double pricepp, String category, String description, String cancelationtime,
+                                     double cancelationfee, String country, String city, String saddress, String postal)
             throws SQLException, ClassNotFoundException {
         Connection newConnection = connectDatabase();
         Statement statement = newConnection.createStatement();
@@ -261,7 +261,7 @@ public class Database {
                         + "-us-east-2-855393191779/Meal/" + mealid + ".jpg";
                 BasicAWSCredentials creds = new BasicAWSCredentials(ACCESS_KEY, SECRET_ACCESS_KEY);
                 AmazonS3 S3Client = AmazonS3ClientBuilder.standard().withRegion("us-east-2").withCredentials
-                                (new AWSStaticCredentialsProvider(creds)).build();
+                        (new AWSStaticCredentialsProvider(creds)).build();
                 S3Client.putObject(new PutObjectRequest(BUCKET, "Meal/" + mealid + ".jpg", mealPicture));
                 statement.executeUpdate("update Meals set mpicture ='" + mpicture + "' where hemail = '" + hemail
                         + "' and dom = '" + dom + "' limit 1;");
@@ -296,9 +296,9 @@ public class Database {
     }
 
     public static boolean insertUser(String email, String pass, String username, String description,
-                                  String country, String currency, File profilePicture, String dob,
-                                  String gender, String userlang, String ccnum, String cccvv, String cccountry,
-                                  String ccprovince, String ccaddress, String cccity, String ccpostal, String ccexp)
+                                     String country, String currency, File profilePicture, String dob,
+                                     String gender, String userlang, String ccnum, String cccvv, String cccountry,
+                                     String ccprovince, String ccaddress, String cccity, String ccpostal, String ccexp)
             throws SQLException, ClassNotFoundException {
         Connection newConnection = connectDatabase();
         Statement statement = newConnection.createStatement();
@@ -412,7 +412,7 @@ public class Database {
                 if (profilePicture != null) {
                     BasicAWSCredentials creds = new BasicAWSCredentials(ACCESS_KEY, SECRET_ACCESS_KEY);
                     AmazonS3 S3Client = AmazonS3ClientBuilder.standard().withRegion("us-east-2").withCredentials
-                                    (new AWSStaticCredentialsProvider(creds)).build();
+                            (new AWSStaticCredentialsProvider(creds)).build();
                     S3Client.putObject(new PutObjectRequest(BUCKET,"Profile/" + email + ".jpg", profilePicture));
                 }
                 insertSuccess = true;

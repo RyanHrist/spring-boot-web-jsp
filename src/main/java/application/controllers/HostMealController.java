@@ -9,7 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -55,44 +57,31 @@ public class HostMealController {
         ModelAndView modelAndView = new ModelAndView();
 
         if(request.getSession().getAttribute("user") != null) {
-            System.out.print(imageURL + " " + mealDescription);
             Connection newConnection = Database.connectDatabase();
-            Statement statement = newConnection.createStatement();
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
-
-
-            Meals newMeal = new Meals();
-            String insert = "INSERT Meals SET mtitle='"+mealName+"', description = '"+ mealDescription + "', mpicture = '" + imageURL + "'"
-                    + ", hemail='"+user.getEmail()+"'";
-            newMeal.setDescription(mealDescription);
-            newMeal.setImage(imageURL);
-            System.out.println(insert);
-
             try{
-                // SQL update
-                statement.executeUpdate(insert);
-                // TODO: GET UNIQUE MEAL ID
-//                int id =statement.executeUpdate(insert, Statement.RETURN_GENERATED_KEYS);
-//                System.out.println("SUCCESS");
-//                modelAndView.setViewName("meal/" + id);
-                modelAndView.setViewName("home");
-                session.setAttribute("hostedMeal", newMeal);
-                // Attempt at starting session, TODO
-                //TODO ADD MEALS TO THE USERS HOSTED MEALS
+                // TODO: Correct this to actual info provided by the form
+                File pic = new File("D:\\Dropbox\\4F00\\spring-boot-web-jsp\\src\\main\\webapp\\resources\\static\\images\\i1.jpg");
+                Database.insertMeal(user.getEmail(), "2018-07-07 17:00", mealName, pic, 5,
+                        25.5, "Food", "Good", "2018-04-06 8:00", 1000.0, "Canada",
+                        "Toronto", "123 example st", "123456");
+                ResultSet rs = Database.selectMeal(newConnection, 0, user.getEmail(), "2018-07-07 17:00");
+                Meals newMeal = Database.createMeal(rs);
+                session.setAttribute("selectedMeal", newMeal);
+                session.setAttribute("mealHost",user);
+                session.setAttribute("correctURL", true);
+                modelAndView.setViewName("meal");
                 Database.disconnectDatabase(newConnection);
                 return modelAndView;
             } catch(SQLException e) {
-                // TODO: Front end team: create a popup that says that email is already used.
                 modelAndView.setViewName("hostmeal");
                 modelAndView.addObject("unsuccessMessage", "Error creating meal.");
                 Database.disconnectDatabase(newConnection);
                 return modelAndView;
             }
-
         }
-
-        modelAndView.setViewName("hostmeal");
+//        modelAndView.setViewName("hostmeal");
         return modelAndView;
     }
 }

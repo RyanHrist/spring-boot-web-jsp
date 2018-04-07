@@ -1,4 +1,3 @@
-<%@ page import="application.models.User" %><%--
 <%--
   Created by IntelliJ IDEA.
   User: Nancy
@@ -23,52 +22,52 @@
         if (loggedUser != null) {
     %>
 
-    <div class="eag-container">
+<div class="eag-container">
 
-        <form action="/account" autocomplete="on" method="POST">
-            <div class="eag-row">
-                <div style = 'float: right'><button type="button" onclick="editFields()" class="editbutton" align = "right"> Edit <i class="fa fa-edit"></i></button></div>
-            </div>
-            <div class="eag-row">
-                <div class="eag-col-half">
-                    <h4>Name</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="name" id="name" value="${user.name}" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-user"></i></div>
-                    </div>
-                </div>
-                <div class="eag-col-half">
-                    <h4>Email</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="email" id="email" value="${user.email}" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-envelope"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="eag-row">
-                <div class="eag-col-half">
-                    <h4>Password</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="password" name="pass" id="pass" value="${user.password}" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-key"></i></div>
-                    </div>
-                </div>
-                <div class="eag-col-half">
-                    <h4>Location</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="location" id="location" value="${user.country}"  readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-globe"></i></div>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <div class="eag-row">
-                <h4>Credit Card Number</h4>
+    <form action="/account" autocomplete="on" method="POST">
+        <div class="eag-row">
+        <div style = 'float: right'><button type="button" onclick="myFunction()" class="editbutton" align = "right"> Edit <i class="fa fa-edit"></i></button></div>
+        </div>
+        <div class="eag-row">
+            <div class="eag-col-half">
+                <h4>Name</h4>
                 <div class="eag-input-group eag-input-group-icon">
-                    <input type="text" name="num" id="ccnum" value="${user.cccnumber}"  readonly=""/>
+                    <input type="text" name="name" id="name" value="${user.name}" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-user"></i></div>
                 </div>
             </div>
+            <div class="eag-col-half">
+                <h4>Email</h4>
+                <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="email" id="email" value="${user.email}" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-envelope"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="eag-row">
+            <div class="eag-col-half">
+                <h4>Password</h4>
+                <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="pass" id="pass" value="${user.password}" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-key"></i></div>
+                </div>
+            </div>
+            <div class="eag-col-half">
+                <h4>Location</h4>
+                <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="location" id="location" value="${user.country}"  readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-globe"></i></div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="eag-row">
+            <h4>Credit Card Number</h4>
+            <div class="eag-input-group eag-input-group-icon">
+                <input type="text" name="num" id="ccnum" value="${user.cccnumber}"  readonly=""/>
+            </div>
+        </div>
 
         <div class="eag-row">
             <div class="eag-col-half">
@@ -124,28 +123,11 @@
         <input type="submit" onclick="myFunction2()"  id = "submitbutton" class="button" disabled = "false" style="opacity:0.5"/>
 
     </form>
-            <div class="eag-row">
-                <div class="eag-col-half">
-                    <h4>Card Type</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="cctype" value="Master Card" id="cctype" readonly=""/>
-                    </div>
-                </div>
-                <div class="eag-col-half">
-                    <h4>CVV</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="ccdigits" id="ccdigits" value="${user.cccvv}"  readonly=""/>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <input type="submit" onclick="submit()" id = "submitbutton" class="button" disabled = "false" style="opacity:0.5"/>
-        </form>
 
 
 
-        <br/>
-    </div>
+    <br/>
+</div>
     <% } else { %>
     <h1> You must be logged in to view your Profile.</h1>
     <% } %>
@@ -154,8 +136,10 @@
 
 
 <script>
-    function editFields() {
+    function myFunction() {
         document.getElementById("name").readOnly = false;
+        //should not be able to edit email
+        //document.getElementById("email").readOnly = true;
         document.getElementById("pass").readOnly = false;
         document.getElementById("location").readOnly = false;
         document.getElementById("ccnum").readOnly = false;
@@ -167,8 +151,9 @@
         document.getElementById("dropdown2").disabled = false;
     }
 
-    function submit() {
+    function myFunction2() {
         document.getElementById("name").readOnly = true;
+        //document.getElementById("email").readOnly = true;
         document.getElementById("pass").readOnly = true;
         document.getElementById("location").readOnly = true;
         document.getElementById("ccnum").readOnly = true;

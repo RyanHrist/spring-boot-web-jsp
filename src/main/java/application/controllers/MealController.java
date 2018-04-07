@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,14 +63,14 @@ public class MealController {
             // SQL update
             statement.executeUpdate(confirmBooking);
             session.setAttribute("bookedMeal", "Congratulations on booking a meal!");
-//            modelAndView.setViewName("upcomingMeals");
+            modelAndView.setViewName("redirect:/upcoming_meals");
 
         }catch(SQLException e) {
             // TODO: Front end team: create a popup that says that email is already used.
             session.setAttribute("bookedMeal", "Unfortunately there was an error booking your meal!");
-//            modelAndView.setViewName("upcomingMeals");
+            modelAndView.setViewName("redirect:/upcoming_meals");
             Database.disconnectDatabase(newConnection);
-//            return modelAndView;
+            return modelAndView;
         }
         modelAndView.setViewName("upcomingMeals");
         Database.disconnectDatabase(newConnection);

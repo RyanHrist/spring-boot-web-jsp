@@ -19,11 +19,7 @@
 
     <c:url value="../../resources/static/css/main.css" var="jstlCss" />
     <link href="${jstlCss}" rel="stylesheet" />
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -70,8 +66,7 @@
                         <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
                     </div>
                     <div class="modal-body" style="padding:40px 50px;">
-                        <form  action="<%=request.getContextPath()%>/login" autocomplete="on" method="POST">
-                            <h3 style="color: red">${unsuccessMessage}</h3>
+                        <form  action="<%=request.getContextPath()%>" autocomplete="on" method="POST">
                             <div class="form-group">
                                 <label for="loginUsername"><span class="glyphicon glyphicon-user"></span> Username</label>
                                 <input type="email" class="form-control" id="loginUsername" name="loginUsername" placeholder="Enter email" required>

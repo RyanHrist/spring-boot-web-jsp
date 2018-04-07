@@ -41,19 +41,19 @@
             for (Meals meals : foundMeals) {
                 pageContext.setAttribute("localMeal", meals);
                 if (meals.getImage().equals("") || meals.getImage() == null) {
-    %>    <a href="/meal/${localMeal.mealID}"><img src="/images/i1.jpg" alt="Meal Preview Image" style="width:256px;height:200px;" class="fadeimg"></a>
-    <% } else { %>
-    <a href="/meal/${localMeal.mealID}">
-        <div class="contain">
-            <img src="${localMeal.image}" alt="Meal Preview Image" style="width:256px;height:200px;" class="fadeimg">
-            <div class="middle">
-                <div class="text">${localMeal.getMealTitle()}</div>
-            </div>
-        </div>
-    </a>
-    <% }
-    }
-    }%>
+                    %>    <a href="/meal/${localMeal.mealID}"><img src="/images/i1.jpg" alt="Meal Preview Image" style="width:256px;height:200px;" class="fadeimg"></a>
+                 <% } else { %>
+                        <a href="/meal/${localMeal.mealID}">
+                        <div class="contain">
+                        <img src="${localMeal.image}" alt="Meal Preview Image" style="width:256px;height:200px;" class="fadeimg">
+                            <div class="middle">
+                                <div class="text">${localMeal.getMealTitle()}</div>
+                            </div>
+                        </div>
+                        </a>
+                 <% }
+            }
+        }%>
     <%--} else {--%>
     <%--ArrayList<Meals> allMeals = (ArrayList<Meals>) session.getAttribute("allMeals");--%>
     <%--for (Meals meals: allMeals) {--%>

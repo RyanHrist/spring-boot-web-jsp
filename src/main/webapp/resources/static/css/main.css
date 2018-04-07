@@ -470,6 +470,14 @@ select option {
     float: left;
     width: 33.33333333%;
 }
+.eag-col-quarter {
+    padding-right: 10px;
+    float: left;
+    width: 25%;
+}
+.eag-col-quarter:last-of-type {
+    padding-right: 0;
+}
 .eag-col-third:last-of-type {
     padding-right: 0;
 }

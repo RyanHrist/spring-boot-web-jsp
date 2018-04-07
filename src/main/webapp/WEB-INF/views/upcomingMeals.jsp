@@ -82,7 +82,6 @@
     </nav>
 
     <h1>Previous Meals</h1>
-    <h3>${bookedMeal}</h3>
     <hr>
 
     <nav>

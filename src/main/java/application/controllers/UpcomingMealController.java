@@ -48,7 +48,6 @@ public class UpcomingMealController {
                     upcomingMeals.add(meal);
                 }
             }
-
             session.setAttribute("upcomingMeals", upcomingMeals);
             modelAndView.setViewName("upcomingMeals");
             Database.disconnectDatabase(newConnection);

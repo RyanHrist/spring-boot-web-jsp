@@ -51,21 +51,30 @@ public class MealController {
      * @throws ClassNotFoundException
      */
     @RequestMapping(value="/bookmeal/{mealId}/confirmation", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView bookMealConfirmation(@PathVariable("mealId") int mealId, HttpServletRequest request)
-            throws ClassNotFoundException {
+    public ModelAndView bookMealConfirmation(@PathVariable("mealId") String mealId, HttpServletRequest request)
+            throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
         HttpSession session = request.getSession();
+        Connection newConnection = Database.connectDatabase();
+        Statement statement = newConnection.createStatement();
         User currentUser = (User) session.getAttribute("user");
+        String currentUserEmail = currentUser.getEmail();
+        String confirmBooking = "INSERT Attending SET gemail='"+currentUserEmail+"', mealid='"+mealId+"'";
         try {
-            Database.insertAttending(mealId, currentUser.getEmail());
+            // SQL update
+            statement.executeUpdate(confirmBooking);
             session.setAttribute("bookedMeal", "Congratulations on booking a meal!");
-            modelAndView.setViewName("redirect:/upcoming_meals");
-        } catch(SQLException e) {
+//            modelAndView.setViewName("upcomingMeals");
+
+        }catch(SQLException e) {
             // TODO: Front end team: create a popup that says that email is already used.
             session.setAttribute("bookedMeal", "Unfortunately there was an error booking your meal!");
-            modelAndView.setViewName("redirect:/upcoming_meals");
-            return modelAndView;
+//            modelAndView.setViewName("upcomingMeals");
+            Database.disconnectDatabase(newConnection);
+//            return modelAndView;
         }
+        modelAndView.setViewName("upcomingMeals");
+        Database.disconnectDatabase(newConnection);
         return modelAndView;
     }
 
@@ -78,22 +87,46 @@ public class MealController {
      * @throws ClassNotFoundException
      */
     @RequestMapping(value = "/{mealId}", method = RequestMethod.GET)
-    public ModelAndView viewMeal(@PathVariable("mealId") int mealId,
+    public ModelAndView viewMeal(@PathVariable("mealId") String mealId,
                                  HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
         HttpSession session = request.getSession();
         Meals selectedMeal = new Meals();
         User mealHost = new User();
         Connection newConnection = Database.connectDatabase();
-        ResultSet rs = Database.selectMeal(newConnection, mealId, null, null);
-        selectedMeal = Database.createMeal(rs);
-        ResultSet rs2 = Database.selectUser(newConnection, selectedMeal.getWithHost());
-        mealHost = Database.createUser(rs2);
-        session.setAttribute("correctURL", true);
+        Statement statement = newConnection.createStatement();
+
+        ResultSet rs;
+        String getMeals = "SELECT * FROM Meals WHERE mealid='"+mealId+"'";
+        rs=statement.executeQuery(getMeals);
+        if(rs.next()) {
+            // DOES THE MEAL ID EXIST:
+            session.setAttribute("correctURL", true);
+            // SELECTED MEAL INFORMATION:
+            selectedMeal.setImage(rs.getString("mpicture"));
+            selectedMeal.setDescription(rs.getString("description"));
+            selectedMeal.setMealTitle(rs.getString("mtitle"));
+            selectedMeal.setMealID(rs.getInt("mealid"));
+            selectedMeal.setWithHost(rs.getString("hemail"));
+            selectedMeal.setPrice(rs.getDouble("pricepp"));
+            selectedMeal.setDate(rs.getString("dom"));
+            selectedMeal.setAddress("saddress");
+
+            String getHost = "SELECT * FROM Users WHERE email='"+rs.getString("hemail")+"'";
+            rs = statement.executeQuery(getHost);
+            if (rs.next()) {
+                // HOST OF MEAL INFORMATION:
+                mealHost.setName(rs.getString("username"));
+            }
+        } else {
+            session.setAttribute("correctURL", false);
+        }
+
         session.setAttribute("selectedMeal", selectedMeal);
         session.setAttribute("mealHost", mealHost);
         modelAndView.setViewName("meal");
         Database.disconnectDatabase(newConnection);
         return modelAndView;
     }
+
 }

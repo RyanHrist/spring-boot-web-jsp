@@ -113,7 +113,7 @@ public class HomeController {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView loginUser(@RequestParam(value = "loginUsername", required = false) String userLogin,
                                   @RequestParam(value = "loginPassword", required = false) String userPassword,
                                   HttpServletRequest request) throws SQLException, ClassNotFoundException {
@@ -128,6 +128,8 @@ public class HomeController {
                 rs.first();
                 User user = Database.createUser(rs);
                 session.setAttribute("user", user);
+                session.setAttribute("loginFail", "");
+
             } else {
                 session.setAttribute("loginFail", "Please enter a correct username and password.");
             }
@@ -136,6 +138,7 @@ public class HomeController {
         Database.disconnectDatabase(newConnection);
         return modelAndView;
     }
+
 
     /**
      * Logs the user out deactivating the session they were previously in.

@@ -29,7 +29,7 @@
 <!-- INCLUDE HEADER -->
 <div class="navbar123">
     <div class="home" style="float:left;">
-        <a href="/"><img src="../images/EAG_Logo.png" alt="Logo" style="width:21px;height:21px;"></a>
+        <a href="/"><img src="/images/EAG_Logo.png" alt="Logo" style="width:21px;height:21px;"></a>
 
     </div>
 

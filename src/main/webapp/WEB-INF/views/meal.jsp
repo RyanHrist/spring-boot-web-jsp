@@ -18,6 +18,7 @@
 <body>
     <jsp:include page="header.jsp"/>
     <div class="centered">
+        <div class="eag-container">
 
         <%
             boolean correctURL = (boolean) session.getAttribute("correctURL");
@@ -79,6 +80,7 @@
         <% } else { %>
         <h2>Login to book a meal!</h2>
         <% } %>
+    </div>
     </div>
     <% } else {%>
         <h1>This meal does not exist...</h1>

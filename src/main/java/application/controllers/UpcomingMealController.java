@@ -5,46 +5,35 @@ import application.models.Meals;
 import application.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Controller
 public class UpcomingMealController {
 
-    @RequestMapping(value="/upcoming_meals")
+    @RequestMapping(value = "/upcoming_meals")
     public ModelAndView hostMeal(HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
-        if(request.getSession().getAttribute("user") != null) {
+        if (request.getSession().getAttribute("user") != null) {
             Connection newConnection = Database.connectDatabase();
-            Statement statement = newConnection.createStatement();
-
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
-            String getAttendingMealIds = "SELECT * FROM Attending WHERE gemail='"+user.getEmail()+"'";
-            ResultSet rs;
-            rs=statement.executeQuery(getAttendingMealIds);
-
+            ResultSet rs = Database.selectAttending(newConnection, 0, user.getEmail());
             ArrayList<Integer> mealIds = new ArrayList<>();
-            while(rs.next()) {
+            while (rs.next()) {
                 mealIds.add(rs.getInt("mealid"));
             }
-
             ArrayList<Meals> upcomingMeals = new ArrayList<>();
-            for (Integer id:mealIds) {
-                String getAttendingMeals = "SELECT * FROM Meals WHERE mealid='" + id + "'";
-                rs = statement.executeQuery(getAttendingMeals);
-                while(rs.next()) {
-                    Meals meal = new Meals();
-                    meal.setImage(rs.getString("mpicture"));
-                    meal.setDescription(rs.getString("description"));
-                    meal.setDate(rs.getString("dom"));
-                    meal.setMealID(id);
+            for (Integer id : mealIds) {
+                rs = Database.selectMeal(newConnection, id, null, null);
+                if (rs.first()) {
+                    Meals meal = Database.createMeal(rs);
                     upcomingMeals.add(meal);
                 }
             }
@@ -54,8 +43,6 @@ public class UpcomingMealController {
         } else {
             modelAndView.setViewName("upcomingMeals");
         }
-
         return modelAndView;
     }
-
 }

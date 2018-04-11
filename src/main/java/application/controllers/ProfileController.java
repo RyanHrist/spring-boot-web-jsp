@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 @Controller
 @RequestMapping("/profile")
@@ -37,9 +36,9 @@ public class ProfileController {
         session.setAttribute("profileId", profileId);
         session.setAttribute("viewingOwnProfile", false);
         User profile = new User();
-        if(!profileId.equals("")) {
+        if (!profileId.equals("")) {
             ResultSet rs = Database.selectUser(newConnection, Integer.parseInt(profileId));
-            if(rs.first()) {
+            if (rs.first()) {
                 profile = Database.createUser(rs);
                 session.setAttribute("existingProfile", true);
                 session.setAttribute("userBeingViewed", profile);

@@ -17,7 +17,7 @@
 <div class="centered">
     <h1>Register</h1>
     <h3>${unsuccessMessage}</h3>
-</div>
+
 
 <div class="eag-container">
     <form action="/registration" autocomplete="on" method="POST">

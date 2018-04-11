@@ -31,7 +31,7 @@
             <div class="eag-row">
                 <div style = 'float: right'><button type="button" onclick="myFunction()" class="button"> Edit <i class="fa fa-edit"></i></button></div>
 
-                <div style = 'float: right'> <button type="button" onclick="myFunction2()" class="button"> Save <i class="fa fa-save"></i></button></div>
+                <div style = 'float: right'> <button type="submit" onclick="myFunction2()" class="button"> Save <i class="fa fa-save"></i></button></div>
 
             </div>
             <div class="eag-row">

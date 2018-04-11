@@ -32,52 +32,52 @@
     <hr>
 
     <nav>
-            <%
-                ArrayList<Meals> previousMeals = new ArrayList<Meals>();
-                ArrayList<Meals> upcomingMeals = new ArrayList<Meals>();
-                if (allMeals.size() != 0) {
-                    for (int i=0;i<allMeals.size();i++) {
+        <%
+            ArrayList<Meals> previousMeals = new ArrayList<Meals>();
+            ArrayList<Meals> upcomingMeals = new ArrayList<Meals>();
+            if (allMeals.size() != 0) {
+                for (int i=0;i<allMeals.size();i++) {
 
 
 
-                        String date;
-                        date = allMeals.get(i).getDate();
-                        date = date.replaceAll("\\D", "");
+                    String date;
+                    date = allMeals.get(i).getDate();
+                    date = date.replaceAll("\\D", "");
 
-                        System.out.println(date);
-                        long DOM = Long.parseLong(date);
-                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
-                        LocalDateTime now = LocalDateTime.now();
-                        long CD = Long.parseLong(dtf.format(now));
-                        CD = CD*10;
+                    System.out.println(date);
+                    long DOM = Long.parseLong(date);
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+                    LocalDateTime now = LocalDateTime.now();
+                    long CD = Long.parseLong(dtf.format(now));
+                    CD = CD*10;
 
-                        if (CD > DOM) {
-                            previousMeals.add(allMeals.get(i));
-                        }
-                        else{
-                            upcomingMeals.add(allMeals.get(i));
-                        }
-
-
-                        // if (date)
-                        // add meals
-
+                    if (CD > DOM) {
+                        previousMeals.add(allMeals.get(i));
                     }
+                    else{
+                        upcomingMeals.add(allMeals.get(i));
+                    }
+
+
+                    // if (date)
+                    // add meals
+
                 }
-                    if (upcomingMeals.size() != 0) {
-                        for (Meals meal:upcomingMeals) {
-                            pageContext.setAttribute("meal", meal);
+            }
+            if (upcomingMeals.size() != 0) {
+                for (Meals meal:upcomingMeals) {
+                    pageContext.setAttribute("meal", meal);
 
 
-            %>
-            <form  action="/meal" autocomplete="on" method="POST">
+        %>
+        <form  action="/meal" autocomplete="on" method="POST">
             <a href="/meal/${meal.mealID}"><img src ="${meal.image}" style="width:200px;height:100px;"> ${meal.description} </a>
-            </form>
-            <%}
-            } else {%>
-            <h3>You have no upcoming meals</h3>
-            <%}
-            %>
+        </form>
+        <%}
+        } else {%>
+        <h3>You have no upcoming meals</h3>
+        <%}
+        %>
 
     </nav>
 
@@ -111,7 +111,7 @@
 
 
 
-            <% } else { %>
+    <% } else { %>
     <h1>You must login to view Upcoming Meals.</h1>
     <% } %>
 

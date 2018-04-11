@@ -1,16 +1,8 @@
 package application.controllers;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Map;
-
 import application.Database;
 import application.models.Meals;
 import application.models.User;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.crypto.Data;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Home Controller, in charge of all functionality on the home page & also login and logout
- *
+ * <p>
  * Controller mapped to "", "/" which is the home page of the website
  */
 @Controller
@@ -32,6 +27,7 @@ public class HomeController {
 
     /**
      * General method which returns the home screen with all meals in the database listed
+     *
      * @param request
      * @return
      * @throws SQLException
@@ -49,6 +45,7 @@ public class HomeController {
      * Search method on the home page which is used to search the entered query to match anything similar to
      * the description, the city, country, or category of a meal
      * It then sets "foundMeals" array list into all meals found through the query
+     *
      * @param searchQuery
      * @param request
      * @return
@@ -63,7 +60,7 @@ public class HomeController {
         Connection newConnection = Database.connectDatabase();
         ResultSet rs = Database.selectSimilarMeal(newConnection, searchQuery);
         ArrayList<Meals> foundMeals = new ArrayList<>();
-        if (rs.first()){
+        if (rs.first()) {
             ArrayList<Meals> selectedMeals = Database.createMealsList(rs);
             for (Meals m : selectedMeals) {
                 if (!m.mealHappened()) {
@@ -82,6 +79,7 @@ public class HomeController {
 
     /**
      * Get all meals in the database and places them into "foundMeals" array list
+     *
      * @param request
      * @throws SQLException
      * @throws ClassNotFoundException
@@ -93,8 +91,8 @@ public class HomeController {
         allMealsSet.first();
         ArrayList<Meals> allMeals = Database.createMealsList(allMealsSet);
         ArrayList<Meals> foundMeals = new ArrayList<>();
-        for (Meals m : allMeals){
-            if (!m.mealHappened()){
+        for (Meals m : allMeals) {
+            if (!m.mealHappened()) {
                 foundMeals.add(m);
             }
         }
@@ -106,6 +104,7 @@ public class HomeController {
      * User login method, takes the loginname and username and ensures that there is a match in the database,
      * used on the home page as it is a popup without a unique URL
      * Key note: activates the session (keep track of user login)
+     *
      * @param userLogin
      * @param userPassword
      * @param request
@@ -113,7 +112,7 @@ public class HomeController {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView loginUser(@RequestParam(value = "loginUsername", required = false) String userLogin,
                                   @RequestParam(value = "loginPassword", required = false) String userPassword,
                                   HttpServletRequest request) throws SQLException, ClassNotFoundException {
@@ -123,11 +122,13 @@ public class HomeController {
         getAllMeals(request);
 
         if (userLogin != null && userPassword != null) {
-            if (Database.login(userLogin, userPassword)){
+            if (Database.login(userLogin, userPassword)) {
                 ResultSet rs = Database.selectUser(newConnection, userLogin);
                 rs.first();
                 User user = Database.createUser(rs);
                 session.setAttribute("user", user);
+                session.setAttribute("loginFail", "");
+
             } else {
                 session.setAttribute("loginFail", "Please enter a correct username and password.");
             }
@@ -137,8 +138,10 @@ public class HomeController {
         return modelAndView;
     }
 
+
     /**
      * Logs the user out deactivating the session they were previously in.
+     *
      * @param request
      * @return
      * @throws SQLException

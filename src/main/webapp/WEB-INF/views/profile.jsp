@@ -35,7 +35,7 @@
 
             </div>
             <div class="eag-row">
-                <img src="${user.profilePicture}" alt="Profile Picture??" id="pic" style="width:200px;height:200px;">
+                <img src="${user.getProfilePicture()}" alt="Profile Picture??" id="pic" style="width:200px;height:200px;">
             </div>
             <div class="eag-row">
                 <button type="button"  onclick="myFunction3()" class ="button" id = "upload2" hidden = "true"> Upload Photo </button>

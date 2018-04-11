@@ -26,7 +26,8 @@
 
     <form action="/account" autocomplete="on" method="POST">
         <div class="eag-row">
-        <div style = 'float: right'><button type="button" onclick="myFunction()" class="editbutton" align = "right"> Edit <i class="fa fa-edit"></i></button></div>
+        <div style = 'float: right'><button type="button" onclick="myFunction()" class="button" id = "editbutton"  align = "right" style="opacity:1" > Edit <i class="fa fa-edit"></i></button></div>
+            <div style = 'float: right'><button type="submit" onclick="myFunction2()"  id = "submitbutton" class="button"  style="opacity:0">Save<i class="fa fa-edit"></i></button></div>
         </div>
         <div class="eag-row">
             <div class="eag-col-half">
@@ -48,7 +49,7 @@
             <div class="eag-col-half">
                 <h4>Password</h4>
                 <div class="eag-input-group eag-input-group-icon">
-                    <input type="text" name="pass" id="pass" value="${user.password}" readonly=""/>
+                    <input type="password" name="pass" id="pass" value="${user.password}" readonly=""/>
                     <div class="eag-input-icon"><i class="fa fa-key"></i></div>
                 </div>
             </div>
@@ -120,7 +121,7 @@
 
         </div>
         <br/>
-        <input type="submit" onclick="myFunction2()"  id = "submitbutton" class="button" disabled = "false" style="opacity:0.5"/>
+
 
     </form>
 
@@ -145,8 +146,9 @@
         document.getElementById("ccnum").readOnly = false;
         document.getElementById("cctype").readOnly = false;
         document.getElementById("ccdigits").readOnly = false;
-        document.getElementById("submitbutton").disabled = false;
+        //document.getElementById("submitbutton").disabled = false;
         document.getElementById("submitbutton").style.opacity = "1";
+        document.getElementById("editbutton").style.opacity = "0";
         document.getElementById("dropdown").disabled = false;
         document.getElementById("dropdown2").disabled = false;
     }
@@ -161,6 +163,9 @@
         document.getElementById("ccdigits").readOnly = true;
         document.getElementById("dropdown").disabled = true;
         document.getElementById("dropdown2").disabled = true;
+        //document.getElementById("submitbutton").disabled = true;
+        document.getElementById("submitbutton").style.opacity = "0";
+        document.getElementById("editbutton").style.opacity = "1";
     }
 </script>
 </body>

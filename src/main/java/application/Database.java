@@ -949,6 +949,13 @@ public class Database {
     }
 
     // TODO: Test
+    public static ResultSet selectUser(Connection conn, int userid) throws SQLException, ClassNotFoundException {
+        return selectUser(conn, userid, null, null, null, null, null,
+                null, null, null, null, null, null, null,
+                null, null, null, null, null, null);
+    }
+
+    // TODO: Test
     public static boolean updateMeal(int mealid, String hemail, String dom, String mtitle, File mealPicture,
                                      int capacity, double pricepp, String category, String description,
                                      String cancelationtime, double cancelationfee, String country, String city,

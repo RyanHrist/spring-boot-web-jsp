@@ -33,22 +33,14 @@ public class ProfileController {
                                          HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
         Connection newConnection = Database.connectDatabase();
-        Statement statement = newConnection.createStatement();
         HttpSession session = request.getSession();
         session.setAttribute("profileId", profileId);
         session.setAttribute("viewingOwnProfile", false);
-        User profile = new User();//(User) session.getAttribute("user");
+        User profile = new User();
         if(!profileId.equals("")) {
-            String sql = "SELECT * FROM Users WHERE userid='" + profileId + "'";
-            ResultSet rs=statement.executeQuery(sql);
-            System.out.println(sql);
-            if(rs.next()) {
-                // TODO: MAIN - fill in the rest of the profiles user info from Users table
-                profile.setName(rs.getString("username"));
-                profile.setUserDescription(rs.getString("description"));
-                profile.setCccity(rs.getString("cccity"));
-                profile.setCountry(rs.getString("cccountry"));
-                profile.setProfilePicture(rs.getString("ppicture"));
+            ResultSet rs = Database.selectUser(newConnection, Integer.parseInt(profileId));
+            if(rs.first()) {
+                profile = Database.createUser(rs);
                 session.setAttribute("existingProfile", true);
                 session.setAttribute("userBeingViewed", profile);
             } else {

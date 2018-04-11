@@ -32,7 +32,6 @@
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
     </div>
-
     <h1>${nothingFound}</h1>
     <hr>
     <%

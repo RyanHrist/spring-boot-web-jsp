@@ -27,8 +27,8 @@
             pageContext.setAttribute("upcomingMeals", allMeals);
             pageContext.setAttribute("user", loggedUser);
     %>
-    <h1>Upcoming Meals</h1>
     <h3>${bookedMeal}</h3>
+    <h1>Upcoming Meals</h1>
     <hr>
 
     <nav>

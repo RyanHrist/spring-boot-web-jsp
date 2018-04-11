@@ -24,7 +24,7 @@
         %>
         <div class="eag-container">
         <form  action="/meal/bookmeal/${selectedMeal.mealID}/confirmation" autocomplete="on" method="POST">
-
+            <h2>${errorBooking}</h2>
             <div class="eag-row">
                 <h3>Host name: <b>${mealHost.name}</b></h3><br>
             </div>

@@ -295,7 +295,6 @@ public class Database {
         return insertSuccess;
     }
 
-    // TODO: Test
     public static boolean insertUser(String email, String pass, String username, String description,
                                   String country, String currency, File profilePicture, String dob,
                                   String gender, String userlang, String ccnum, String cccvv, String cccountry,

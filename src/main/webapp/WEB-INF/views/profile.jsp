@@ -1,4 +1,4 @@
-<%@ page import="application.models.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Nancy
   Date: 2/22/2018
@@ -27,18 +27,25 @@
     %>
 
     <div class="eag-container">
-        <form action="/registration" autocomplete="on" method="POST">
+        <form action="/profile" autocomplete="on" method="POST">
             <div class="eag-row">
-                <div style = 'float: right'><button type="button" onclick="myFunction()" class="button"> Edit <i class="fa fa-edit"></i></button></div>
+                <div style='float: right'>
+                    <button type="button" onclick="myFunction()" class="button"> Edit <i class="fa fa-edit"></i>
+                    </button>
+                </div>
 
-                <div style = 'float: right'> <button type="submit" onclick="myFunction2()" class="button"> Save <i class="fa fa-save"></i></button></div>
+                <div style='float: right'><input type="submit" onclick="myFunction2()" class="button" value="Upload Now"/> Save <i
+                        class="fa fa-save"></i></div>
 
             </div>
             <div class="eag-row">
-                <img src="${user.getProfilePicture()}" alt="Profile Picture??" id="pic" style="width:200px;height:200px;">
+                <img src="${user.getProfilePicture()}" alt="Profile Picture??" id="pic"
+                     style="width:200px;height:200px;">
             </div>
             <div class="eag-row">
-                <button type="button"  onclick="myFunction3()" class ="button" id = "upload2" hidden = "true"> Upload Photo </button>
+                <input type="file" id="selectedFile" name="imageURL" style="display: none;">
+                <%--<button type="button" onclick="myFunction3()" class="button" id="upload2" hidden="true"> Upload Photo--%>
+                <%--</button>--%>
             </div>
             <div class="eag-row">
                 <div class="eag-col-half">
@@ -80,9 +87,9 @@
                 </textarea>
                 </div>
             </div>
-        </form>
 
-        <input type="file" name="imageURL" accept="image/*" id="selectedFile" style="display: none;" >
+
+        </form>
 
     </div>
 
@@ -92,53 +99,54 @@
 
     <div class="eag-container">
 
-            <div class="eag-row">
-                <% if (userBeingViewed.getProfilePicture().equals("") || userBeingViewed.getProfilePicture() == null) {%>
-                <img src="../images/i1.jpg" alt="Profile Picture546" style="width:200px;height:200px;">
-                <% } else { %>
-                <img src="${userBeingViewed.getProfilePicture()}" alt="Profile Picture258" style="width:200px;height:200px;">
-                <% } %>
-            </div>
-            <div class="eag-row">
-                <div class="eag-col-half">
-                    <h4>Name</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="hostname" id="hostname" value="${userBeingViewed.name}" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-user"></i></div>
-                    </div>
-                </div>
-                <div class="eag-col-half">
-                    <h4>Location</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="location" value="${userBeingViewed.country}" id="location" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-globe"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="eag-row">
-                <div class="eag-col-half">
-                    <h4>Language</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="language" value="${userBeingViewed.language}" id="language" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-font"></i></div>
-                    </div>
-                </div>
-                <div class="eag-col-half">
-                    <h4>Rating</h4>
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="text" name="hostrating" value="4.5" id="hostrating" readonly="" readonly=""/>
-                        <div class="eag-input-icon"><i class="fa fa-star"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="eag-row">
-                <h4>About ${userBeingViewed.name}</h4>
+        <div class="eag-row">
+            <% if (userBeingViewed.getProfilePicture().equals("") || userBeingViewed.getProfilePicture() == null) {%>
+            <img src="../images/i1.jpg" alt="Profile Picture546" style="width:200px;height:200px;">
+            <% } else { %>
+            <img src="${userBeingViewed.getProfilePicture()}" alt="Profile Picture258"
+                 style="width:200px;height:200px;">
+            <% } %>
+        </div>
+        <div class="eag-row">
+            <div class="eag-col-half">
+                <h4>Name</h4>
                 <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="hostname" id="hostname" value="${userBeingViewed.name}" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-user"></i></div>
+                </div>
+            </div>
+            <div class="eag-col-half">
+                <h4>Location</h4>
+                <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="location" value="${userBeingViewed.country}" id="location" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-globe"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="eag-row">
+            <div class="eag-col-half">
+                <h4>Language</h4>
+                <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="language" value="${userBeingViewed.language}" id="language" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-font"></i></div>
+                </div>
+            </div>
+            <div class="eag-col-half">
+                <h4>Rating</h4>
+                <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="hostrating" value="4.5" id="hostrating" readonly="" readonly=""/>
+                    <div class="eag-input-icon"><i class="fa fa-star"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="eag-row">
+            <h4>About ${userBeingViewed.name}</h4>
+            <div class="eag-input-group eag-input-group-icon">
                 <textarea type="textarea" name="description" id="aboutme" rows="10" cols="60" readonly="">
                     ${userBeingViewed.userDescription}
                 </textarea>
-                </div>
             </div>
+        </div>
     </div>
 
         <% // If profile trying to be viewed does not exist
@@ -147,8 +155,6 @@
         <% } else { %>
     <h1> You must be logged in to view your Profile.</h1>
         <% } %>
-
-
 
 
     <script>
@@ -168,9 +174,8 @@
             document.getElementById("upload2").hidden = true;
         }
 
-        function myFunction3(){
+        function myFunction3() {
             document.getElementById('selectedFile').click();
-
         }
     </script>
 </body>

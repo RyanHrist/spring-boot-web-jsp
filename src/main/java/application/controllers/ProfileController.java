@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,26 +33,27 @@ public class ProfileController {
     public ModelAndView updateUser(@RequestParam("hostname") String hostname1 ,
                                    @RequestParam("location") String location1,
                                    @RequestParam("language") String language1,
-                                   @RequestParam("hostrating") String hostrating1,
                                    @RequestParam("description") String description1,
-                                   @RequestParam("imageURL") String image1,
                                    HttpServletRequest request) throws SQLException, ClassNotFoundException {
         ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
-        user.setName(hostname1);
-        user.setCountry(location1);
-        user.setLanguage(language1);
-        //user.set(hostrating1);
-        user.setUserDescription(description1);
-        user.setImage(image1);
+        Connection newConnection = Database.connectDatabase();
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+//        User user = new User();
+//        user.setName(hostname1);
+//        user.setCountry(location1);
+//        user.setLanguage(language1);
+//        //user.set(hostrating1);
+//        user.setUserDescription(description1);
+//        user.setImage(image1);
         try {
-            Database.updateUser(null, null, hostname1, null, location1, null,
-                    null, null, null, null, null, null, null,
+            Database.updateUser(user.getEmail(), null, hostname1, description1, location1, null,
+                    null, null, null, language1, null, null, null,
                     null, null, null, null, null);
-            HttpSession session = request.getSession();
+            ResultSet rs = Database.selectUser(newConnection, user.getEmail());
+            user = Database.createUser(rs);
             session.setAttribute("user", user);
         } catch (SQLException e) {
-            modelAndView.setViewName("/profile");
             modelAndView.addObject("unsuccessMessage", "unable to update information");
             return modelAndView;
         }

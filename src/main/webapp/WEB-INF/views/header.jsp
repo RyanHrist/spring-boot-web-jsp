@@ -20,6 +20,8 @@
     <c:url value="../../resources/static/css/main.css" var="jstlCss" />
     <link href="${jstlCss}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

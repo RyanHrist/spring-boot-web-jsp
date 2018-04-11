@@ -1,0 +1,481 @@
+
+/* EatnGreet Colour Scheme */
+body {
+    --t1: #f0f0f0; /* light text */
+    --t2: #362415; /* dark text */
+
+    --c1: #ba2a03; /* colour 1 orange */
+    --c2: #f0f0f0; /* colour 2 white */
+    --c3: #eac784; /* colour 3 light brown */
+    --c4: #604c4c; /* colour 4 medium brown */
+    --c5: #362415; /* colour 5 dark brown */
+
+    background-color: var(--c2);
+    /*background-image: url("../images/Tile_BG_02.jpg");*/
+    margin:0;
+}
+
+/* forcing scrollbar at all times for consistency*/
+html {
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
+}
+
+@font-face {
+    font-family: opi;
+    src: url(Opificio_rounded.ttf);
+}
+
+.centered h1{
+    font-family: opi;
+    font-size: 72px;
+    color: var(--c1);
+}
+
+h2{
+    color: var(--c1);
+}
+.contain{
+
+    float:left;
+    position: relative;
+    text-align: center;
+    color: white;
+
+}
+
+.fadeimg{
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contain:hover .fadeimg {
+    opacity: 0.6;
+}
+
+.contain:hover .middle {
+    opacity: 0.8;
+}
+
+.text {
+    background-color: var(--c1);
+    color: white;
+    font-size: 16px;
+    padding: 12px 32px;
+}
+
+
+.centered {
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.centered img{
+    margin: 10px;
+
+    border: 1px solid var(--c5);
+    border-radius: 5px;
+
+}
+
+.fadeimg:hover {
+    transition: 0.35s ease;
+    opacity: 0.6;
+
+    border: 1px solid var(--c5);
+    border-radius: 5px;
+}
+/* Fixes text on buttons to be visible */
+.button {
+    font-family: opi;
+    color: black;
+}
+
+.input{
+    font-family: opi;
+    color: black;
+}
+
+
+/* Search field on home screen */
+.search input[type=text] {
+    padding: 10px;
+    padding-right: 0px;
+    font-size: 17px;
+    border: 1px solid var(--c5);
+    border-radius: 5px;
+    width: 30%;
+    height: 50px;
+}
+
+/* Search button for search field on home screen */
+.search button{
+    margin: 0px;
+    margin-left: -6px;
+    padding: 10px;
+    background: var(--c3);
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    border: 1px solid var(--c5);
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+/* Navbar container */
+.navbar123 {
+    overflow: hidden;
+    background-color: var(--c5);
+    font-family: Calibri;
+    box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Links inside the navbar */
+.navbar123 a {
+    float: right;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}
+.home {
+    float:left !important;
+    border: 0px solid var(--c5);
+    border-radius: 0px;
+}
+
+/* The dropdown container */
+.dropdownEAT {
+    float: right !important;
+    overflow: hidden !important;
+}
+
+/* Dropdown button */
+.dropdownEAT .dropbtnEAT {
+    font-size: 16px !important;
+    border: none !important;
+    outline: none !important;
+    color: white !important;
+    padding: 14px 16px !important;
+    background-color: inherit !important;
+    font-family: inherit !important; /* Important for vertical align on mobile phones */
+    margin: 0 !important; /* Important for vertical align on mobile phones */
+}
+
+/* Add a background color to navbar links on hover */
+.navbar123 a:hover, .dropdownEAT:hover .dropbtnEAT {
+    background-color: var(--c5);
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-contentEAT {
+    right: 0 !important;
+    float: left !important;
+    display: none !important;
+    position: absolute !important;
+    background-color: #f9f9f9 !important;
+    min-width: 160px !important;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2) !important;
+    z-index: 1 !important;
+}
+
+
+.button512 {
+    color: green;
+    font-family: opi;
+}
+
+/* Links inside the dropdown */
+.dropdown-contentEAT a {
+    float: none  !important;
+    color: black !important;
+    padding: 12px 16px !important;
+    text-decoration: none !important;
+    display: block !important;
+    text-align: left !important;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-contentEAT a:hover {
+    background-color: var(--c1) !important;
+}
+
+/* Show the dropdown menu on hover */
+.dropdownEAT:hover .dropdown-contentEAT {
+    display: block !important;
+}
+
+.inner {
+    background: var(--c5);
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    padding-top: 10px;
+    text-align: left;
+    color: var(--c5);
+}
+
+.inner input {
+    width: 100%;
+    clear: both;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    color: var(--c5);
+}
+
+
+/* REGISTRATION STUFF */
+/* REGISTRATION STUFF */
+/* REGISTRATION STUFF */
+
+
+
+.centered h1{
+    font-family: opi;
+    font-size: 72px;
+    color: var(--c1);
+}
+
+h4{
+    font-family: opi;
+    color: var(--c1) !important;
+}
+input, input[type="radio"] + label, input[type="checkbox"] + label:before, select option, select {
+    width: 100%;
+    padding: 1em;
+    line-height: 1.4;
+    background-color: var(--c2);
+    -webkit-transition: 0.35s ease-in-out;
+    -moz-transition: 0.35s ease-in-out;
+    -o-transition: 0.35s ease-in-out;
+    transition: 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+    border: 1px solid var(--c5);
+    border-radius: 5px;
+}
+input:focus {
+    outline: 0;
+    border-color: var(--c1);
+}
+.eag-input-icon i {
+    color: var(--c5);
+    margin-top: 38%;
+}
+input:focus + .eag-input-icon i {
+    color: var(--c1);
+    margin-top: 30%;
+}
+input:focus + .eag-input-icon:after {
+    border-right-color: var(--c1);
+}
+input[type="radio"] {
+    display: none;
+
+}
+input[type="radio"] + label,
+select {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    float: left;
+    border-radius: 0;
+}
+input[type="radio"] + label:first-of-type {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+input[type="radio"] + label:last-of-type {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+input[type="radio"] + label i {
+    padding-right: 0.4em;
+}
+input[type="radio"]:checked + label,
+input:checked + label:before,
+select:focus,
+select:active {
+    background-color: var(--c1);
+    color: var(--t1);
+    border-color: var(--c5);
+}
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"] + label {
+    position: relative;
+    display: block;
+    padding-left: 1.6em;
+}
+input[type="checkbox"] + label:before {
+    position: absolute;
+    top: 0.2em;
+    left: 0;
+    display: block;
+    width: 1em;
+    height: 1em;
+    padding: 0;
+    content: "";
+}
+input[type="checkbox"] + label:after {
+    position: absolute;
+    top: 0.45em;
+    left: 0.2em;
+    font-size: 0.8em;
+    color: var(--c5);
+    opacity: 0;
+    font-family: FontAwesome;
+    content: "\f00c";
+
+}
+input:checked + label:after {
+    opacity: 1;
+}
+select {
+    height: 3.4em;
+    line-height: 2;
+}
+select:first-of-type {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+select:last-of-type {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+select:focus,
+select:active {
+    outline: 0;
+}
+select option {
+    background-color: var(--c1);
+    color: var(--t1);
+}
+.eag-input-group {
+    margin-bottom: 1em;
+    zoom: 1;
+}
+.eag-input-group:before,
+.eag-input-group:after {
+    content: "";
+    display: table;
+}
+.eag-input-group:after {
+    clear: both;
+}
+.eag-input-group-icon {
+    position: relative;
+}
+.eag-input-group-icon input {
+    padding-left: 4.4em;
+}
+.eag-input-group-icon .eag-input-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3.4em;
+    height: 3.4em;
+    line-height: 3.4em;
+    text-align: center;
+    pointer-events: none;
+}
+
+.eag-input-group-icon .eag-input-icon:after {
+    position: absolute;
+    top: 0.6em;
+    bottom: 0.6em;
+    left: 3.4em;
+    display: block;
+    border-right: 1px solid var(--c5);
+    content: "";
+    -webkit-transition: 0.35s ease-in-out;
+    -moz-transition: 0.35s ease-in-out;
+    -o-transition: 0.35s ease-in-out;
+    transition: 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+}
+.eag-input-group-icon .eag-input-icon i {
+    -webkit-transition: 0.35s ease-in-out;
+    -moz-transition: 0.35s ease-in-out;
+    -o-transition: 0.35s ease-in-out;
+    transition: 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+}
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+.eag-container {
+    max-width: 38em;
+    padding: 1em 3em 2em 3em;
+    display:inline-block;
+    margin: 0em auto;
+    background-color: var(--c3);
+    border-radius: 4.2px;
+    box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+    padding-bottom: 0px;
+    margin-bottom: 50px;
+}
+.eag-row {
+    zoom: 1;
+}
+.eag-row h4{
+    background: var(--c3);
+    color: var(--c1);
+}
+.eag-row:before,
+.eag-row:after {
+    content: "";
+    display: table;
+}
+.eag-row:after {
+    clear: both;
+}
+.eag-col-half {
+    padding-right: 10px;
+    float: left;
+    width: 50%;
+}
+.eag-col-half:last-of-type {
+    padding-right: 0;
+}
+.eag-col-third {
+    padding-right: 10px;
+    float: left;
+    width: 33.33333333%;
+}
+.eag-col-third:last-of-type {
+    padding-right: 0;
+}
+@media only screen and (max-width: 540px) {
+    .eag-col-half {
+        width: 100%;
+        padding-right: 0;
+    }
+}

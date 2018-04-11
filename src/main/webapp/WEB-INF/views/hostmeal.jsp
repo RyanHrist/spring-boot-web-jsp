@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Nancy
+  Date: 2/22/2018
+  Time: 3:42 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -28,8 +35,9 @@
                 </div>
                 <div class="eag-col-half">
                     <div class="eag-input-group eag-input-group-icon">
-                        <input type="number" name="mealPrice" placeholder="Choose a price" required/>
-                        <div class="eag-input-icon"><i class="fa fa-dollar-sign"></i></div>
+
+                        <input type="file" name="mealImage" placeholder="Meal Image" required/>
+                        <div class="eag-input-icon"><i class="fas fa-image"></i></div>
                     </div>
                 </div>
             </div>
@@ -64,28 +72,47 @@
                 </div>
             </div>
 
+            <div class="eag-row">
+                <h4>Description</h4>
+                <div class="eag-input-group eag-input-group-icon">
+                    <input type="text" name="mealDescription" placeholder="Description of the meal" required/>
+                    <div class="eag-input-icon"><i class="fas fa-question-circle"></i></div>
+                </div>
+            </div>
+
+            <div class="eag-row">
+                <h4>Prices</h4>
+                <div class="eag-col-half">
+                    <div class="eag-input-group eag-input-group-icon">
+                        <input type="number" name="mealPrice" placeholder="Meal Price" required/>
+                        <div class="eag-input-icon"><i class="fa fa-dollar-sign"></i></div>
+                    </div>
+                </div>
+                <div class="eag-col-half">
+                    <div class="eag-input-group eag-input-group-icon">
+                        <input type="number" name="mealCancelFee" placeholder="Cancellation Fee" required/>
+                        <div class="eag-input-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="eag-row">
                 <h4>Cancellation Deadline</h4>
-                <div class="eag-col-third">
+                <div class="eag-col-half">
                     <div class="eag-input-group eag-input-group-icon">
                         <input type="date" name="mealCancelDate" placeholder="Meal Cancel Date" required/>
                         <div class="eag-input-icon"><i class="fas fa-calendar-times"></i></div>
                     </div>
                 </div>
-                <div class="eag-col-third">
+                <div class="eag-col-half">
                     <div class="eag-input-group eag-input-group-icon">
                         <input type="time" name="mealCancelTime" placeholder="Meal Cancel Time" required/>
                         <div class="eag-input-icon"><i class="far fa-clock"></i></div>
                     </div>
                 </div>
-                <div class="eag-col-third">
-                    <div class="eag-input-group eag-input-group-icon">
-                        <input type="number" name="mealCancelFee" placeholder="Fee" required/>
-                        <div class="eag-input-icon"><i class="fas fa-hand-holding-usd"></i></div>
-                    </div>
-                </div>
             </div>
+
 
             <div class="eag-row">
                 <h4>Meal Location</h4>
